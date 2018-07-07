@@ -1,3 +1,12 @@
-<p>
-  post-list works!
-</p>
+<div class="list">
+  <span class="post" *ngFor="let post of posts">
+    <span class="label text-muted">
+      {{ post.published }}
+    </span>
+    <strong>
+      <a [routerLink]="[post.id]">
+        {{ post.title }}
+      </a>
+    </strong>
+  </span>
+</div>
