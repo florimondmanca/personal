@@ -1,21 +1,25 @@
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
   <div id="editor" class="pad-h-sm">
 
     <div id="title">
       <input formControlName="title" type="text" hidden>
 
-      <h1 contenteditable class="text-primary text-mono" #title></h1>
+      <h1 contenteditable class="text-primary text-mono" #title>
+        {{ iTitle }}
+      </h1>
 
-      <p class="text-hint">Markdown is supported.</p>
-    </div>
-
-    <div id="controls">
-      <button class="primary" type="submit">Save</button>
+      <p class="text-hint">
+        <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a>
+        is supported.
+      </p>
     </div>
 
     <textarea id="edit" formControlName="content" rows="16" class="full-width"></textarea>
 
-    <markdown [data]="content.value"></markdown>
+    <markdown id="preview" [data]="content.value"></markdown>
   </div>
 
+  <div id="controls">
+    <button class="primary" type="submit">Save</button>
+  </div>
 </form>

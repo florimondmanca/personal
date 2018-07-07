@@ -3,16 +3,28 @@
 #editor {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "title controls" "edit preview";
+  grid-template-areas: "title title" "edit preview";
   grid-column-gap: 2em;
 }
 
 #title {
   grid-area: title;
+  h1 {
+    &::before {
+      content: '# ';
+    }
+  }
 }
 
 #controls {
-  grid-area: controls;
+  $p: 2em;
+  width: fit-content;
+  margin-left: auto;
+  position: sticky;
+  bottom: $p;
+  right: $p;
+  margin-top: $p;
+  margin-bottom: $p;
   display: flex;
   align-items: center;
 }

@@ -6,6 +6,7 @@ import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostCreateComponent } from './post-create/post-create.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
       {
         path: ':id',
         component: PostDetailComponent,
+        resolve: { post: PostDetailResolver },
+      },
+      {
+        path: ':id/edit',
+        component: PostEditComponent,
         resolve: { post: PostDetailResolver },
       },
     ],

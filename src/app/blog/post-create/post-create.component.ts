@@ -12,4 +12,9 @@ export class PostCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(event) {
+    console.log(event.title);
+    console.log(event.content);
+  }
+
 }

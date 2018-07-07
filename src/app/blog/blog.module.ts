@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { EditorComponent } from './editor/editor.component';
 import { PostCreateComponent } from './post-create/post-create.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { PostCreateComponent } from './post-create/post-create.component';
     PostDetailComponent,
     EditorComponent,
     PostCreateComponent,
+    PostEditComponent,
   ]
 })
 export class BlogModule { }
