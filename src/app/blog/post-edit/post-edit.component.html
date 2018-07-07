@@ -1,1 +1,1 @@
-<app-editor [title]="post.title" [content]="post.content"></app-editor>
+<app-editor [post]="post" (submitted)="onSubmit($event)"></app-editor>

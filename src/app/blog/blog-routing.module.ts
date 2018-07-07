@@ -23,12 +23,12 @@ const routes: Routes = [
         component: PostCreateComponent,
       },
       {
-        path: ':id',
+        path: ':pk',
         component: PostDetailComponent,
         resolve: { post: PostDetailResolver },
       },
       {
-        path: ':id/edit',
+        path: ':pk/edit',
         component: PostEditComponent,
         resolve: { post: PostDetailResolver },
       },

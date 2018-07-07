@@ -15,6 +15,10 @@ export class Post extends PostSchema {
     super();
     Object.assign(this, args);
   }
+
+  get pk(): string {
+    return this.slug;
+  }
 }
 
 @Injectable({

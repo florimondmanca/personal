@@ -4,9 +4,21 @@
     <div id="title">
       <input formControlName="title" type="text" hidden>
 
-      <h1 contenteditable class="text-primary text-mono" #title>
-        {{ iTitle }}
-      </h1>
+      <h1 contenteditable class="text-primary text-mono" [ngClass]="{'empty': !titleText}" #titleEl>{{ initialTitleText }}</h1>
+      <p class="text-hint">
+        Slug: <span class="text-mono">{{ slug.value }}</span>
+        <label *ngIf="slug.invalid" class="text-warn">
+          &nbsp;
+          <span *ngIf="slug.errors.exists">
+            <fa-icon [icon]="faWarn"></fa-icon>
+            An article with this slug already exists.
+          </span>
+          <span *ngIf="slug.errors.required">
+            <fa-icon [icon]="faWarn"></fa-icon>
+            Title is required.
+          </span>
+        </label>
+      </p>
 
       <p class="text-hint">
         <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a>
@@ -14,12 +26,17 @@
       </p>
     </div>
 
-    <textarea id="edit" formControlName="content" rows="16" class="full-width"></textarea>
+    <textarea id="edit" formControlName="content" rows="10" class="full-width" #contentEl></textarea>
 
-    <markdown id="preview" [data]="content.value"></markdown>
+    <markdown id="preview" [data]="contentText"></markdown>
   </div>
 
-  <div id="controls">
-    <button class="primary" type="submit">Save</button>
+  <div class="sticky push-left">
+    <button class="primary" type="submit" [disabled]="!formGroup.valid">
+      Save
+    </button>
   </div>
+  <p class="text-center" *ngIf="post">
+    <a class="warn" (click)="delete()">Delete</a>
+  </p>
 </form>

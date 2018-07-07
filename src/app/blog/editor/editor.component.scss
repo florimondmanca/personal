@@ -13,20 +13,25 @@
     &::before {
       content: '# ';
     }
+    &.empty {
+      &::after {
+        content: 'Type title…';
+        color: rgba($color-primary, 0.5);
+      }
+    }
   }
 }
 
-#controls {
-  $p: 2em;
-  width: fit-content;
-  margin-left: auto;
+$p: 2em;
+.sticky {
   position: sticky;
   bottom: $p;
-  right: $p;
-  margin-top: $p;
-  margin-bottom: $p;
-  display: flex;
-  align-items: center;
+}
+
+.push-left {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: $p;
 }
 
 #edit {

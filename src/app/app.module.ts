@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+
+import { ApiKeyInterceptor } from './core';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,7 +27,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MarkdownModule.forRoot(),
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

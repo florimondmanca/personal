@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Post, PostPayload, PostService } from '../core';
 
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.scss']
 })
-export class PostCreateComponent implements OnInit {
+export class PostCreateComponent {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private postService: PostService) { }
 
-  ngOnInit() {
-  }
-
-  onSubmit(event) {
-    console.log(event.title);
-    console.log(event.content);
+  onSubmit(payload: PostPayload) {
+    console.log(payload);
+    this.postService.create(payload).subscribe(
+      (post: Post) => this.router.navigate(['/', post.pk]),
+      (e) => console.log(e)
+    )
   }
 
 }

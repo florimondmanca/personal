@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'mixins/button';
+@import 'mixins/link';
 
 .text-center {
   text-align: center;
@@ -45,6 +46,10 @@ p.text-hint {
   color: $color-primary-muted;
 }
 
+.text-warn {
+  color: $color-warn;
+}
+
 .bg-primary {
   background: $color-primary;
 }
@@ -68,6 +73,19 @@ button, .button {
   &.primary {
     @include button($color-primary);
     color: white;
+  }
+  &.warn {
+    @include button($color-warn);
+    color: white;
+  }
+}
+
+// Links
+
+a {
+  &.warn {
+    @include link($color-warn);
+    color: $color-warn;
   }
 }
 

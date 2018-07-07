@@ -1,0 +1,13 @@
+@mixin link($color) {
+  text-decoration: none;
+  font-weight: normal;
+  &:visited {
+    color: inherit;
+  }
+  border-bottom: 1px solid rgba($color, 0.5);
+  transition: background 100ms;
+  cursor: pointer;
+  &:hover {
+    background: rgba($color, 0.5);
+  }
+}
