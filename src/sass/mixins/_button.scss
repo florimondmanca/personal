@@ -1,0 +1,16 @@
+@import 'variables';
+
+@mixin button($color) {
+  font: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+  background: $color;
+  padding: .3em .5em;
+  border-radius: 3px;
+  transition: background 100ms;
+  cursor: pointer;
+  &:hover {
+    background: darken($color, 10%);
+  }
+}

@@ -1,0 +1,10 @@
+@import 'mixins/fontface';
+
+// Body
+@include font-face('Agane', 'assets/fonts/agane/regular', normal, null, ttf);
+@include font-face('Agane', 'assets/fonts/agane/bold', bold, null, ttf);
+@include font-face('AganeHeavy', 'assets/fonts/agane/heavy', bold, null, ttf);
+@include font-face('AganeLight', 'assets/fonts/agane/light', normal, null, ttf);
+
+// Monospace
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');

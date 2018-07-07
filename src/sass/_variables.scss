@@ -1,0 +1,27 @@
+@import './mixins/fontface';
+
+// Colors
+$color-text: #424242;
+$color-muted: #AAA;
+$color-primary: #59c7b7;
+$color-primary-muted: rgba($color-primary, 0.5);
+$color-inline-code: $color-primary;
+$color-gray-lightest: #F9F9F9;
+
+// Fonts
+$font: 'Agane';
+$font-heavy: 'AganeHeavy';
+$font-light: 'AganeLight';
+$font-mono: 'Inconsolata';
+$font-size: 1.1em;
+$font-size-title: 3em;
+$font-size-h1: 2.0em;
+$font-size-h2: 1.7em;
+$font-size-h3: 1.5em;
+$font-size-h4: 1.35em;
+$font-size-h5: 1.2em;
+$font-size-h6: $font-size;
+$font-size-quote: 1.1*$font-size;
+
+// Layout
+$page-max-width: 35em;
