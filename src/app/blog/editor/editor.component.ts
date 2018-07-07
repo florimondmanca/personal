@@ -40,13 +40,19 @@ export class EditorComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.titleText = this.post ? this.post.title : this.iTitle;
+    this.contentText = this.post ? this.post.content : this.iContent;
+    this.initialTitleText = this.titleText;
+
     this.createForm();
+
     this.sub.add(
       this.titleUpdates().pipe(
         tap(title => this.title.setValue(title)),
         tap(title => !this.post && this.slug.setValue(this.slugify(title))),
       ).subscribe()
     );
+
     this.sub.add(
       this.contentUpdates().pipe(
         tap((text: string) => this.contentText = text),
@@ -55,15 +61,13 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   private createForm() {
-    this.titleText = this.post ? this.post.title : this.iTitle;
-    this.initialTitleText = this.titleText;
-    const initialContent = this.post ? this.post.content : this.iContent;
+
     this.formGroup = this.fb.group({
       title: this.titleText,
-      content: initialContent,
+      content: this.contentText,
       slug: [this.slugify(this.titleText), Validators.required, this.validateSlugNotTaken.bind(this)],
     });
-    this.contentText = initialContent;
+
   }
 
   private titleUpdates(): Observable<string> {
