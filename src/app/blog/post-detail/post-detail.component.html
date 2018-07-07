@@ -4,6 +4,5 @@
     <p>{{ post.published | amDateFormat: 'LL' }}</p>
     <a routerLink="#">Edit</a>
   </div>
-  <!-- TODO add markdown rendering -->
-  <p *ngIf="post.content" [innerHTML]="post.content"></p>
+  <markdown [data]="post.content"></markdown>
 </div>
