@@ -1,0 +1,9 @@
+<div class="page pad-h-sm">
+  <div class="text-center text-mono pad-h-sm">
+    <h1 class="text-primary">{{ post.title }}</h1>
+    <p>{{ post.published | amDateFormat: 'LL' }}</p>
+    <a routerLink="#">Edit</a>
+  </div>
+  <!-- TODO add markdown rendering -->
+  <p *ngIf="post.content" [innerHTML]="post.content"></p>
+</div>

@@ -5,6 +5,7 @@ import { MomentModule } from 'ngx-moment';
 import { BlogRoutingModule } from './blog-routing.module';
 import { PostListComponent } from './post-list/post-list.component';
 import { HomeComponent } from './home/home.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,10 @@ import { HomeComponent } from './home/home.component';
     MomentModule,
     BlogRoutingModule,
   ],
-  declarations: [PostListComponent, HomeComponent]
+  declarations: [
+    PostListComponent,
+    HomeComponent,
+    PostDetailComponent,
+  ]
 })
 export class BlogModule { }

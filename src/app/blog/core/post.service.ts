@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Resolve } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Post, PostAdapter } from './post.model';
@@ -39,6 +39,20 @@ export class PostListResolver implements Resolve<Post[]> {
 
   resolve() {
     return this.service.list();
+  }
+
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostDetailResolver implements Resolve<Post> {
+
+  constructor(private service: PostService) {}
+
+  resolve(route: ActivatedRouteSnapshot) {
+    const id = route.paramMap.get('id');
+    return this.service.retrieve(id);
   }
 
 }
