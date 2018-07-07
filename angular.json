@@ -27,16 +27,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/prismjs/themes/prism-tomorrow.css"
+            ],
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-python.min.js"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/sass"
               ]
-            },
-            "scripts": [
-              "node_modules/marked/lib/marked.js"
-            ]
+            }
           },
           "configurations": {
             "production": {
