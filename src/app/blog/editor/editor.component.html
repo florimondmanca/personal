@@ -1,0 +1,21 @@
+<form [formGroup]="formGroup">
+  <div id="editor" class="pad-h-sm">
+
+    <div id="title">
+      <input formControlName="title" type="text" hidden>
+
+      <h1 contenteditable class="text-primary text-mono" #title></h1>
+
+      <p class="text-hint">Markdown is supported.</p>
+    </div>
+
+    <div id="controls">
+      <button class="primary" type="submit">Save</button>
+    </div>
+
+    <textarea id="edit" formControlName="content" rows="16" class="full-width"></textarea>
+
+    <markdown [data]="content.value"></markdown>
+  </div>
+
+</form>

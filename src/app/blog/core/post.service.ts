@@ -12,7 +12,7 @@ import { environment } from 'environments/environment';
 })
 export class PostService {
 
-  private baseUrl = environment.apiUrl + '/posts/';
+  private baseUrl: string = environment.apiUrl + '/posts/';
 
   constructor(private http: HttpClient, private adapter: PostAdapter) { }
 

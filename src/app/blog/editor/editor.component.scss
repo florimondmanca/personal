@@ -1,0 +1,30 @@
+@import 'variables';
+
+#editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "title controls" "edit preview";
+  grid-column-gap: 2em;
+}
+
+#title {
+  grid-area: title;
+}
+
+#controls {
+  grid-area: controls;
+  display: flex;
+  align-items: center;
+}
+
+#edit {
+  grid-area: edit;
+  background-color: $color-gray-lightest;
+  font-family: $font-mono;
+}
+
+#preview {
+  grid-area: preview;
+  // Fix expand of grid item
+  min-width: 0;
+}
