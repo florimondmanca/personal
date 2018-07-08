@@ -6,8 +6,13 @@
     <li>
       <a href="#">About</a>
     </li>
-    <li *ngIf="canAdd">
+    <li *ngIf="loggedIn">
       <a routerLink="/create">Add</a>
+    </li>
+    <li *ngIf="loggedIn">
+      <a routerLink="/" (click)="logout()">
+        Log out
+      </a>
     </li>
   </ul>
 </nav>

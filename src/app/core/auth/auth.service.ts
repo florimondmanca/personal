@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { User, ANONYMOUS_USER } from './user.model';
@@ -11,8 +12,13 @@ import { User, ANONYMOUS_USER } from './user.model';
 export class AuthService {
 
   private loginUrl: string = environment.apiUrl + '/login/';
+  private user$: BehaviorSubject<User> = new BehaviorSubject(this.user);
+  redirectUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) { }
 
   login(username: string, password: string): Observable<User> {
     return this.http.post(this.loginUrl, { username, password }).pipe(
@@ -23,8 +29,12 @@ export class AuthService {
     );
   }
 
-  isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     return !!this.token;
+  }
+
+  redirectLogin() {
+    this.router.navigate(['/login']);
   }
 
   logout() {
@@ -47,15 +57,25 @@ export class AuthService {
   private set user(user: User) {
     if (!user) {
       localStorage.removeItem('auth-user');
+      this.user$.next(ANONYMOUS_USER);
     } else {
       localStorage.setItem('auth-user', JSON.stringify(user));
+      this.user$.next(user);
     }
   }
 
-  getUser(): User {
+  private get user(): User {
     const userRaw: string = localStorage.getItem('auth-user');
     const user: any = userRaw ? JSON.parse(userRaw) : null;
     return user ? new User(user.id, user.isAdmin) : ANONYMOUS_USER;
+  }
+
+  userSnapshot(): User {
+    return this.user$.getValue();
+  }
+
+  getUser(): Observable<User> {
+    return this.user$.asObservable();
   }
 
 

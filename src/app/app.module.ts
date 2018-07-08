@@ -8,13 +8,19 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MomentModule } from 'ngx-moment';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import {
+  ErrorStateMatcher, ShowOnDirtyErrorStateMatcher,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+} from '@angular/material';
 
-import { KeyInterceptor, TokenInterceptor } from './core';
+import { KeyInterceptor, TokenInterceptor, ErrorInterceptor } from './core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -22,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppComponent,
     FooterComponent,
     NotFoundComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,10 +39,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MomentModule,
     MarkdownModule.forRoot(),
     AppRoutingModule,
+    // Angular Material
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]

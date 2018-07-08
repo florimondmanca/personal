@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Log in</h1>
+
+  <p>Please log in below with your administrator account.</p>
+
+  <form (ngSubmit)="formValid && submit()">
+    <mat-form-field>
+      <input type="text" matInput required [formControl]="username" placeholder="Username">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput required [formControl]="password" placeholder="Password">
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="!formValid">
+      Log in
+    </button>
+  </form>
+</div>

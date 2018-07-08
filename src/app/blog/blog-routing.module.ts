@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from 'app/core';
 import { PostListResolver, PostDetailResolver } from './core';
 import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
       {
         path: 'create',
         component: PostCreateComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: ':pk',
@@ -30,6 +32,7 @@ const routes: Routes = [
       {
         path: ':pk/edit',
         component: PostEditComponent,
+        canActivate: [AuthGuard],
         resolve: { post: PostDetailResolver },
       },
     ],
