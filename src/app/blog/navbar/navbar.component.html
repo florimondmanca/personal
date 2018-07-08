@@ -7,12 +7,17 @@
       <a href="#">About</a>
     </li>
     <li *ngIf="loggedIn">
-      <a routerLink="/create">Add</a>
-    </li>
-    <li *ngIf="loggedIn">
-      <a routerLink="/" (click)="logout()">
-        Log out
-      </a>
+      <button mat-icon-button type="button" [matMenuTriggerFor]="adminTools">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #adminTools="matMenu">
+        <a mat-menu-item routerLink="/create">
+          Add
+        </a>
+        <a mat-menu-item routerLink="/" (click)="logout()">
+          Log out
+        </a>
+      </mat-menu>
     </li>
   </ul>
 </nav>
