@@ -1,10 +1,12 @@
 <nav id="nav">
   <ul>
     <li>
-      <a routerLink="/">Home</a>
+      <a routerLink="/">
+        CodeSail
+      </a>
     </li>
     <li>
-      <a href="#">About</a>
+      <a routerLink="about">About me</a>
     </li>
     <li *ngIf="loggedIn">
       <button mat-icon-button type="button" [matMenuTriggerFor]="adminTools">

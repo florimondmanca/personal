@@ -5,6 +5,7 @@ import { AuthGuard } from 'app/core';
 import { PostListResolver, PostDetailResolver } from './core';
 import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
@@ -20,6 +21,11 @@ const routes: Routes = [
         component: HomeComponent,
         resolve: { posts: PostListResolver },
         data: { pageId: 'home' },
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
+        data: { pageId: 'about' },
       },
       {
         path: 'create',

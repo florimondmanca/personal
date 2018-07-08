@@ -28,6 +28,7 @@ import { EditorComponent } from './editor/editor.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     PostCreateComponent,
     PostEditComponent,
     DeleteDialogComponent,
+    AboutComponent,
   ],
   entryComponents: [
     DeleteDialogComponent,

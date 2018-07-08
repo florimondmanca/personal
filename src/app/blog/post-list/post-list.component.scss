@@ -1,16 +1,19 @@
 @import 'variables';
 
 .post {
-  margin: 1em 0;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
+  margin: 1em 0;
 }
 
-.label::after {
-  content: '';
-  right: 0;
-  margin-left: .5em;
-  margin-right: 1em;
-  color: $color-muted;
+.label {
+  position: static;
+  &::after {
+    content: ':';
+    right: 0;
+    margin-left: .5em;
+    margin-right: 1em;
+    color: $color-muted;
+  }
 }

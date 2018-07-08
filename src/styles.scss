@@ -1,8 +1,12 @@
-// Global styles
+@import '~@angular/material/theming';
 @import 'fonts';
 @import 'variables';
 @import 'classes';
 @import 'material';
+@import 'mixins/link';
+@import 'theme';
+
+$primary: map-get($theme, primary);
 
 html {
   min-height: 100%;
@@ -29,8 +33,13 @@ hr {
 }
 
 a {
-  @include link($color-primary);
+  @include link(mat-color($primary));
   color: inherit;
+  &.no-style {
+    font-weight: inherit;
+    border: inherit;
+    background: inherit;
+  }
 }
 
 code {

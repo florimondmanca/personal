@@ -59,6 +59,19 @@ hr.sm {
   margin: auto;
 }
 
+hr.asterisk {
+  position: relative;
+  background: none;
+  &::before {
+    content: '***';
+    width: 100%;
+    position: absolute;
+    top: -.5em;
+    text-align: center;
+    color: $color-muted;
+  }
+}
+
 .full-width {
   width: 100%;
 }

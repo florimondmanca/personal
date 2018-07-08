@@ -1,7 +1,7 @@
 <div class="page pad-h-sm">
   <div class="text-center pad-h-sm">
     <h1 class="text-primary">{{ post.title }}</h1>
-    <p class="text-mono">
+    <p>
       {{ post.published | amDateFormat: 'LL' }}
     </p>
     <p *ngIf="canEdit">

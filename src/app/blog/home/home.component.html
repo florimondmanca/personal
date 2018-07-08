@@ -1,10 +1,22 @@
 <div class="page pad-h-sm">
   <!-- Header -->
-  <div class="text-center text-mono pad-h-sm">
-    <h1 class="text-primary">Florimond Manca</h1>
-    <h2>Notes from a curious coder</h2>
+  <div class="text-center pad-h-sm">
+    <h1 class="text-primary">
+      <label>
+        CodeSail
+      </label>
+    </h1>
+    <h2 class="text-muted">
+      <label>
+        A journey through web development & software engineering
+      </label>
+    </h2>
+    <p>
+      by <a routerLink="about">Florimond Manca</a>
+    </p>
   </div>
 
-  <!-- List of blog posts -->
+  <hr id="divide" class="asterisk">
+
   <app-post-list [posts]="posts"></app-post-list>
 </div>
