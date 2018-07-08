@@ -1,6 +1,8 @@
-# CodeSail
+# FlorimondManca
 
-This is the repository for CodeSail, a blog about web development and software engineering written by yours truely.
+This is the repository for Florimond Manca's personal website.
+
+This website also hosts CodeSail, a blog about web development and software engineering written by yours truely.
 
 <p class="text-center">
   <a href="#">See it live</a>

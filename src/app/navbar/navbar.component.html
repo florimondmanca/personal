@@ -1,19 +1,20 @@
 <nav id="nav">
   <ul>
     <li>
-      <a routerLink="/">
-        CodeSail
-      </a>
+      <a routerLink="/">Home</a>
     </li>
     <li>
-      <a routerLink="about">About me</a>
+      <a routerLink="/about">About me</a>
+    </li>
+    <li>
+      <a routerLink="/codesail">CodeSail</a>
     </li>
     <li *ngIf="loggedIn">
       <button mat-icon-button type="button" [matMenuTriggerFor]="adminTools">
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #adminTools="matMenu">
-        <a mat-menu-item routerLink="/create">
+        <a mat-menu-item routerLink="/codesail/create">
           <mat-icon>add</mat-icon> Add
         </a>
         <a mat-menu-item [href]="adminSiteUrl" target="_blank">

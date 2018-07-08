@@ -1,5 +1,7 @@
 <div class="mat-theme mat-typography">
-  <main [@fadeAnimation]="appOutlet.activatedRouteData['pageId'] || ''">
+  <app-navbar></app-navbar>
+  <main class="fill-height" [@fadeAnimation]="getPage(appOutlet)">
     <router-outlet #appOutlet="outlet"></router-outlet>
   </main>
+  <app-footer id="footer"></app-footer>
 </div>

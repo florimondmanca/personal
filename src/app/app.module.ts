@@ -13,11 +13,15 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
+  MatIconModule,
+  MatMenuModule,
 } from '@angular/material';
 
 import { KeyInterceptor, TokenInterceptor, ErrorInterceptor } from './core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 
@@ -25,6 +29,8 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
+    FooterComponent,
     NotFoundComponent,
     LoginComponent,
   ],
@@ -41,6 +47,8 @@ import { LoginComponent } from './login/login.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },

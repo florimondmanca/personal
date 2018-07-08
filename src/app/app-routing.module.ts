@@ -14,6 +14,11 @@ const routes: Routes = [
   },
   {
     path: '',
+    redirectTo: 'codesail',
+    pathMatch: 'full',
+  },
+  {
+    path: 'codesail',
     loadChildren: './blog/blog.module#BlogModule',
   },
   {

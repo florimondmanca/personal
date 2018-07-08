@@ -15,7 +15,7 @@ export class PostCreateComponent {
 
   onSubmit(payload: PostPayload) {
     this.postService.create(payload).subscribe(
-      (post: Post) => this.router.navigate(['/', post.pk]),
+      (post: Post) => this.router.navigate(['/codesail', post.pk]),
       (e) => console.log(e)
     )
   }

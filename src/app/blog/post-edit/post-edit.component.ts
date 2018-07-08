@@ -22,14 +22,14 @@ export class PostEditComponent implements OnInit {
 
   onSubmit(payload: PostPayload) {
     this.postService.update(this.post.pk, payload).subscribe(
-      (post: Post) => this.router.navigate(['/', post.pk]),
+      (post: Post) => this.router.navigate(['/codesail', post.pk]),
       (e) => console.log(e)
     )
   }
 
   onDelete() {
     this.postService.destroy(this.post.pk).subscribe(
-      () => this.router.navigate(['/']),
+      () => this.router.navigate(['/codesail']),
       (e) => console.log(e),
     )
   }

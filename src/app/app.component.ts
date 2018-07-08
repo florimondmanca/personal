@@ -8,4 +8,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.scss'],
   animations: [fadeAnimation],
 })
-export class AppComponent {}
+export class AppComponent {
+  getPage(outlet) {
+    return outlet.activatedRouteData['pageId'] || '';
+  }
+}

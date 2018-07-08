@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-<main class="fill-height relative" [@swipe]="getPage(outlet)">
+<main class="relative" [@swipe]="getPage(outlet)">
   <router-outlet #outlet="outlet"></router-outlet>
 </main>
-<app-footer id="footer"></app-footer>
