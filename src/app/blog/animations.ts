@@ -1,0 +1,26 @@
+import {
+  trigger,
+  animate,
+  transition,
+  style,
+  query,
+  group,
+} from '@angular/animations';
+
+export const swipeAnimation = trigger('swipe', [
+  transition('* <=> *', [
+    query(
+      ':enter, :leave',
+      style({ position: 'absolute', top: 0, width: '100%', opacity: 0 }),
+      { optional: true },
+    ),
+    query(':leave', [
+      style({ opacity: 1, transform: 'translateY(0)' }),
+      animate('0.3s ease-in', style({ opacity: 0, transform: 'translateY(-10px)' })),
+    ], { optional: true }),
+    query(':enter', [
+      style({ opacity: 0, transform: 'translateY(-10px)' }),
+      animate('0.3s ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+    ], { optional: true }),
+  ]),
+]);

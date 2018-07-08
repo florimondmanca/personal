@@ -1,4 +1,5 @@
 <div class="mat-theme mat-typography">
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <main [@fadeAnimation]="appOutlet.activatedRouteData['pageId'] || ''">
+    <router-outlet #appOutlet="outlet"></router-outlet>
+  </main>
 </div>

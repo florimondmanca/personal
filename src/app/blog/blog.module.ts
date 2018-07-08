@@ -20,6 +20,7 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { CoreModule } from 'app/core';
 import { BlogComponent } from './blog.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
@@ -49,6 +50,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
   declarations: [
     BlogComponent,
     NavbarComponent,
+    FooterComponent,
     PostListComponent,
     HomeComponent,
     PostDetailComponent,

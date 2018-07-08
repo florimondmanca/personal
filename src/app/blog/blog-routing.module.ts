@@ -13,27 +13,32 @@ const routes: Routes = [
   {
     path: '',
     component: BlogComponent,
+    data: { pageId: 'blog' },
     children: [
       {
         path: '',
         component: HomeComponent,
         resolve: { posts: PostListResolver },
+        data: { pageId: 'home' },
       },
       {
         path: 'create',
         component: PostCreateComponent,
         canActivate: [AuthGuard],
+        data: { pageId: 'postCreate' },
       },
       {
         path: ':pk',
         component: PostDetailComponent,
         resolve: { post: PostDetailResolver },
+        data: { pageId: 'postDetail' },
       },
       {
         path: ':pk/edit',
         component: PostEditComponent,
         canActivate: [AuthGuard],
         resolve: { post: PostDetailResolver },
+        data: { pageId: 'postEdit' },
       },
     ],
   },

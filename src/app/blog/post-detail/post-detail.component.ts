@@ -23,10 +23,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.post = this.route.snapshot.data.post;
     this.sub.add(this.auth.getUser().subscribe(
-      (user) => {
-        console.log(user);
-        this.canEdit = user.permissions.canEditPost;
-      }
+      (user) => this.canEdit = user.permissions.canEditPost
     ));
   }
 
