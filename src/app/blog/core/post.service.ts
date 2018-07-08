@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 import { Post, PostAdapter } from './post.model';
 import { environment } from 'environments/environment';
 
@@ -63,7 +63,9 @@ export class PostListResolver implements Resolve<Post[]> {
   constructor(private service: PostService) {}
 
   resolve() {
-    return this.service.list();
+    return this.service.list().pipe(
+      catchError(() => of([]))
+    );
   }
 
 }
@@ -77,7 +79,9 @@ export class PostDetailResolver implements Resolve<Post> {
 
   resolve(route: ActivatedRouteSnapshot) {
     const pk: string = route.paramMap.get('pk');
-    return this.service.retrieve(pk);
+    return this.service.retrieve(pk).pipe(
+      catchError(() => of(null)),
+    );
   }
 
 }
