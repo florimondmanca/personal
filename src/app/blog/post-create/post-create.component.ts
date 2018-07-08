@@ -14,7 +14,6 @@ export class PostCreateComponent {
     private postService: PostService) { }
 
   onSubmit(payload: PostPayload) {
-    console.log(payload);
     this.postService.create(payload).subscribe(
       (post: Post) => this.router.navigate(['/', post.pk]),
       (e) => console.log(e)
