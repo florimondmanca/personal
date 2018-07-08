@@ -5,7 +5,7 @@
 
   <form (ngSubmit)="formValid && submit()">
     <mat-form-field>
-      <input type="text" matInput required [formControl]="username" placeholder="Username">
+      <input type="text" matInput required autofocus [formControl]="username" placeholder="Username">
     </mat-form-field>
     <mat-form-field>
       <input type="password" matInput required [formControl]="password" placeholder="Password">
@@ -13,5 +13,8 @@
     <button mat-raised-button color="primary" [disabled]="!formValid">
       Log in
     </button>
+    <p class="text-warn pad-v-sm text-center" *ngIf="failed">
+      Could not log in with the credentials provided.
+    </p>
   </form>
 </div>

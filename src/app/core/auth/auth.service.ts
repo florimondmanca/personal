@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post(this.loginUrl, { username, password }).pipe(
       tap((data: any) => this.token = data.token),
       map((data: any) => data.user),
-      map((user: any) => ({ id: user.id, isAdmin: user.is_admin })),
+      map((user: any) => new User(user.id, user.is_admin)),
       tap((user: User) => this.user = user),
     );
   }
