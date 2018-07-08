@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+@import './theme';
+@import './typography';
+
+@include mat-core($typography);
+
+.mat-theme {
+  @include angular-material-theme($theme);
+}

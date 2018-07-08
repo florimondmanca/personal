@@ -6,6 +6,10 @@ import { MomentModule } from 'ngx-moment';
 import { MarkdownModule } from 'ngx-markdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
+import {
+  MatButtonModule,
+} from '@angular/material';
+
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { CoreModule } from 'app/core';
@@ -26,6 +30,9 @@ import { PostEditComponent } from './post-edit/post-edit.component';
     MomentModule,
     MarkdownModule.forChild(),
     FontAwesomeModule,
+    // Angular Material
+    MatButtonModule,
+    // Project modules
     CoreModule,
     DialogModule,
     BlogRoutingModule,

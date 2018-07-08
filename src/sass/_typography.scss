@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+$typography: mat-typography-config(
+  $font-family: 'Agane, Arial, sans-serif',
+  $headline: mat-typography-level($font-size-h1, $font-line-height, 900),
+  $title: mat-typography-level($font-size-h2, $font-line-height, 900),
+  $subheading-2: mat-typography-level($font-size-h3),
+  $subheading-1: mat-typography-level($font-size-h4),
+  $body-1: mat-typography-level($font-size, $font-line-height),
+  $body-2: mat-typography-level($font-size, $font-line-height, 700),
+);

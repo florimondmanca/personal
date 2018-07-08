@@ -32,13 +32,13 @@
   </div>
 
   <div class="sticky push-left">
-    <button class="primary" type="submit" [disabled]="!formGroup.valid">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">
       Save
     </button>
   </div>
-  <p class="text-center" *ngIf="post">
-    <a class="warn" (click)="delete()">Delete</a>
-  </p>
 </form>
+<div class="text-center" *ngIf="post">
+  <button mat-button color="warn" (click)="delete()">Delete</button>
+</div>
 
 <ng-template dialogContainer></ng-template>

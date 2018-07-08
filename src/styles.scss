@@ -2,6 +2,7 @@
 @import 'fonts';
 @import 'variables';
 @import 'classes';
+@import 'material';
 
 html {
   min-height: 100%;
@@ -13,46 +14,12 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  line-height: 1.5;
   color: $color-text;
-  font-family: $font, Arial, sans-serif;
-  font-size: $font-size;
 }
 
 header {
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  font-family: $font-heavy;
-  font-size: $font-size-h1;
-  &.title {
-    font-size: $font-size-title;
-  }
-}
-
-h2 {
-  &:not(.font-mono) {
-    font-family: $font-heavy;
-  }
-  font-size: $font-size-h2;
-}
-
-h3 {
-  font-size: $font-size-h3;
-}
-
-h4 {
-  font-size: $font-size-h4;
-}
-
-h5 {
-  font-size: $font-size-h5;
-}
-
-h6 {
-  font-size: $font-size-h6;
 }
 
 hr {
@@ -94,10 +61,9 @@ pre {
 }
 
 blockquote {
-  margin: 0 2em;
+  margin: 1em 2em;
   padding: 0;
   color: $color-muted;
-  font-family: $font-light;
   font-size: $font-size-quote;
 }
 

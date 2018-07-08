@@ -1,6 +1,10 @@
+@import '~@angular/material/theming';
 @import 'variables';
-@import 'mixins/button';
 @import 'mixins/link';
+@import 'theme';
+
+$primary: map-get($theme, primary);
+$warn: map-get($theme, warn);
 
 .text-center {
   text-align: center;
@@ -35,23 +39,19 @@ p.text-hint {
 }
 
 .text-mono {
-  font-family: $font-mono;
+  font-family: $font-mono !important;
 }
 
 .text-primary {
-  color: $color-primary;
-}
-
-.text-primary.text-muted {
-  color: $color-primary-muted;
+  color: mat-color($primary);
 }
 
 .text-warn {
-  color: $color-warn;
+  color: mat-color($warn);
 }
 
 .bg-primary {
-  background: $color-primary;
+  background: mat-color($primary);
 }
 
 hr.sm {
@@ -67,26 +67,13 @@ hr.sm {
   width: fit-content;
 }
 
-// Buttons
-
-button, .button {
-  @include button($color-gray-lightest);
-  &.primary {
-    @include button($color-primary);
-    color: white;
-  }
-  &.warn {
-    @include button($color-warn);
-    color: white;
-  }
-}
 
 // Links
 
 a {
   &.warn {
-    @include link($color-warn);
-    color: $color-warn;
+    @include link(mat-color($warn));
+    color: mat-color($warn);
   }
 }
 
