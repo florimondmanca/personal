@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MomentModule } from 'ngx-moment';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { ApiKeyInterceptor } from './core';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,4 +36,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(overlayContainer: OverlayContainer) {
+    overlayContainer.getContainerElement().classList.add('mat-theme', 'mat-typography');
+  }
+}

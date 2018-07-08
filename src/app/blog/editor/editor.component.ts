@@ -9,7 +9,8 @@ import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from '
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from '../core';
-import { Dialog, DialogContainer } from 'app/shared';
+import { MatDialog } from '@angular/material';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 
 @Component({
@@ -27,7 +28,6 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   @ViewChild('titleEl') titleRef: ElementRef;
   @ViewChild('contentEl') contentRef: ElementRef;
-  @ViewChild(DialogContainer) dialogContainer: DialogContainer;
 
   @Output() submitted: EventEmitter<PostPayload> = new EventEmitter();
   @Output() deleted: EventEmitter<void> = new EventEmitter();
@@ -44,15 +44,13 @@ export class EditorComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private postService: PostService,
     private router: Router,
-    private dialog: Dialog,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
     this.titleText = this.post ? this.post.title : this.iTitle;
     this.contentText = this.post ? this.post.content : this.iContent;
     this.initialTitleText = this.titleText;
-
-    console.log(this.dialogContainer);
 
     this.createForm();
 
@@ -122,16 +120,10 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   delete() {
-    const dialogRef = this.dialog.open({
-      title: `Delete ${this.post.title}?`,
-      body: 'This cannot be undone.',
-      container: this.dialogContainer,
-      actions: [
-        { value: true, text: 'Yes, delete', color: 'warn' },
-        { value: false, text: 'No, do not delete' },
-      ],
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: { post: this.post },
     });
-    dialogRef.onClose().pipe(
+    dialogRef.afterClosed().pipe(
       filter(result => result)
     ).subscribe(
       () => this.deleted.emit()

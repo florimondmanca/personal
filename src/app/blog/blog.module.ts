@@ -8,12 +8,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import {
   MatButtonModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { CoreModule } from 'app/core';
-import { DialogModule } from 'app/shared';
 import { BlogComponent } from './blog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostListComponent } from './post-list/post-list.component';
@@ -22,6 +22,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { EditorComponent } from './editor/editor.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   imports: [
@@ -32,9 +33,9 @@ import { PostEditComponent } from './post-edit/post-edit.component';
     FontAwesomeModule,
     // Angular Material
     MatButtonModule,
+    MatDialogModule,
     // Project modules
     CoreModule,
-    DialogModule,
     BlogRoutingModule,
   ],
   declarations: [
@@ -46,6 +47,10 @@ import { PostEditComponent } from './post-edit/post-edit.component';
     EditorComponent,
     PostCreateComponent,
     PostEditComponent,
-  ]
+    DeleteDialogComponent,
+  ],
+  entryComponents: [
+    DeleteDialogComponent,
+  ],
 })
 export class BlogModule { }

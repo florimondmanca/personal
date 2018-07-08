@@ -16,7 +16,7 @@
     &.empty {
       &::after {
         content: 'Type title…';
-        color: rgba($color-primary, 0.5);
+        opacity: 0.5;
       }
     }
   }
