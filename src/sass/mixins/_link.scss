@@ -4,10 +4,10 @@
   &:visited {
     color: inherit;
   }
-  border-bottom: 1px solid rgba($color, 0.5);
+  border-bottom: 1px solid $color;
   transition: background 100ms;
   cursor: pointer;
   &:hover {
-    background: rgba($color, 0.5);
+    background: rgba($color, 0.3);
   }
 }

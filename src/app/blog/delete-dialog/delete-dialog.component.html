@@ -1,8 +1,10 @@
-<h2 mat-dialog-title>Delete {{ post.title }}?</h2>
+<h2 mat-dialog-title>Delete "{{ post.title }}"?</h2>
 <mat-dialog-content>
   This cannot be undone.
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [matDialogClose]="false">No, do not delete</button>
-  <button mat-raised-button color="warn" [matDialogClose]="true">Yes, delete</button>
+  <button mat-button [matDialogClose]="false">No, do not delete this post</button>
+  <button mat-raised-button color="warn" [matDialogClose]="true">
+    Yes, delete this post
+  </button>
 </mat-dialog-actions>

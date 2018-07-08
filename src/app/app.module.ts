@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MomentModule } from 'ngx-moment';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
 
 import { ApiKeyInterceptor } from './core';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true },
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]
 })

@@ -67,18 +67,6 @@ blockquote {
   font-size: $font-size-quote;
 }
 
-textarea {
-  font: inherit;
-  font-size: inherit;
-  border: none;
-  outline: none;
-  resize: vertical;
-  @include card-shadow;
-  border-right: 1px solid #EEE;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
 input {
   font: inherit;
   font-size: inherit;

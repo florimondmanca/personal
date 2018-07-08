@@ -23,19 +23,12 @@ export class EditorComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
 
   @Input() post: Post;
-  @Input('title') iTitle = '';
-  @Input('content') iContent = '';
-
-  @ViewChild('titleEl') titleRef: ElementRef;
-  @ViewChild('contentEl') contentRef: ElementRef;
 
   @Output() submitted: EventEmitter<PostPayload> = new EventEmitter();
   @Output() deleted: EventEmitter<void> = new EventEmitter();
 
   faWarn = faExclamationTriangle;
 
-  initialTitleText: string;
-  titleText: string;
   contentText: string;
 
   private sub = new Subscription();
@@ -48,47 +41,32 @@ export class EditorComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.titleText = this.post ? this.post.title : this.iTitle;
-    this.contentText = this.post ? this.post.content : this.iContent;
-    this.initialTitleText = this.titleText;
+    const title = this.post ? this.post.title : '';
+    this.contentText = this.post ? this.post.content : '';
 
-    this.createForm();
+    this.createForm(title, this.contentText);
 
-    this.sub.add(
-      this.inputUpdates(this.titleRef, 500).pipe(
-        tap(title => this.title.setValue(title)),
-        tap(title => !this.post && this.slug.setValue(this.slugify(title))),
-      ).subscribe()
-    );
-
-    this.sub.add(
-      this.inputUpdates(this.titleRef).pipe(
-        tap(title => this.titleText = title),
-      ).subscribe()
-    );
-
-    this.sub.add(
-      this.inputUpdates(this.contentRef, 300).pipe(
-        tap((text: string) => this.contentText = text),
-      ).subscribe()
-    );
-  }
-
-  private createForm() {
-    this.formGroup = this.fb.group({
-      title: this.titleText,
-      content: this.contentText,
-      slug: [this.slugify(this.titleText), Validators.required, this.validateSlugNotTaken.bind(this)],
-    });
-  }
-
-  private inputUpdates(ref: ElementRef, debounce?: number): Observable<string> {
-    const element = ref.nativeElement;
-    return fromEvent(element, 'keyup').pipe(
-      debounceTime(debounce || 0),
+    // Delay updates of slug as it is validated by the server
+    this.sub.add(this.formGroup.controls.title.valueChanges.pipe(
+      debounceTime(500),
       distinctUntilChanged(),
-      map(() => element.innerText),
-    )
+      tap(title => !this.post && this.slug.setValue(this.slugify(title))),
+    ).subscribe());
+
+    // Delay updates of content to reduce Markdown rendering frequency
+    this.sub.add(this.formGroup.controls.content.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      tap(content => this.contentText = content),
+    ).subscribe());
+  }
+
+  private createForm(title: string, content: string) {
+    this.formGroup = this.fb.group({
+      title: title,
+      content: content,
+      slug: [this.slugify(title), null, this.validateSlugNotTaken.bind(this)],
+    });
   }
 
   get title() {

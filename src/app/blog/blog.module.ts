@@ -9,6 +9,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import {
   MatButtonModule,
   MatDialogModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatMenuModule,
+  MatIconModule,
 } from '@angular/material';
 
 import { BlogRoutingModule } from './blog-routing.module';
@@ -34,6 +38,10 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     // Angular Material
     MatButtonModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMenuModule,
+    MatIconModule,
     // Project modules
     CoreModule,
     BlogRoutingModule,

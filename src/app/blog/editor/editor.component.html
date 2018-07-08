@@ -1,42 +1,51 @@
-<form [formGroup]="formGroup" (ngSubmit)="submit()">
-  <div id="editor" class="pad-h-sm">
+<form [formGroup]="formGroup" class="pad-h-sm" (ngSubmit)="formGroup.valid && submit()">
 
-    <div id="title">
-      <input formControlName="title" type="text" hidden>
+  <span id="header">
+    <div id="fields">
+      <mat-form-field class="full-width">
+        <input matInput type="text" formControlName="title" required placeholder="Title" class="text-mono">
+        <span matPrefix>#&nbsp;</span>
+      </mat-form-field>
 
-      <h1 contenteditable class="text-primary text-mono" [ngClass]="{'empty': !titleText}" #titleEl>{{ initialTitleText }}</h1>
-      <p class="text-hint">
-        Slug: <span class="text-mono">{{ slug.value }}</span>
-        <label *ngIf="slug.invalid" class="text-warn">
-          &nbsp;
-          <span *ngIf="slug.errors.exists">
-            <fa-icon [icon]="faWarn"></fa-icon>
-            An article with this slug already exists.
-          </span>
-          <span *ngIf="slug.errors.required">
-            <fa-icon [icon]="faWarn"></fa-icon>
-            Title is required.
-          </span>
-        </label>
-      </p>
-
-      <p class="text-hint">
-        <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a>
-        is supported.
-      </p>
+      <mat-form-field class="full-width">
+        <input matInput type="text" formControlName="slug" required [readonly]="post" class="text-mono" placeholder="Slug">
+        <mat-error *ngIf="formGroup.controls.slug.hasError('exists')">
+          An article with this slug already exists.
+        </mat-error>
+        <mat-hint>An identifier used in the blog post's URL.</mat-hint>
+      </mat-form-field>
     </div>
 
-    <textarea id="edit" formControlName="content" rows="10" class="full-width" #contentEl></textarea>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
+        Save
+      </button>
+      <!-- Menu with action buttons -->
+      <button mat-icon-button type="button" *ngIf="post" [matMenuTriggerFor]="postTools">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #postTools="matMenu">
+        <button mat-menu-item (click)="delete()">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+    </div>
+  </span>
 
+  <p class="text-hint">
+    <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a>
+    is supported.
+  </p>
+
+  <div id="editor">
+    <mat-form-field id="edit" class="full-width">
+      <textarea matInput
+        formControlName="content"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="10"></textarea>
+    </mat-form-field>
     <markdown id="preview" [data]="contentText"></markdown>
   </div>
-
-  <div class="sticky push-left">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">
-      Save
-    </button>
-  </div>
 </form>
-<div class="text-center" *ngIf="post">
-  <button mat-button color="warn" (click)="delete()">Delete</button>
-</div>

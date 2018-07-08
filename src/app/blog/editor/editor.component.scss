@@ -1,43 +1,33 @@
 @import 'variables';
 
-#editor {
+#header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "title title" "edit preview";
+  grid-template-columns: 1fr auto;
   grid-column-gap: 2em;
 }
 
-#title {
-  grid-area: title;
-  h1 {
-    &::before {
-      content: '# ';
-    }
-    &.empty {
-      &::after {
-        content: 'Type title…';
-        opacity: 0.5;
-      }
-    }
-  }
+#fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  grid-column-gap: 2em;
 }
 
-$p: 2em;
-.sticky {
-  position: sticky;
-  bottom: $p;
-}
-
-.push-left {
-  width: fit-content;
-  margin-left: auto;
-  margin-right: $p;
+#editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "edit preview";
+  grid-column-gap: 2em;
+  margin: 1em 0;
 }
 
 #edit {
   grid-area: edit;
-  background-color: $color-gray-lightest;
-  font-family: $font-mono;
+  textarea {
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: $color-gray-lightest;
+    font-family: $font-mono;
+  }
 }
 
 #preview {
