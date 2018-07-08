@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "florimondmanca-blog": {
+    "codesail": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/florimondmanca-blog",
+            "outputPath": "dist/codesail",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "florimondmanca-blog:build"
+            "browserTarget": "codesail:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "florimondmanca-blog:build:production"
+              "browserTarget": "codesail:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "florimondmanca-blog:build"
+            "browserTarget": "codesail:build"
           }
         },
         "test": {
@@ -109,7 +109,7 @@
         }
       }
     },
-    "florimondmanca-blog-e2e": {
+    "codesail-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -117,7 +117,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "florimondmanca-blog:serve"
+            "devServerTarget": "codesail:serve"
           }
         },
         "lint": {
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "florimondmanca-blog"
+  "defaultProject": "codesail"
 }
