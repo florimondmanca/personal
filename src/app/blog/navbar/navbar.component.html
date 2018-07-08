@@ -6,7 +6,7 @@
     <li>
       <a href="#">About</a>
     </li>
-    <li>
+    <li *ngIf="canAdd">
       <a routerLink="/create">Add</a>
     </li>
   </ul>

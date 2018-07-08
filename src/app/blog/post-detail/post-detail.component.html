@@ -2,7 +2,7 @@
   <div class="text-center text-mono pad-h-sm">
     <h1 class="text-primary">{{ post.title }}</h1>
     <p>{{ post.published | amDateFormat: 'LL' }}</p>
-    <a routerLink="edit">Edit</a>
+    <a *ngIf="canEdit" routerLink="edit">Edit</a>
   </div>
   <markdown [data]="post.content"></markdown>
 </div>

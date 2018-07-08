@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { User } from './user.model';
+import { User, ANONYMOUS_USER } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +52,10 @@ export class AuthService {
     }
   }
 
-  getUser(): User | null {
-    const userData = localStorage.getItem('auth-user');
-    return userData ? JSON.parse(userData) : null;
+  getUser(): User {
+    const userRaw: string = localStorage.getItem('auth-user');
+    const user: any = userRaw ? JSON.parse(userRaw) : null;
+    return user ? new User(user.id, user.isAdmin) : ANONYMOUS_USER;
   }
 
 
