@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Post, PostPayload, PostService } from '../core';
 
@@ -24,6 +24,13 @@ export class PostEditComponent implements OnInit {
     this.postService.update(this.post.pk, payload).subscribe(
       (post: Post) => this.router.navigate(['/', post.pk]),
       (e) => console.log(e)
+    )
+  }
+
+  onDelete() {
+    this.postService.destroy(this.post.pk).subscribe(
+      () => this.router.navigate(['/']),
+      (e) => console.log(e),
     )
   }
 

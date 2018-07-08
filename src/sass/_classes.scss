@@ -70,6 +70,7 @@ hr.sm {
 // Buttons
 
 button, .button {
+  @include button($color-gray-lightest);
   &.primary {
     @include button($color-primary);
     color: white;

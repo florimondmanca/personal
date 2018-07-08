@@ -1,11 +1,16 @@
-import { Component, OnInit, OnDestroy, Input, Output, ElementRef, ViewChild, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, Input, Output,
+  ElementRef, ViewChild, EventEmitter, ViewContainerRef
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { Observable, fromEvent, Subscription } from 'rxjs';
-import { tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from '../core';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { Dialog, DialogContainer } from 'app/shared';
+
 
 @Component({
   selector: 'app-editor',
@@ -22,8 +27,10 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   @ViewChild('titleEl') titleRef: ElementRef;
   @ViewChild('contentEl') contentRef: ElementRef;
+  @ViewChild(DialogContainer) dialogContainer: DialogContainer;
 
   @Output() submitted: EventEmitter<PostPayload> = new EventEmitter();
+  @Output() deleted: EventEmitter<void> = new EventEmitter();
 
   faWarn = faExclamationTriangle;
 
@@ -37,6 +44,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private postService: PostService,
     private router: Router,
+    private dialog: Dialog,
   ) { }
 
   ngOnInit() {
@@ -44,48 +52,44 @@ export class EditorComponent implements OnInit, OnDestroy {
     this.contentText = this.post ? this.post.content : this.iContent;
     this.initialTitleText = this.titleText;
 
+    console.log(this.dialogContainer);
+
     this.createForm();
 
     this.sub.add(
-      this.titleUpdates().pipe(
+      this.inputUpdates(this.titleRef, 500).pipe(
         tap(title => this.title.setValue(title)),
         tap(title => !this.post && this.slug.setValue(this.slugify(title))),
       ).subscribe()
     );
 
     this.sub.add(
-      this.contentUpdates().pipe(
+      this.inputUpdates(this.titleRef).pipe(
+        tap(title => this.titleText = title),
+      ).subscribe()
+    );
+
+    this.sub.add(
+      this.inputUpdates(this.contentRef, 300).pipe(
         tap((text: string) => this.contentText = text),
       ).subscribe()
     );
   }
 
   private createForm() {
-
     this.formGroup = this.fb.group({
       title: this.titleText,
       content: this.contentText,
       slug: [this.slugify(this.titleText), Validators.required, this.validateSlugNotTaken.bind(this)],
     });
-
   }
 
-  private titleUpdates(): Observable<string> {
-    let titleEl = this.titleRef.nativeElement;
-    return fromEvent(titleEl, 'keyup').pipe(
-      tap(() => this.titleText = titleEl.innerText),
-      debounceTime(500),  // sensible debounce to reduce server load
+  private inputUpdates(ref: ElementRef, debounce?: number): Observable<string> {
+    const element = ref.nativeElement;
+    return fromEvent(element, 'keyup').pipe(
+      debounceTime(debounce || 0),
       distinctUntilChanged(),
-      map(() => titleEl.innerText),
-    );
-  }
-
-  private contentUpdates(): Observable<string> {
-    let contentEl = this.contentRef.nativeElement;
-    return fromEvent(contentEl, 'keyup').pipe(
-      debounceTime(300),  // reduce markdown rendering frequency
-      distinctUntilChanged(),
-      map(() => contentEl.value),
+      map(() => element.innerText),
     )
   }
 
@@ -118,9 +122,19 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   delete() {
-    this.postService.destroy(this.post.pk).subscribe(
-      () => this.router.navigate(['/']),
-      (e) => console.log(e),
+    const dialogRef = this.dialog.open({
+      title: `Delete ${this.post.title}?`,
+      body: 'This cannot be undone.',
+      container: this.dialogContainer,
+      actions: [
+        { value: true, text: 'Yes, delete', color: 'warn' },
+        { value: false, text: 'No, do not delete' },
+      ],
+    });
+    dialogRef.onClose().pipe(
+      filter(result => result)
+    ).subscribe(
+      () => this.deleted.emit()
     );
   }
 

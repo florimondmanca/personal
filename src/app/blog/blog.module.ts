@@ -9,6 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { CoreModule } from 'app/core';
+import { DialogModule } from 'app/shared';
 import { BlogComponent } from './blog.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostListComponent } from './post-list/post-list.component';
@@ -26,6 +27,7 @@ import { PostEditComponent } from './post-edit/post-edit.component';
     MarkdownModule.forChild(),
     FontAwesomeModule,
     CoreModule,
+    DialogModule,
     BlogRoutingModule,
   ],
   declarations: [

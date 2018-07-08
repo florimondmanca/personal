@@ -1,0 +1,11 @@
+<div id="dialog">
+  <h3 id="title">
+    {{ title }}
+  </h3>
+  <p id="body">
+    {{ body }}
+  </p>
+  <div id="actions">
+    <button *ngFor="let action of actions" (click)="onAction(action)">{{ action.text }}</button>
+  </div>
+</div>
