@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 
 
-function swipe(stateChangeExpr: string, styleInit, styleEnter, styleLeave) {
+export const swipe = (stateChangeExpr: string, styleInit, styleEnter, styleLeave) => {
   return transition(stateChangeExpr, [
     query(
       ':enter, :leave',
