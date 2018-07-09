@@ -8,7 +8,7 @@
     "RUN npm install && npm cache clean --force",
     "COPY ./src /usr/src/app",
     "RUN npm run config -- --env=prod",
-    "RUN npm run ng --version",
+    "RUN npm run ng -- --version",
     "RUN npm run build-prod",
     "ENV PORT 80",
     "EXPOSE 80",
