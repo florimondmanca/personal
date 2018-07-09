@@ -6,6 +6,7 @@
     "config": "node ./scripts/set-env.js",
     "start": "node server.js",
     "build": "ng build --prod",
+    "build-prod": "ng build --aot=false",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
