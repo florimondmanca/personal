@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/angular-6-blue.svg)](https://angular.io)
 [![Build Status](https://travis-ci.org/florimondmanca/personal.svg?branch=master)](https://travis-ci.org/florimondmanca/personal)
-[![Heroku](http://heroku-badge.herokuapp.com/?app=florimondmanca-api&style=flat)](https://florimondmanca.herokuapp.com)
+[![Heroku](http://heroku-badge.herokuapp.com/?app=florimondmanca&style=flat)](https://florimondmanca.herokuapp.com)
 
 This is the repository for Florimond Manca's personal website.
 
