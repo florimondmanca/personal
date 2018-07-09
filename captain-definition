@@ -6,6 +6,7 @@
     "WORKDIR /usr/src/app",
     "COPY ./src/package.json /usr/src/app",
     "RUN npm install && npm cache clean --force",
+    "RUN npm install -g @angular/cli",
     "COPY ./src /usr/src/app",
     "RUN npm run config -- --env=prod",
     "RUN npm run ng -- --version",
