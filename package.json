@@ -5,7 +5,7 @@
     "ng": "ng",
     "config": "node ./scripts/set-env.js",
     "start": "node server.js",
-    "build": "npm run config -- --env=prod && ng build --prod",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
