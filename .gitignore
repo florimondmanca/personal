@@ -37,3 +37,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Private
+.env
+
+# Environment files
+src/environments/environment.*.ts

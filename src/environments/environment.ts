@@ -1,8 +1,12 @@
-// Development settings
-
+// This file is a placeholder
+// Actual environment files should be generated using:
+// `npm run config -- --env=MY_ENV`
+// For development:
+// `npm run config -- --env=dev`
+// `ng serve --env=dev`
 export const environment = {
   production: false,
-  adminSiteUrl: 'http://localhost:8000/admin',
-  apiUrl: 'http://localhost:8000/api',
-  apiKey: '43b92e346d494b43e0c75d226d070e54',
-};
+  apiKey: '',
+  adminSiteUrl: '',
+  apiUrl: '',
+}

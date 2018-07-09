@@ -12,20 +12,41 @@ This website also hosts CodeSail, a blog about web development and software engi
 
 ## Install
 
-If you intend to use the Angular CLI, install it globally now:
+Install Angular CLI
 
 ```bash
 $ npm install -g @angular/cli
 ```
 
-Then, install the dependencies:
+Install the dependencies:
 
 ```bash
 $ npm install
 ```
 
+Create an environment file called `.env` (it will not be committed to VCS),
+containing the following variables:
+
+- `API_KEY`: a valid API key created via the API administration
+- `API_URL`: the URL to the API root **without trailing slash**
+- `ADMIN_SITE_URL`: the URL to the API administration
+
+For example:
+
+```
+API_KEY=...
+API_URL=http://localhost:8000/api
+ADMIN_SITE_URL=http://localhost:8000/admin
+```
+
+Generate your development environment file:
+
+```bash
+$ npm run config -- --env=dev
+```
+
 You can now start the development server, which will run on `http://localhost:4200/`:
 
 ```bash
-$ ng serve
+$ ng serve -c dev
 ```
