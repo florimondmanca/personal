@@ -8,7 +8,8 @@
     "build": "npm run config -- --env=prod && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "npm run build"
   },
   "private": true,
   "dependencies": {
