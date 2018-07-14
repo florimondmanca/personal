@@ -1,7 +1,7 @@
 language: node_js
 
-ssh_known_hosts:
-  - "www.florimondmanca.com"
+addons:
+  ssh_known_hosts: "www.florimondmanca.com"
 
 node_js:
   - "node"
