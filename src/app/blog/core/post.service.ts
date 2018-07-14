@@ -53,34 +53,50 @@ export class PostService {
   }
 
   slugExists(slug: string, postId?: string): Observable<boolean> {
-    return this.http.get(this.baseUrl, { params: { slug }}).pipe(
+    return this.http.get(this.baseUrl, { params: { slug } }).pipe(
       map((data: any[]) => data.map(item => item.slug)),
       map((pks: string[]) => pks.length > 0 && !pks.includes(postId)),
     );
   }
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostListResolver implements Resolve<Post[]> {
 
-  constructor(private service: PostService) {}
+  constructor(private service: PostService) { }
 
   resolve() {
     return this.service.list({ draft: false }).pipe(
       catchError(() => of([]))
     );
   }
-
 }
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DraftListResolver implements Resolve<Post[]> {
+
+  constructor(private service: PostService) { }
+
+  resolve() {
+    return this.service.list({ draft: true }).pipe(
+      catchError(() => of([]))
+    );
+  }
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostDetailResolver implements Resolve<Post> {
 
-  constructor(private service: PostService) {}
+  constructor(private service: PostService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
     const pk: string = route.paramMap.get('pk');

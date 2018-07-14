@@ -15,13 +15,20 @@
       </button>
       <mat-menu #adminTools="matMenu">
         <a mat-menu-item routerLink="/codesail/create">
-          <mat-icon>add</mat-icon> Add
+          <mat-icon>add</mat-icon>
+          Add
+        </a>
+        <a mat-menu-item routerLink="/codesail/drafts">
+          <mat-icon>drafts</mat-icon>
+          Drafts
         </a>
         <a mat-menu-item [href]="adminSiteUrl" target="_blank">
-          <mat-icon>person</mat-icon> Admin
+          <mat-icon>person</mat-icon>
+          Admin
         </a>
         <a mat-menu-item routerLink="/" (click)="logout()">
-          <mat-icon>power_settings_new</mat-icon> Log out
+          <mat-icon>power_settings_new</mat-icon>
+          Log out
         </a>
       </mat-menu>
     </li>
