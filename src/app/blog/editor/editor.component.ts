@@ -82,7 +82,9 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   private slugify(s: string): string {
-    return slugify(s, { lower: true });
+    const slug = slugify(s, { lower: true });
+    // 80 characters max
+    return slug.substring(0, 80);
   }
 
   validateSlugNotTaken(control: AbstractControl) {

@@ -13,6 +13,7 @@ import {
   MatFormFieldModule,
   MatMenuModule,
   MatIconModule,
+  MatChipsModule,
 } from '@angular/material';
 
 import { BlogRoutingModule } from './blog-routing.module';
@@ -42,6 +43,7 @@ import { AboutComponent } from './about/about.component';
     MatInputModule,
     MatMenuModule,
     MatIconModule,
+    MatChipsModule,
     // Project modules
     CoreModule,
     BlogRoutingModule,

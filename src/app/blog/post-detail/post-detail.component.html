@@ -1,13 +1,17 @@
 <div class="page pad-h-sm">
   <div class="text-center pad-h-sm">
     <h1 class="text-primary">{{ post.title }}</h1>
-    <p>
-      {{ post.published | amDateFormat: 'LL' }}
-    </p>
     <p *ngIf="canEdit">
       <a mat-button routerLink="edit">
         <mat-icon inline="true">edit</mat-icon> Edit
       </a>
+      <button *ngIf="post.isDraft" mat-button color="accent">
+        <mat-icon inline="true">publish</mat-icon>
+        Publish
+      </button>
+    </p>
+    <p *ngIf="post.published">
+      {{ post.published | amDateFormat: 'LL' }}
     </p>
   </div>
   <markdown [data]="post.content"></markdown>

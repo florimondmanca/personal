@@ -17,17 +17,25 @@
     </div>
 
     <div>
-      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
-        Save
+      <button mat-raised-button [disabled]="!formGroup.valid">
+        Save <ng-template [ngIf]="!post || (post && post.isDraft)">draft</ng-template>
+      </button>
+      <button mat-button color="accent" *ngIf="post && post.isDraft" (click)="publish()">
+        <mat-icon>publish</mat-icon>
+        Publish
       </button>
       <!-- Menu with action buttons -->
       <button mat-icon-button type="button" *ngIf="post" [matMenuTriggerFor]="postTools">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #postTools="matMenu">
+        <button *ngIf="post" mat-menu-item [routerLink]="['../']">
+          <mat-icon>launch</mat-icon>
+          View post
+        </button>
         <button mat-menu-item (click)="delete()">
           <mat-icon>delete</mat-icon>
-          <span>Delete</span>
+          Delete
         </button>
       </mat-menu>
     </div>

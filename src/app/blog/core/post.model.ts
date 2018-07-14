@@ -7,6 +7,7 @@ export class PostSchema {
   content: string;
   slug: string;
   published: Date;
+  isDraft: boolean;
 }
 
 export class Post extends PostSchema {
@@ -32,7 +33,8 @@ export class PostAdapter implements IAdapter<Post> {
       title: data.title,
       content: data.content,
       slug: data.slug,
-      published: new Date(data.published),
+      published: data.published ? new Date(data.published) : null,
+      isDraft: data.is_draft,
     });
   }
 }
