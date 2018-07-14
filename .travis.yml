@@ -1,5 +1,8 @@
 language: node_js
 
+# Disable sudo to enable ssh_known_hosts
+sudo: false
+
 addons:
   ssh_known_hosts: "www.florimondmanca.com"
 
