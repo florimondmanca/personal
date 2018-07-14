@@ -16,8 +16,13 @@ export class PostService {
 
   constructor(private http: HttpClient, private adapter: PostAdapter) { }
 
-  list(): Observable<Post[]> {
-    return this.http.get(this.baseUrl).pipe(
+  list(params?: { draft?: boolean }): Observable<Post[]> {
+    params = params || {};
+    // 1 for all
+    // 2 for true
+    // 3 for false
+    const draft = params.draft ? '2' : '3';
+    return this.http.get(this.baseUrl, { params: { draft } }).pipe(
       map((data: any[]) => data.map(item => this.adapter.adapt(item))),
     );
   }
@@ -63,7 +68,7 @@ export class PostListResolver implements Resolve<Post[]> {
   constructor(private service: PostService) {}
 
   resolve() {
-    return this.service.list().pipe(
+    return this.service.list({ draft: false }).pipe(
       catchError(() => of([]))
     );
   }
