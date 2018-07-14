@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "dockerfileLines": [
+    "FROM node:9.5",
+    "RUN mkdir -p /usr/src/app",
+    "WORKDIR /usr/src/app",
+    "COPY /nginx-shared/dist dist",
+    "npm install express morgan",
+    "EXPOSE 80",
+    "CMD node server.js"
+  ]
+}
