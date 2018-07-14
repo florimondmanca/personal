@@ -21,12 +21,21 @@ script:
   - npm run build
 
 before_deploy:
-  - bash scripts/before_deploy.sh
+  - echo "Setting up deploy SSH keys…"
+  - openssl aes-256-cbc -K $encrypted_0d682b85e21c_key -iv $encrypted_0d682b85e21c_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_rsa
+  - ssh-add /tmp/deploy_rsa
+  - echo "Installing CaptainDuckDuck CLI…"
+  - npm install -g captainduckduck
 
 deploy:
   provider: script
   skip_cleanup: true
-  script: bash scripts/deploy.sh
+  # Copy dist folder on remote's Nginx shared folder,
+  # and trigger Captain deploument
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist root@www.florimondmanca.com:/captain/nginx-shared; captainduckduck deploy -s -h https://captain.florimondmanca.com -a www -p $CAPTAIN_PASSWORD
+
   on:
     branch: master
 
@@ -34,6 +43,3 @@ env:
   global:
     - ADMIN_SITE_URL: https://api.florimondmanca.com/admin
     - API_URL: https://api.florimondmanca.com
-  secure:
-    - "pgWLWnODC3CCIMV4jpRgfPKsXH8Bx+8SXw51VJjvDt2+rAP53t0eKtSKEj9HzU8FDrPkoe7+PEFnizsI8WdSydCiCykGmob0aNcaCi+hqkJLR9TNohdzBO0pyqONt6I+1Cj8Vg5dS6URqRxtHqUuwdpA45BR9WenprBLXKnjJu/SL7Ot2Xndhu1UVwq4PUK51dVN0aaavQzeSPZ8AVI3rGwA1D6eJcrQmfNrcmAq8K2fIVQcX39fXa59phzlhDsj9qhScpw74qA0WNSr2IlEgjoVw186XKh7jbNJeCyai/87HmR+/8FJp7mKVLIzhcY+Rgn6FfLtRubX97r334j6t652N5mfahdPU5gelt7Vc8+IXy3HV9k6FBV3mWbb5u+YXW9DFkW9YevhiXD67B8gAftp0Q77SmjAIfewaIqF6hLyymq3MAQRipj1JuAPREjQSF+R5C2NvUF8oE+zCOG30QC3IJPmZTlnyNQ7IJkpmKy9HGR6R3DtQF+BoSTxLpqmxMuKF6Mhw28Qu2A8lBnljXa9u6FqQW1X40pNOiRjysyUm8K9SV+UKr0f3x+0m2CkEwKLhCN34NLdmpmBRrPEV8MvgaY5Q9NSGZWWVH8U7sJMgJkKxaBk2pqcY6oaGnuQJjhuGX+Kvwv83n8AOHml81TZ6Oz9osbKHBDYh6zpkHE="
-    - "qFsSSdPch2Xj1yJ2QHiVj92y2bus6BcEdfseGXJV3V7RExz0t9ol/qNcutW+bMVyrXMuM7bMHu8919uvbuvNl/STbnoOl4awag1egCEKx8AtV/CALfATZecVMF+HNDIyFU1SF3M1SiEf19f48B/xJeyhrH89zPJpYlWN4HJaqMFADNlyYhysZdHqc/5hECrmDVKVH96ZhcrtlRCwCOavE3xzssihx49ybnWzv+x6nGkmop/8R5J1pgEVvDuzGX72sQ1HYyqprzQV4/NbaYkCPW1hnZRyZ/24AGc/UuTQU8kVim0RBf96Qs5lGJwYSMU/WNFxDrtZEiWEDA2pdZgH7rIh6sgrFA/Ye4u3mTP0RwhIcU6nOoC8mC0B+PfN2z3UHsCIHT/Uy2kd8aJFBiLnvsmw1gVaZ/pRKNz9tmueXAQgYwDiOnOJ1hRXzPLFW8Zg/zta5e33ZbGxxI5U5uLTENJwYDa4XW6UpO7bHfmFMR5sZ5miy1e1um9jD5HXZvvFyyj5VkAu+V8cLduPo3g3zZHhb7u9nyWC3jw6xF94tYXahYF6IRAlbKQtFjfPIw0IeA+b8GR1vGqCS1lq5SZNCFhw4i+OpyaAaUR8ltdZJ00wO3WPBTw/mB9U7K/KiTME9ZApke4uJPeU3hcVjKMVnOTW05m3WWeAHGunQYnFurE="
