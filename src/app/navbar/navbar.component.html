@@ -1,11 +1,11 @@
 <nav id="nav">
   <ul>
-    <li>
+    <!-- <li>
       <a routerLink="/">Home</a>
-    </li>
-    <li>
+    </li> -->
+    <!-- <li>
       <a routerLink="/about">About me</a>
-    </li>
+    </li> -->
     <li>
       <a routerLink="/codesail">CodeSail</a>
     </li>
@@ -14,13 +14,13 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #adminTools="matMenu">
-        <a mat-menu-item routerLink="/codesail/create">
-          <mat-icon>add</mat-icon>
-          Add
-        </a>
         <a mat-menu-item routerLink="/codesail/drafts">
           <mat-icon>drafts</mat-icon>
           Drafts
+        </a>
+        <a mat-menu-item routerLink="/codesail/create">
+          <mat-icon>add</mat-icon>
+          Add
         </a>
         <a mat-menu-item [href]="adminSiteUrl" target="_blank">
           <mat-icon>person</mat-icon>

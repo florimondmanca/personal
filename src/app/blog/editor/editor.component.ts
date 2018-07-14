@@ -26,6 +26,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   @Output() submitted: EventEmitter<PostPayload> = new EventEmitter();
   @Output() deleted: EventEmitter<void> = new EventEmitter();
+  @Output() published: EventEmitter<void> = new EventEmitter();
 
   faWarn = faExclamationTriangle;
 
@@ -108,6 +109,10 @@ export class EditorComponent implements OnInit, OnDestroy {
     ).subscribe(
       () => this.deleted.emit()
     );
+  }
+
+  publish() {
+    this.published.emit();
   }
 
   ngOnDestroy() {

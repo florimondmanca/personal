@@ -1,15 +1,16 @@
 <div class="page pad-h-sm">
   <div class="text-center pad-h-sm">
     <h1 class="text-primary">{{ post.title }}</h1>
-    <p *ngIf="canEdit">
-      <a mat-button routerLink="edit">
-        <mat-icon inline="true">edit</mat-icon> Edit
-      </a>
-      <button *ngIf="post.isDraft" mat-button color="accent">
-        <mat-icon inline="true">publish</mat-icon>
-        Publish
-      </button>
-    </p>
+    <div *ngIf="canEdit">
+      <p>
+        <a mat-button routerLink="edit">
+          <mat-icon inline="true">edit</mat-icon> Edit
+        </a>
+      </p>
+      <p *ngIf="!post.published">
+        Drafted {{ post.created | amDateFormat: 'LL' }}
+      </p>
+    </div>
     <p *ngIf="post.published">
       {{ post.published | amDateFormat: 'LL' }}
     </p>

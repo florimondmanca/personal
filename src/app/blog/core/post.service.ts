@@ -52,6 +52,13 @@ export class PostService {
     return this.http.delete(url).pipe(map(() => null));
   }
 
+  publish(pk: string): Observable<Post> {
+    const url = this.baseUrl + `${pk}/publication/`;
+    return this.http.patch(url, {}).pipe(
+      map((data: any) => this.adapter.adapt(data)),
+    )
+  }
+
   slugExists(slug: string, postId?: string): Observable<boolean> {
     return this.http.get(this.baseUrl, { params: { slug } }).pipe(
       map((data: any[]) => data.map(item => item.slug)),

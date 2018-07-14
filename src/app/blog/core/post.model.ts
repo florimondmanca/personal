@@ -6,6 +6,7 @@ export class PostSchema {
   title: string;
   content: string;
   slug: string;
+  created: Date;
   published: Date;
   isDraft: boolean;
 }
@@ -33,6 +34,7 @@ export class PostAdapter implements IAdapter<Post> {
       title: data.title,
       content: data.content,
       slug: data.slug,
+      created: new Date(data.created),
       published: data.published ? new Date(data.published) : null,
       isDraft: data.is_draft,
     });

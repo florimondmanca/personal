@@ -20,7 +20,7 @@
       <button mat-raised-button [disabled]="!formGroup.valid">
         Save <ng-template [ngIf]="!post || (post && post.isDraft)">draft</ng-template>
       </button>
-      <button mat-button color="accent" *ngIf="post && post.isDraft" (click)="publish()">
+      <button mat-button type="button" color="accent" *ngIf="post && post.isDraft" (click)="publish()">
         <mat-icon>publish</mat-icon>
         Publish
       </button>

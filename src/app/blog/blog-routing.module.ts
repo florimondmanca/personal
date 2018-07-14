@@ -23,11 +23,11 @@ const routes: Routes = [
         resolve: { posts: PostListResolver },
         data: { pageId: 'home' },
       },
-      {
-        path: 'about',
-        component: AboutComponent,
-        data: { pageId: 'about' },
-      },
+      // {
+      //   path: 'about',
+      //   component: AboutComponent,
+      //   data: { pageId: 'about' },
+      // },
       {
         path: 'create',
         component: PostCreateComponent,

@@ -34,4 +34,10 @@ export class PostEditComponent implements OnInit {
     )
   }
 
+  onPublish() {
+    this.postService.publish(this.post.pk).subscribe(
+      () => this.router.navigate(['/codesail']),
+    )
+  }
+
 }
