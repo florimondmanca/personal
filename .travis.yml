@@ -33,4 +33,4 @@ deploy:
 env:
   global:
     - ADMIN_SITE_URL: https://api.florimondmanca.com/admin
-    - API_URL: https://api.florimondmanca.com
+    - API_URL: https://api.florimondmanca.com/api
