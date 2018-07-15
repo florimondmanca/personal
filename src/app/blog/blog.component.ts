@@ -8,7 +8,6 @@ import { swipeAnimation } from './animations';
   animations: [swipeAnimation],
 })
 export class BlogComponent {
-
   getPage(outlet) {
     return outlet.activatedRouteData['pageId'] || '';
   }
