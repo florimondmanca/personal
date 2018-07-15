@@ -1,6 +1,12 @@
 
 @import 'variables';
 
+#header {
+  h1 {
+    margin: 0;
+  }
+}
+
 #banner {
   img {
     max-width: 100%;

@@ -18,6 +18,7 @@ import {
   MatMenuModule,
 } from '@angular/material';
 
+import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor, ErrorInterceptor } from './core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,7 +52,12 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     HttpClientModule,
     MomentModule,
     FontAwesomeModule,
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useFactory: markedOptionsFactory,
+      }
+    }),
     AppRoutingModule,
     // Angular Material
     MatFormFieldModule,

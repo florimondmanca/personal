@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: BlogComponent,
-    data: { pageId: 'blog' },
+    data: { pageId: 'blog', title: 'CodeSail'},
     children: [
       {
         path: '',

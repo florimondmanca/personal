@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/core';
 import { Subscription } from 'rxjs';
@@ -18,10 +19,15 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private titleService: Title,
+  ) { }
 
   ngOnInit() {
     this.post = this.route.snapshot.data.post;
+    this.titleService.setTitle(
+      this.titleService.getTitle() + ` : ${this.post.title}`
+    );
     this.sub.add(this.auth.getUser().subscribe(
       (user) => this.canEdit = user.permissions.canEditPost
     ));

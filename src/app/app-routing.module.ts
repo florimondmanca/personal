@@ -22,7 +22,7 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        data: { pageId: 'home' },
+        data: { pageId: 'home', title: 'Home' },
       },
       {
         path: 'codesail',
