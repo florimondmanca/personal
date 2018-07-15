@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { homeSwipeAnimation } from '../animations';
+import { swipeAnimation } from '../animations';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [homeSwipeAnimation],
+  animations: [swipeAnimation],
 })
 export class MainComponent {
   getPage(outlet) {

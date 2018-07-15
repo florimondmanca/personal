@@ -23,15 +23,15 @@ export const fadeAnimation = trigger('fade', [
 ]);
 
 
-export const homeSwipeAnimation = trigger('homeSwipe', [
+export const swipeAnimation = trigger('swipe', [
   swipe(
-    'home => blog',
+    'blog => about',
     { transform: 'translateX(0)' },
     { transform: 'translateX(30px)' },
     { transform: 'translateX(-30px)' },
   ),
   swipe(
-    'blog => home',
+    'about => blog',
     { transform: 'translateX(0)' },
     { transform: 'translateX(-30px)' },
     { transform: 'translateX(30px)' },

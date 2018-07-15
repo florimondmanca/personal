@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
-import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -21,8 +21,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent,
-        data: { pageId: 'home', title: 'Home' },
+        redirectTo: 'codesail',
+        pathMatch: 'full',
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
+        data: { pageId: 'about', title: 'About' },
       },
       {
         path: 'codesail',
