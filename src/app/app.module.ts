@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { MainComponent } from './main/main.component';
     AboutComponent,
     HomeComponent,
     MainComponent,
+    ContactFormComponent,
   ],
   imports: [
     BrowserModule,
