@@ -58,3 +58,17 @@ Travis CI is configured on this repo and generates a production build on every p
 ## Deployment
 
 Deployment is configured in `.travis.yml`. After a successful CI build, the content of the build is securely uploaded using `rsync` to a server running on DigitalOcean.
+
+On the server, an Nginx container (powered by [CaptainDuckDuck](https://captainduckduck.com)) serves the uploaded files. Here is an exerpt of the Nginx configuration for this app:
+
+```nginx
+server {
+  # ...
+  root /nginx-shared/dist;
+  index index.html index.htm;
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
