@@ -4,7 +4,7 @@
       {{ post.published | amDateFormat: 'LL' }}
     </span>
     <strong>
-      <a [routerLink]="['/codesail', post.pk]">
+      <a [routerLink]="url(post)">
         {{ post.title }}
       </a>
     </strong>

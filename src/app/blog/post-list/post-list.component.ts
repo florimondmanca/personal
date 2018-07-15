@@ -9,5 +9,14 @@ import { Post } from '../core';
 export class PostListComponent {
 
   @Input() posts: Post[] = [];
+  @Input() action = '';
+
+  url(post: Post): any[] {
+    if (this.action === 'edit') {
+      return ['/codesail', post.pk, 'edit'];
+    } else {
+      return ['/codesail', post.pk];
+    }
+  }
 
 }
