@@ -2,7 +2,7 @@
 
 [![Angular](https://img.shields.io/badge/angular-6-blue.svg)](https://angular.io)
 [![Build Status](https://travis-ci.org/florimondmanca/personal.svg?branch=master)](https://travis-ci.org/florimondmanca/personal)
-[![DigitalOcean](https://img.shields.io/badge/digitalocean-deployed-green.svg)](https://cloud.digitalocean.com)
+[![DigitalOcean](https://img.shields.io/badge/digitalocean-deployed-green.svg)](https://digitalocean.com)
 
 This is the repository for Florimond Manca's personal website frontend application.
 
