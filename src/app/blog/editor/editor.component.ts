@@ -48,7 +48,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     this.sub.add(this.formGroup.controls.title.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      tap(title => !this.post && this.slug.setValue(this.slugify(title))),
+      tap(title => this.canUpdateSlug && this.slug.setValue(this.slugify(title))),
     ).subscribe());
 
     // Delay updates of content to reduce Markdown rendering frequency
@@ -65,6 +65,10 @@ export class EditorComponent implements OnInit, OnDestroy {
       content: content,
       slug: [this.slugify(title), null, this.validateSlugNotTaken.bind(this)],
     });
+  }
+
+  get canUpdateSlug(): boolean {
+    return !this.post || this.post.isDraft;
   }
 
   get title() {

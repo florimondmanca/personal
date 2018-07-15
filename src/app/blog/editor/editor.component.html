@@ -8,7 +8,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput type="text" formControlName="slug" required [readonly]="post" class="text-mono" placeholder="Slug">
+        <input matInput type="text" formControlName="slug" required [readonly]="!canUpdateSlug" class="text-mono" placeholder="Slug">
         <mat-error *ngIf="formGroup.controls.slug.hasError('exists')">
           An article with this slug already exists.
         </mat-error>
