@@ -1,10 +1,10 @@
-# FlorimondManca
+# Personal
 
-[![Python](https://img.shields.io/badge/angular-6-blue.svg)](https://angular.io)
+[![Angular](https://img.shields.io/badge/angular-6-blue.svg)](https://angular.io)
 [![Build Status](https://travis-ci.org/florimondmanca/personal.svg?branch=master)](https://travis-ci.org/florimondmanca/personal)
-[![Heroku](http://heroku-badge.herokuapp.com/?app=florimondmanca&style=flat)](https://florimondmanca.herokuapp.com)
+[![DigitalOcean](https://img.shields.io/badge/digitalocean-deployed-green.svg)](https://cloud.digitalocean.com)
 
-This is the repository for Florimond Manca's personal website.
+This is the repository for Florimond Manca's personal website frontend application.
 
 This website also hosts CodeSail, a blog about web development and software engineering written by yours truely.
 
@@ -24,7 +24,7 @@ Install the dependencies:
 $ npm install
 ```
 
-Create an environment file called `.env` (it will not be committed to VCS),
+Create an environment file called `.env` (this filename is excluded from version control),
 containing the following variables:
 
 - `API_KEY`: a valid API key created via the API administration
@@ -50,3 +50,11 @@ You can now start the development server, which will run on `http://localhost:42
 ```bash
 $ ng serve -c dev
 ```
+
+## CI/CD
+
+Travis CI is configured on this repo and generates a production build on every push to a branch.
+
+## Deployment
+
+Deployment is configured in `.travis.yml`. After a successful CI build, the content of the build is securely uploaded using `rsync` to a server running on DigitalOcean.
