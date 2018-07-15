@@ -21,8 +21,5 @@ ul.motos {
     color: $color-muted;
     text-align: center;
     margin: .5em;
-    &::before {
-      content: '~ ';
-    }
   }
 }

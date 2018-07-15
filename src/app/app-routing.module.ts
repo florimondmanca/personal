@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -14,14 +14,9 @@ const routes: Routes = [
     component: NotFoundComponent,
   },
   {
-    path: 'about',
-    component: AboutComponent,
-    data: { pageId: 'about' },
-  },
-  {
     path: '',
-    redirectTo: 'codesail',
-    pathMatch: 'full',
+    component: HomeComponent,
+    data: { pageId: 'home' },
   },
   {
     path: 'codesail',

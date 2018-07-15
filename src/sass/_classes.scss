@@ -1,6 +1,7 @@
 @import '~@angular/material/theming';
 @import 'variables';
 @import 'mixins/link';
+@import 'mixins/code';
 @import 'theme';
 
 $primary: map-get($theme, primary);
@@ -78,6 +79,10 @@ hr.asterisk {
 
 .content-width {
   width: fit-content;
+}
+
+.code {
+  @include code;
 }
 
 

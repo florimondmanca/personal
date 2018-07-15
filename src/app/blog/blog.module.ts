@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MomentModule } from 'ngx-moment';
 import { MarkdownModule } from 'ngx-markdown';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 import {
   MatButtonModule,
@@ -35,7 +34,6 @@ import { DraftsComponent } from './drafts/drafts.component';
     ReactiveFormsModule,
     MomentModule,
     MarkdownModule.forChild(),
-    FontAwesomeModule,
     // Angular Material
     MatButtonModule,
     MatDialogModule,

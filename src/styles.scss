@@ -4,6 +4,7 @@
 @import 'classes';
 @import 'material';
 @import 'mixins/link';
+@import 'mixins/code';
 @import 'theme';
 
 $primary: map-get($theme, primary);
@@ -49,12 +50,7 @@ pre > code {
   font-size: .9em;
 }
 p > code {
-  background: $color-gray-lightest;
-  border: 1px solid #EEE;
-  border-radius: 3px;
-  padding: .1em .2em .2em .2em;
-  box-sizing: content-box;
-  color: $color-inline-code;
+  @include code;
 }
 
 @mixin card-shadow {

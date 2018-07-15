@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MomentModule } from 'ngx-moment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher,
@@ -25,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { AboutComponent } from './about/about.component';
     NotFoundComponent,
     LoginComponent,
     AboutComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { AboutComponent } from './about/about.component';
     ReactiveFormsModule,
     HttpClientModule,
     MomentModule,
+    FontAwesomeModule,
     MarkdownModule.forRoot(),
     AppRoutingModule,
     // Angular Material

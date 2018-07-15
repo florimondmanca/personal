@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { Observable, fromEvent, Subscription } from 'rxjs';
 import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from '../core';
 import { MatDialog } from '@angular/material';
@@ -27,8 +26,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   @Output() submitted: EventEmitter<PostPayload> = new EventEmitter();
   @Output() deleted: EventEmitter<void> = new EventEmitter();
   @Output() published: EventEmitter<void> = new EventEmitter();
-
-  faWarn = faExclamationTriangle;
 
   contentText: string;
 

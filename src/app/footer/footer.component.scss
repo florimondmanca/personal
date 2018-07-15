@@ -1,5 +1,22 @@
+@import 'variables';
+
 #footer {
   text-align: center;
-  margin-top: 6em;
-  margin-bottom: 4em;
+  margin: 4em 0;
+}
+
+ul.socials {
+  max-width: $page-max-width;
+  list-style-type: none;
+  margin: 1em auto;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  li {
+    margin: .5em;
+    .icon {
+      margin-right: 1em;
+    }
+  }
 }
