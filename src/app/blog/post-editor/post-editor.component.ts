@@ -4,20 +4,20 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { Observable, fromEvent, Subscription } from 'rxjs';
 import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from '../core';
-import { MatDialog } from '@angular/material';
-import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 
 @Component({
-  selector: 'app-editor',
-  templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss']
+  selector: 'app-post-editor',
+  templateUrl: './post-editor.component.html',
+  styleUrls: ['./post-editor.component.scss']
 })
-export class EditorComponent implements OnInit, OnDestroy {
+export class PostEditorComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup;
 

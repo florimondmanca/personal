@@ -1,0 +1,10 @@
+<div id="editor">
+  <mat-form-field id="edit" class="full-width">
+    <textarea matInput
+      [formControl]="control"
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="10"></textarea>
+  </mat-form-field>
+  <markdown id="preview" [data]="mdContent"></markdown>
+</div>

@@ -1,0 +1,13 @@
+@import 'variables';
+
+#header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 2em;
+}
+
+#fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  grid-column-gap: 2em;
+}
