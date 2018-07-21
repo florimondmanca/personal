@@ -17,6 +17,8 @@ import {
   MatIconModule,
   MatMenuModule,
 } from '@angular/material';
+import { Angulartics2Module } from 'angulartics2';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor, ErrorInterceptor } from './core';
@@ -51,6 +53,7 @@ import { HostComponent } from './host/host.component';
     HttpClientModule,
     MomentModule,
     FontAwesomeModule,
+    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
