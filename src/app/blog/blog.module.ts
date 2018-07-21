@@ -18,6 +18,7 @@ import {
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { CoreModule } from 'app/core';
+import { SharedModule } from 'app/shared';
 import { BlogComponent } from './blog.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { HomeComponent } from './home/home.component';
@@ -44,6 +45,7 @@ import { DraftsComponent } from './drafts/drafts.component';
     MatChipsModule,
     // Project modules
     CoreModule,
+    SharedModule,
     BlogRoutingModule,
   ],
   declarations: [

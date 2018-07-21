@@ -21,6 +21,7 @@ import {
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor, ErrorInterceptor } from './core';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -55,6 +56,7 @@ import { MainComponent } from './main/main.component';
       }
     }),
     AppRoutingModule,
+    SharedModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,

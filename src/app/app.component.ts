@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { fadeAnimation } from './animations';
 import { RouterOutlet, NavigationEnd, ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, filter, mergeMap } from 'rxjs/operators';
@@ -9,7 +8,6 @@ import { map, filter, mergeMap } from 'rxjs/operators';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fadeAnimation],
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -28,10 +26,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  getPage(outlet) {
-    return outlet.activatedRouteData['pageId'] || '';
   }
 
   private title(): Observable<string> {
