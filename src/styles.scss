@@ -76,3 +76,19 @@ input {
   font: inherit;
   font-size: inherit;
 }
+
+.markdown-image {
+  margin: 2em 0;
+  img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+  }
+  figcaption {
+    padding-top: 1em;
+    text-align: center;
+    color: $color-muted;
+    font-style: italic;
+    font-size: $font-size-caption;
+  }
+}

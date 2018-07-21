@@ -7,6 +7,16 @@ export function markedOptionsFactory(): MarkedOptions {
     return `<a target="_blank" href="${href}" title="${title}">${text}</a>`;
   };
 
+  renderer.image = (href: string, title: string, text: string) => {
+    const caption = text ? `<figcaption>${text}</figcaption>` : '';
+    return `
+      <div class="markdown-image">
+        <img src="${href}" title="${title}">
+        ${caption}
+      </div>
+    `;
+  }
+
   return {
     renderer: renderer,
     gfm: true,
