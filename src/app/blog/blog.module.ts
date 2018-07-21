@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MomentModule } from 'ngx-moment';
 import { MarkdownModule } from 'ngx-markdown';
+import { FileDropModule } from 'ngx-file-drop';
 
 import {
   MatButtonModule,
@@ -34,7 +35,9 @@ import { DraftsComponent } from './drafts/drafts.component';
     CommonModule,
     ReactiveFormsModule,
     MomentModule,
+    FileDropModule,
     MarkdownModule.forChild(),
+
     // Angular Material
     MatButtonModule,
     MatDialogModule,
