@@ -5,7 +5,6 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "edit preview";
   grid-column-gap: 2em;
-  margin: 1em 0;
 }
 
 #edit {
@@ -22,4 +21,13 @@
   grid-area: preview;
   // Fix expand of grid item
   min-width: 0;
+}
+
+.image-upload {
+  position: sticky;
+  top: 1em;
+  z-index: 10;
+  button {
+    background: white;
+  }
 }

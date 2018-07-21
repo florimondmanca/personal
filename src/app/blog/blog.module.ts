@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MomentModule } from 'ngx-moment';
 import { MarkdownModule } from 'ngx-markdown';
-import { FileDropModule } from 'ngx-file-drop';
 
 import {
   MatButtonModule,
@@ -34,9 +33,7 @@ import { DeleteDialogComponent } from './post-editor/delete-dialog/delete-dialog
     CommonModule,
     ReactiveFormsModule,
     MomentModule,
-    FileDropModule,
     MarkdownModule.forChild(),
-
     // Angular Material
     MatButtonModule,
     MatDialogModule,
