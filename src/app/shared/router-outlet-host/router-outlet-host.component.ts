@@ -10,10 +10,7 @@ import { swipeAnimation } from './animations';
 export class RouterOutletHostComponent {
 
   getRouterState(outlet) {
-    // return outlet.isActivated ? outlet.activatedRoute : '';
-    const state = outlet.activatedRouteData['pageId'] || '';
-    console.log(state);
-    return state
+    return outlet.activatedRouteData['pageId'] || '';
   }
 
 }

@@ -29,6 +29,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { MainComponent } from './main/main.component';
+import { HostComponent } from './host/host.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MainComponent } from './main/main.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    HostComponent,
     NotFoundComponent,
     LoginComponent,
     AboutComponent,
