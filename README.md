@@ -28,6 +28,7 @@ Create an environment file called `.env` (this filename is excluded from version
 containing the following variables:
 
 - `API_KEY`: a valid API key created via the API administration
+- `BACKEND_URL`: the URL to the backend root **without trailing slash**
 - `API_URL`: the URL to the API root **without trailing slash**
 - `ADMIN_SITE_URL`: the URL to the API administration
 
@@ -35,6 +36,7 @@ For example:
 
 ```
 API_KEY=...
+BACKEND_URL=http://localhost:8000
 API_URL=http://localhost:8000/api
 ADMIN_SITE_URL=http://localhost:8000/admin
 ```

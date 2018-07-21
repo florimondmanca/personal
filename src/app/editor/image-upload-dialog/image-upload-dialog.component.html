@@ -11,9 +11,21 @@
     <tr mat-header-row *matHeaderRowDef="['name']"></tr>
     <tr mat-row *matRowDef="let file; columns: ['name'];"></tr>
   </table>
+
+  <div id="upload">
+    <button mat-raised-button type="button" color="primary" [disabled]="!files.length" (click)="upload()">
+      Upload
+    </button>
+  </div>
+
+  <div *ngIf="uploaded">
+    <p>Markdown code</p>
+    <code>
+      <input matInput type="text" readonly [value]="imageCode">
+    </code>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
-  <button mat-raised-button color="primary" [disabled]="!files.length" (click)="upload()">Upload</button>
 </mat-dialog-actions>

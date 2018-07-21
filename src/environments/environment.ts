@@ -7,6 +7,7 @@
 export const environment = {
   production: false,
   apiKey: '',
+  backendUrl: '',
   adminSiteUrl: '',
   apiUrl: '',
 }
