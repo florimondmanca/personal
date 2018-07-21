@@ -46,14 +46,5 @@
     is supported.
   </p>
 
-  <div id="editor">
-    <mat-form-field id="edit" class="full-width">
-      <textarea matInput
-        formControlName="content"
-        cdkTextareaAutosize
-        #autosize="cdkTextareaAutosize"
-        cdkAutosizeMinRows="10"></textarea>
-    </mat-form-field>
-    <markdown id="preview" [data]="contentText"></markdown>
-  </div>
+  <app-editor [control]="content" [mdContent]="contentText"></app-editor>
 </form>
