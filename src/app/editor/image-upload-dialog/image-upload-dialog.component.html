@@ -21,7 +21,7 @@
   <div *ngIf="uploaded">
     <p>Markdown code</p>
     <code>
-      <input matInput type="text" readonly [value]="imageCode">
+      <input matInput #imageCodeRef type="text" readonly [value]="imageCode" (click)="copy()">
     </code>
   </div>
 </mat-dialog-content>

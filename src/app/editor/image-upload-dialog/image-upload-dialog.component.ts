@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { UploadEvent, UploadFile } from 'ngx-file-drop';
-import { ImageUploadService } from 'app/core';
+import { ImageUploadService, ClipboardService } from 'app/core';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -10,22 +11,28 @@ import { tap } from 'rxjs/operators';
 })
 export class ImageUploadDialogComponent {
 
+  @ViewChild('imageCodeRef') imageCodeRef: ElementRef;
+
   files: UploadFile[];
   imageCode: string;
   uploaded = false;
 
-  constructor(private imageUploadService: ImageUploadService) {
+  constructor(
+    private imageUploadService: ImageUploadService,
+    private snackBar: MatSnackBar,
+    private clipboard: ClipboardService,
+  ) {
     this.files = [];
   }
 
   dropped(event: UploadEvent) {
     this.files = event.files;
-    console.log(this.files);
   }
 
   upload() {
     const droppedFile = this.files[0];
     if (!droppedFile) {
+      // Sanity check
       return;
     }
     if (droppedFile.fileEntry.isFile) {
@@ -38,6 +45,10 @@ export class ImageUploadDialogComponent {
         ).subscribe();
       });
     }
+  }
+
+  copy() {
+    this.clipboard.copy(this.imageCodeRef);
   }
 
 }

@@ -17,10 +17,9 @@ export class EditorComponent {
   constructor(private dialog: MatDialog) { }
 
   openUploadDialog() {
-    const dialogRef = this.dialog.open(ImageUploadDialogComponent);
-    dialogRef.afterClosed().subscribe(
-      (result) => console.log(result)
-    );
+    this.dialog.open(ImageUploadDialogComponent, {
+      minWidth: '50%',
+    });
   }
 
 }
