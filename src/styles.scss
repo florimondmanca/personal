@@ -49,7 +49,7 @@ code {
 pre > code {
   font-size: .9em;
 }
-p > code {
+code:not(pre > code) {
   @include code;
 }
 
