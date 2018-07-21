@@ -6,6 +6,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import {
   MatInputModule,
   MatFormFieldModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
@@ -17,6 +18,7 @@ import { EditorComponent } from './editor/editor.component';
     MarkdownModule.forChild(),
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
   ],
   declarations: [
     EditorComponent,
