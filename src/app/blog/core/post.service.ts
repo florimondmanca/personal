@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
+import { AuthService } from 'app/core';
 import { Post, PostAdapter } from './post.model';
 import { environment } from 'environments/environment';
 
@@ -103,12 +104,24 @@ export class DraftListResolver implements Resolve<Post[]> {
 })
 export class PostDetailResolver implements Resolve<Post> {
 
-  constructor(private service: PostService) { }
+  constructor(
+    private router: Router,
+    private service: PostService,
+    private auth: AuthService
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot) {
     const pk: string = route.paramMap.get('pk');
     return this.service.retrieve(pk).pipe(
       catchError(() => of(null)),
+      map((post: Post) => {
+        // If post is a draft, it is only accessible if logged in
+        if (post.isDraft && !this.auth.isLoggedIn) {
+          this.router.navigate(['/not-found']);
+          return null;
+        }
+        return post;
+      }),
     );
   }
 
