@@ -11,7 +11,7 @@ export function markedOptionsFactory(): MarkedOptions {
     const caption = text ? `<figcaption>${text}</figcaption>` : '';
     return `
       <div class="markdown-image">
-        <img src="${href}" title="${title || ''}">
+        <img src="${href}" title="${title || text || ''}">
         ${caption}
       </div>
     `;
