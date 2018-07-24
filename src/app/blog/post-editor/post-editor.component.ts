@@ -40,9 +40,10 @@ export class PostEditorComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const title = this.post ? this.post.title : '';
+    const slug = this.post ? this.post.slug : slugify(title);
     this.contentText = this.post ? this.post.content : '';
 
-    this.createForm(title, this.contentText);
+    this.createForm(title, slug, this.contentText);
 
     // Delay updates of slug as it is validated by the server
     this.sub.add(this.formGroup.controls.title.valueChanges.pipe(
@@ -59,11 +60,11 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     ).subscribe());
   }
 
-  private createForm(title: string, content: string) {
+  private createForm(title: string, slug: string, content: string) {
     this.formGroup = this.fb.group({
       title: title,
       content: content,
-      slug: [this.slugify(title), null, this.validateSlugNotTaken.bind(this)],
+      slug: [slug, null, this.validateSlugNotTaken.bind(this)],
     });
   }
 
