@@ -8,7 +8,7 @@ This is the repository for Florimond Manca's personal website frontend applicati
 
 This website also hosts CodeSail, a blog about web development and software engineering written by yours truely.
 
-[See it live](http://www.florimondmanca.com)
+[See it live](http://blog.florimondmanca.com)
 
 ## Install
 
