@@ -20,17 +20,12 @@ const routes: Routes = [
     data: { pageId: 'main' },
     children: [
       {
-        path: '',
-        redirectTo: 'codesail',
-        pathMatch: 'full',
-      },
-      {
         path: 'about',
         component: AboutComponent,
         data: { pageId: 'about', title: 'About' },
       },
       {
-        path: 'codesail',
+        path: '',
         loadChildren: './blog/blog.module#BlogModule',
       },
     ],
