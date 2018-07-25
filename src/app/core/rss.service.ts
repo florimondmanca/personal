@@ -17,7 +17,8 @@ export class RssService {
     if (!el) {
       el = this.createElement();
       const head = document.getElementById('head');
-      head.appendChild(el);
+      const firstEl = head.firstChild;
+      head.insertBefore(el, firstEl);
     }
     el.setAttribute('href', link);
   }
@@ -34,7 +35,7 @@ export class RssService {
     el.setAttribute('id', this.ELEMENT_ID);
     el.setAttribute('rel','alternate');
     el.setAttribute('type', 'application/rss+xml');
-    el.setAttribute('title', 'RSS Feed');
+    el.setAttribute('title', 'RSS Feed for blog.florimondmanca.com');
     return el;
   }
 
