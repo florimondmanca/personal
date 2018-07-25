@@ -6,10 +6,10 @@
 }
 
 ul.socials {
-  max-width: $page-max-width;
   list-style-type: none;
-  margin: 1em auto;
-  padding: 0;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 1em;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;

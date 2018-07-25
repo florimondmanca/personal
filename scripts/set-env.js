@@ -14,6 +14,7 @@ export const environment = {
   adminSiteUrl: "${process.env.ADMIN_SITE_URL}",
   backendUrl: "${process.env.BACKEND_URL}",
   apiUrl: "${process.env.API_URL}",
+  rssFeedUrl: "${process.env.RSS_FEED_URL}",
   apiKey: "${process.env.API_KEY}",
 };
 `
