@@ -13,9 +13,9 @@ export class PostListComponent {
 
   url(post: Post): any[] {
     if (this.action === 'edit') {
-      return ['/codesail', post.pk, 'edit'];
+      return ['/', post.pk, 'edit'];
     } else {
-      return ['/codesail', post.pk];
+      return ['/', post.pk];
     }
   }
 
