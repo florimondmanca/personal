@@ -1,4 +1,6 @@
 <div class="page pad-h-sm">
+
+  <!-- Header -->
   <div class="text-center pad-h-sm">
     <h1 class="text-primary">{{ post.title }}</h1>
     <div *ngIf="canEdit">
@@ -15,5 +17,12 @@
       {{ post.published | amDateFormat: 'LL' }}
     </p>
   </div>
+
   <markdown [data]="post.content"></markdown>
+
+  <div class="nav">
+    <app-post-nav id="previous" [relative]="post.previous" type="previous"></app-post-nav>
+    <app-post-nav id="next" [relative]="post.next" type="next"></app-post-nav>
+  </div>
+
 </div>

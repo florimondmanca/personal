@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { IAdapter } from 'app/core';
 
-export class PostSchema {
-  id: number;
+class PostMinimalSchema {
   title: string;
-  content: string;
   slug: string;
+}
+
+export class PostSchema extends PostMinimalSchema {
+  id: number;
+  content: string;
   created: Date;
-  published: Date;
+  published?: Date;
   isDraft: boolean;
+  previous?: PostMinimalSchema;
+  next?: PostMinimalSchema;
 }
 
 export class Post extends PostSchema {
@@ -32,11 +37,17 @@ export class PostAdapter implements IAdapter<Post> {
     return new Post({
       id: data.id,
       title: data.title,
-      content: data.content,
       slug: data.slug,
+      content: data.content,
       created: new Date(data.created),
       published: data.published ? new Date(data.published) : null,
       isDraft: data.is_draft,
+      previous: data.previous ? this.adaptMinimal(data.previous) : null,
+      next: data.next ? this.adaptMinimal(data.next) : null,
     });
+  }
+
+  private adaptMinimal(data: any): PostMinimalSchema {
+    return { title: data.title, slug: data.slug };
   }
 }

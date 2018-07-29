@@ -1,0 +1,17 @@
+.nav {
+  margin-top: 2em;
+  display: grid;
+  grid-template-areas: "previous next";
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2em;
+}
+
+#previous {
+  grid-area: previous;
+  text-align: left;
+}
+
+#next {
+  grid-area: next;
+  text-align: right;
+}

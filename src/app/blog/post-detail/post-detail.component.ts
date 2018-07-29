@@ -24,7 +24,13 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.post = this.route.snapshot.data.post;
+    this.route.data.subscribe(
+      (data) => {
+        this.post = data.post;
+        console.log(this.post.next);
+        console.log(this.post.previous);
+      }
+    );
     this.titleService.setTitle(
       this.titleService.getTitle() + ` : ${this.post.title}`
     );

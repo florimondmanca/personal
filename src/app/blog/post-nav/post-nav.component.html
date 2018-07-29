@@ -1,0 +1,8 @@
+<p *ngIf="relative">
+  <a [routerLink]="['../', relative.slug]">
+    <mat-icon>{{ icon }}</mat-icon>
+    <span>{{ label }}</span>
+  </a>
+  <br />
+  <small class="text-muted">{{ relative.title }}</small>
+</p>
