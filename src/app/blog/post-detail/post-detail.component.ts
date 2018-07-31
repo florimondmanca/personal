@@ -23,6 +23,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     private truncator: TruncatorService,
     private description: DescriptionService,
     private titleService: Title,
+    private meta: Meta,
   ) { }
 
   ngOnInit() {
@@ -30,11 +31,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(
       (data) => {
         this.post = data.post;
-        // SEO:
-        // - Set the description meta tag
-        this.description.set(this.truncator.words(this.post.content, 30));
-        // - Set the page title
-        this.titleService.setTitle(this.post.title);
+        this.optimizeSEO();
       }
     );
     this.sub.add(this.auth.getUser().subscribe(
@@ -42,9 +39,60 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     ));
   }
 
+  // See: https://neilpatel.com/blog/open-graph-meta-tags/
+  optimizeSEO() {
+    // Set the description meta tag
+    this.description.set(this.truncator.words(this.post.content, 30));
+    // Set the page title
+    this.titleService.setTitle(this.post.title);
+    // Set the OpenGraph properties (for social network display)
+    this.meta.addTags([
+      { name: 'og:title', content: this.post.title },
+      { name: 'og:url', content: this.post.absoluteUrl },
+      { name: 'og:type', content: 'article' },
+      // TODO: use a dedicated description field instead
+      { name: 'og:description', content: this.getDescription(this.post) },
+      { name: 'og:site_name', content: 'CodeSail' },
+      // TODO when post has thumbnail
+      // { name: 'og:image', content: this.post.thumbnail },
+    ]);
+    // Set the Twitter card properties
+    this.meta.addTags([
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: this.post.title },
+      // TODO: use a dedicated description field instead
+      { name: 'twitter:description', content: this.getDescription(this.post) },
+      { name: 'twitter:url', content: this.post.absoluteUrl },
+      // TODO when post has thumbnail
+      // { name: 'twitter:image', content: this.post.thumbnail },
+    ]);
+  }
+
+  teardownSEO() {
+    // Reset page description
+    this.description.reset();
+    // Remove OpenGraph and Twitter tags
+    const tags = [
+      'og:title',
+      'og:url',
+      'og:type',
+      'og:description',
+      'og:site_name',
+      'twitter:card',
+      'tiwtter:title',
+      'twitter:description',
+      'twitter:url',
+    ]
+    tags.forEach(tag => this.meta.removeTag(`name=${tag}`));
+  }
+
+  getDescription(post: Post): string {
+    return this.truncator.words(post.content, 30);
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.description.reset();
+    this.teardownSEO();
   }
 
 }
