@@ -6,3 +6,5 @@ export * from './image-upload.service';
 export * from './clipboard.service';
 export * from './page-title.service';
 export * from './rss.service';
+export * from './truncator.service';
+export * from './description.service';

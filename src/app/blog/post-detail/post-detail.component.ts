@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'app/core';
+import { AuthService, TruncatorService, DescriptionService } from 'app/core';
 import { Subscription } from 'rxjs';
 import { Post } from '../core';
 
@@ -20,19 +20,22 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
+    private truncator: TruncatorService,
+    private description: DescriptionService,
     private titleService: Title,
   ) { }
 
   ngOnInit() {
+    const initialTitle = this.titleService.getTitle();
     this.route.data.subscribe(
       (data) => {
         this.post = data.post;
-        console.log(this.post.next);
-        console.log(this.post.previous);
+        // SEO:
+        // - Set the description meta tag
+        this.description.set(this.truncator.words(this.post.content, 30));
+        // - Set the page title
+        this.titleService.setTitle(this.post.title);
       }
-    );
-    this.titleService.setTitle(
-      this.titleService.getTitle() + ` : ${this.post.title}`
     );
     this.sub.add(this.auth.getUser().subscribe(
       (user) => this.canEdit = user.permissions.canEditPost
@@ -41,6 +44,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.description.reset();
   }
 
 }
