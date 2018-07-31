@@ -9,6 +9,5 @@ export const environment = {
   apiKey: '',
   backendUrl: '',
   adminSiteUrl: '',
-  rssFeedUrl: '',
   apiUrl: '',
 }

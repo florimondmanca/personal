@@ -34,5 +34,4 @@ env:
   global:
     - ADMIN_SITE_URL: https://api.florimondmanca.com/admin
     - API_URL: https://api.florimondmanca.com/api
-    - RSS_FEED_URL: feed://api.florimondmanca.com/blog/feed
     - BACKEND_URL: https://api.florimondmanca.com
