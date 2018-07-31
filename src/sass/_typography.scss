@@ -8,3 +8,12 @@ $typography: mat-typography-config(
   $body-1: mat-typography-level($font-size, $font-line-height),
   $body-2: mat-typography-level($font-size, $font-line-height, 700),
 );
+
+$typography-small: mat-typography-config(
+  $font-family: 'Agane, Arial, sans-serif',
+  $headline: mat-typography-level($font-size-h1-sm, $font-line-height, 900),
+  $title: mat-typography-level($font-size-h2-sm, $font-line-height, 900),
+  $subheading-1: mat-typography-level($font-size-h3-sm),
+  $body-1: mat-typography-level($font-size, $font-line-height),
+  $body-2: mat-typography-level($font-size, $font-line-height, 700),
+);

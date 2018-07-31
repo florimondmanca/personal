@@ -1,9 +1,14 @@
 @import '~@angular/material/theming';
 @import './theme';
 @import './typography';
+@import './mixins/media';
 
-@include mat-core($typography);
 
 .mat-theme {
   @include angular-material-theme($theme);
+}
+
+@include mat-core($typography-small);
+@include media-xs {
+  @include mat-core($typography);
 }
