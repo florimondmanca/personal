@@ -31,7 +31,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(
       (data) => {
         this.post = data.post;
-        this.optimizeSEO();
+        // TODO use server-side rendering
+        // this.optimizeSEO();
       }
     );
     this.sub.add(this.auth.getUser().subscribe(
@@ -92,7 +93,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.teardownSEO();
+    // TODO use server-side rendering
+    // this.teardownSEO();
   }
 
 }
