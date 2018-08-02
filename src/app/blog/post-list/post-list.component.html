@@ -1,7 +1,7 @@
 <div class="list">
   <span class="post" *ngFor="let post of posts">
     <span class="label text-muted" *ngIf="post.published">
-      {{ post.published | amDateFormat: 'LL' }}
+      {{ post.published | amDateFormat: 'll' }}
     </span>
     <strong>
       <a [routerLink]="url(post)">
