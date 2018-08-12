@@ -14,9 +14,10 @@ ul.socials {
   flex-flow: row wrap;
   justify-content: space-around;
   li {
-    margin: .5em;
-    .icon {
-      margin-right: .75em;
-    }
+    margin: .7em;
   }
+}
+
+#dev-icon {
+  opacity: 0.75;
 }
