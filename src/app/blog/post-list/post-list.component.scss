@@ -1,19 +1,32 @@
 @import 'variables';
+@import 'mixins/media';
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
 .post {
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  @include media-xs {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+  }
   margin: 1em 0;
 }
 
 .label {
   position: static;
-  &::after {
-    content: ':';
-    right: 0;
-    margin-left: .5em;
-    margin-right: 1em;
-    color: $color-muted;
+  @include media-xs {
+    &::after {
+      content: ':';
+      right: 0;
+      margin-left: .5em;
+      margin-right: 1em;
+      color: $color-muted;
+    }
   }
 }

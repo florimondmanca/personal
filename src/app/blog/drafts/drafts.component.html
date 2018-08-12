@@ -6,6 +6,6 @@
     <a mat-raised-button routerLink="../create">New draft</a>
   </p>
   <app-post-list [posts]="posts" action="edit">
-    No drafts.
+    <p app-post-list-empty>No drafts.</p>
   </app-post-list>
 </div>
