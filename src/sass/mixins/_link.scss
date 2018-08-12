@@ -1,6 +1,5 @@
 @mixin link($color) {
   text-decoration: none;
-  font-weight: normal;
   &:visited {
     color: inherit;
   }

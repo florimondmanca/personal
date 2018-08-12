@@ -3,11 +3,11 @@
     <span class="label text-muted" *ngIf="post.published">
       {{ post.published | amDateFormat: 'll' }}
     </span>
-    <strong>
+    <span>
       <a [routerLink]="url(post)">
         {{ post.title }}
       </a>
-    </strong>
+    </span>
   </li>
   <ng-content *ngIf="posts.length === 0" select="[app-post-list-empty]"></ng-content>
 </ul>

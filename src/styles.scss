@@ -37,7 +37,6 @@ a {
   @include link(mat-color($primary));
   color: inherit;
   &.no-style {
-    font-weight: inherit;
     border: inherit;
     background: inherit;
   }
