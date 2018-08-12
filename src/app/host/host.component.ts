@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
-import { ScrollService } from 'app/core';
 
 
 @Component({
@@ -13,25 +12,20 @@ import { ScrollService } from 'app/core';
 export class HostComponent implements OnInit {
 
   private sub: Subscription;
+  navigating = false;
 
-  constructor(
-    private router: Router,
-    private scroll: ScrollService,
-  ) { }
+  constructor(private router: Router) {
+    this.sub = new Subscription();
+  }
 
   ngOnInit() {
-    this.sub = this.onNavigationEnd().subscribe(
-      () => this.scroll.toTop()
-    );
+    this.sub.add(this.router.events.pipe(
+      filter(e => e instanceof NavigationStart || e instanceof NavigationEnd),
+      tap((e) => this.navigating = e instanceof NavigationStart),
+    ).subscribe());
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  private onNavigationEnd() {
-    return this.router.events.pipe(
-      filter(e => e instanceof NavigationEnd),
-    );
   }
 }

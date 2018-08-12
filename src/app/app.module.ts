@@ -23,7 +23,6 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor, ErrorInterceptor } from './core';
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -61,7 +60,6 @@ import { HostComponent } from './host/host.component';
       }
     }),
     AppRoutingModule,
-    SharedModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,

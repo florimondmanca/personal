@@ -16,7 +16,6 @@ import {
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { CoreModule } from 'app/core';
-import { SharedModule } from 'app/shared';
 import { EditorModule } from 'app/editor';
 import { BlogComponent } from './blog.component';
 import { PostListComponent } from './post-list/post-list.component';
@@ -43,7 +42,6 @@ import { PostNavComponent } from './post-nav/post-nav.component';
     MatIconModule,
     // Project modules
     CoreModule,
-    SharedModule,
     EditorModule,
     BlogRoutingModule,
   ],
