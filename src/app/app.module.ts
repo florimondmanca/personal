@@ -16,12 +16,14 @@ import {
   MatButtonModule,
   MatIconModule,
   MatMenuModule,
+  MatProgressBarModule,
 } from '@angular/material';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { markedOptionsFactory } from './markdown/options';
-import { KeyInterceptor, TokenInterceptor, ErrorInterceptor } from './core';
+import { KeyInterceptor, TokenInterceptor } from './core';
+import { ErrorInterceptor, ErrorsModule } from './errors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -30,7 +32,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { MainComponent } from './main/main.component';
-import { HostComponent } from './host/host.component';
 
 
 @NgModule({
@@ -38,7 +39,6 @@ import { HostComponent } from './host/host.component';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    HostComponent,
     NotFoundComponent,
     LoginComponent,
     AboutComponent,
@@ -60,12 +60,14 @@ import { HostComponent } from './host/host.component';
       }
     }),
     AppRoutingModule,
+    ErrorsModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatProgressBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },

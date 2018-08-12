@@ -1,3 +1,5 @@
-<app-host class="mat-theme mat-typography">
+<main class="mat-theme mat-typography">
   <router-outlet></router-outlet>
-</app-host>
+  <mat-progress-bar *ngIf="navigating" id="progress" mode="indeterminate"></mat-progress-bar>
+  <app-error-list></app-error-list>
+</main>
