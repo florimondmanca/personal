@@ -1,5 +1,4 @@
-import { NgModule, Inject, PLATFORM_ID, APP_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -80,14 +79,7 @@ import { MainComponent } from './main/main.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(
-    overlayContainer: OverlayContainer,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(APP_ID) private appId: string,
-  ) {
+  constructor(overlayContainer: OverlayContainer) {
     overlayContainer.getContainerElement().classList.add('mat-theme', 'mat-typography');
-    const platform = isPlatformBrowser(platformId) ?
-    'in the browser' : 'on the server';
-    console.log(`Running ${platform} with appId=${appId}`);
   }
 }
