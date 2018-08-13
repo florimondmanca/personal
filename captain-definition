@@ -5,8 +5,8 @@
     "RUN mkdir -p /usr/app/",
     "WORKDIR /usr/app/",
     "COPY ./src /usr/app/",
-    "COPY /nginx-shared/dist /usr/app",
+    "COPY /nginx-shared/dist /usr/app/",
     "EXPOSE 4200",
-    "CMD npm run serve:ssr",
+    "CMD npm run serve:ssr"
   ]
 }
