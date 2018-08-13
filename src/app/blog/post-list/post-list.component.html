@@ -4,7 +4,7 @@
       {{ post.published | amDateFormat: 'll' }}
     </span>
     <span>
-      <a [routerLink]="url(post)">
+      <a [routerLink]="action === 'edit' ? ['/', post.slug, 'edit'] : ['/', post.slug]">
         {{ post.title }}
       </a>
     </span>

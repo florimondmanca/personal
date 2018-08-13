@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -14,11 +15,15 @@ export class AuthService {
   private loginUrl: string = environment.apiUrl + '/login/';
   private user$: BehaviorSubject<User> = new BehaviorSubject(this.user);
   redirectUrl: string;
+  inBrowser: boolean;
 
   constructor(
     private http: HttpClient,
     private router: Router,
-  ) { }
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.inBrowser = isPlatformBrowser(platformId);
+  }
 
   login(username: string, password: string): Observable<User> {
     return this.http.post(this.loginUrl, { username, password }).pipe(
@@ -51,7 +56,12 @@ export class AuthService {
   }
 
   private get token(): string {
-    return localStorage.getItem('auth-token');
+    if (this.inBrowser) {
+      return localStorage.getItem('auth-token');
+    } else {
+      // Always non-authenticated on the server
+      return null;
+    }
   }
 
   private set user(user: User) {
@@ -65,9 +75,13 @@ export class AuthService {
   }
 
   private get user(): User {
-    const userRaw: string = localStorage.getItem('auth-user');
-    const user: any = userRaw ? JSON.parse(userRaw) : null;
-    return user ? new User(user.id, user.isAdmin) : ANONYMOUS_USER;
+    if (this.inBrowser) {
+      const userRaw: string = localStorage.getItem('auth-user');
+      const user: any = userRaw ? JSON.parse(userRaw) : null;
+      return user ? new User(user.id, user.isAdmin) : ANONYMOUS_USER;
+    } else {
+      return ANONYMOUS_USER;
+    }
   }
 
   userSnapshot(): User {

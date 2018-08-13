@@ -1,6 +1,6 @@
 import { NgModule, Inject, PLATFORM_ID, APP_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -46,7 +46,8 @@ import { MainComponent } from './main/main.component';
     MainComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'server-app' }),
+    BrowserModule.withServerTransition({ appId: 'florimondmanca-blog' }),
+    BrowserTransferStateModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

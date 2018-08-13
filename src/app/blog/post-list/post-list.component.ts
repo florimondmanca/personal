@@ -11,12 +11,4 @@ export class PostListComponent {
   @Input() posts: Post[] = [];
   @Input() action = '';
 
-  url(post: Post): any[] {
-    if (this.action === 'edit') {
-      return ['/', post.pk, 'edit'];
-    } else {
-      return ['/', post.pk];
-    }
-  }
-
 }

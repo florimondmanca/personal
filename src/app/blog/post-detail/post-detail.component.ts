@@ -31,8 +31,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(
       (data) => {
         this.post = data.post;
-        // TODO use server-side rendering
-        // this.optimizeSEO();
+        this.optimizeSEO();
       }
     );
     this.sub.add(this.auth.getUser().subscribe(
@@ -72,19 +71,6 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   teardownSEO() {
     // Reset page description
     this.description.reset();
-    // Remove OpenGraph and Twitter tags
-    const tags = [
-      'og:title',
-      'og:url',
-      'og:type',
-      'og:description',
-      'og:site_name',
-      'twitter:card',
-      'tiwtter:title',
-      'twitter:description',
-      'twitter:url',
-    ]
-    tags.forEach(tag => this.meta.removeTag(`name=${tag}`));
   }
 
   getDescription(post: Post): string {
@@ -93,8 +79,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    // TODO use server-side rendering
-    // this.teardownSEO();
+    this.teardownSEO();
   }
 
 }

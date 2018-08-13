@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { isPlatformServer } from '@angular/common';
+import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
@@ -74,12 +76,29 @@ export class PostService {
 })
 export class PostListResolver implements Resolve<Post[]> {
 
-  constructor(private service: PostService) { }
+  constructor(
+    private service: PostService,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) { }
 
   resolve() {
-    return this.service.list({ draft: false }).pipe(
-      catchError(() => of([]))
-    );
+    const KEY = makeStateKey<Post[]>('posts');
+
+    if (this.transferState.hasKey(KEY)) {
+      const posts = this.transferState.get<Post[]>(KEY, []);
+      this.transferState.remove(KEY);
+      return of(posts);
+    } else {
+      return this.service.list({ draft: false }).pipe(
+        catchError(() => of([])),
+        tap((posts) => {
+          if (isPlatformServer(this.platformId)) {
+            this.transferState.set(KEY, posts);
+          };
+        }),
+      );
+    }
   }
 }
 
@@ -89,12 +108,29 @@ export class PostListResolver implements Resolve<Post[]> {
 })
 export class DraftListResolver implements Resolve<Post[]> {
 
-  constructor(private service: PostService) { }
+  constructor(
+    private service: PostService,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) { }
 
   resolve() {
-    return this.service.list({ draft: true }).pipe(
-      catchError(() => of([]))
-    );
+    const KEY = makeStateKey<Post[]>('posts-drafts');
+
+    if (this.transferState.hasKey(KEY)) {
+      const posts = this.transferState.get<Post[]>(KEY, []);
+      this.transferState.remove(KEY);
+      return of(posts);
+    } else {
+      return this.service.list({ draft: true }).pipe(
+        catchError(() => of([])),
+        tap((posts) => {
+          if (isPlatformServer(this.platformId)) {
+            this.transferState.set(KEY, posts);
+          };
+        }),
+      );
+    }
   }
 }
 
@@ -104,17 +140,24 @@ export class DraftListResolver implements Resolve<Post[]> {
 })
 export class PostDetailResolver implements Resolve<Post> {
 
+  private result: Post;
+
   constructor(
     private router: Router,
     private service: PostService,
-    private auth: AuthService
+    private auth: AuthService,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot) {
-    const pk: string = route.paramMap.get('pk');
+  getPost(pk): Observable<Post | null> {
     return this.service.retrieve(pk).pipe(
       catchError(() => of(null)),
+      tap((post: Post) => this.result = post),
       map((post: Post) => {
+        if (!post) {
+          return null;
+        }
         // If post is a draft, it is only accessible if logged in
         if (post.isDraft && !this.auth.isLoggedIn) {
           this.router.navigate(['/not-found']);
@@ -123,6 +166,25 @@ export class PostDetailResolver implements Resolve<Post> {
         return post;
       }),
     );
+  }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<Post> {
+    const pk: string = route.paramMap.get('pk');
+    const KEY = makeStateKey<Post>('post-' + pk);
+
+    if (this.transferState.hasKey(KEY)) {
+      const post = this.transferState.get<Post>(KEY, null);
+      this.transferState.remove(KEY);
+      return of(post);
+    } else {
+      return this.getPost(pk).pipe(
+        tap((post: Post) => {
+          if (isPlatformServer(this.platformId)) {
+            this.transferState.set(KEY, post);
+          };
+        }),
+      );
+    }
   }
 
 }
