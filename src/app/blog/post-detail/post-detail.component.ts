@@ -50,22 +50,22 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       { name: 'og:title', content: this.post.title },
       { name: 'og:url', content: this.post.absoluteUrl },
       { name: 'og:type', content: 'article' },
-      // TODO: use a dedicated description field instead
       { name: 'og:description', content: this.getDescription(this.post) },
       { name: 'og:site_name', content: 'CodeSail' },
-      // TODO when post has thumbnail
-      // { name: 'og:image', content: this.post.thumbnail },
     ]);
+    if (this.post.imageUrl) {
+      this.meta.addTag({ name: 'og:image', content: this.post.imageUrl });
+    }
     // Set the Twitter card properties
     this.meta.addTags([
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: this.post.title },
-      // TODO: use a dedicated description field instead
       { name: 'twitter:description', content: this.getDescription(this.post) },
       { name: 'twitter:url', content: this.post.absoluteUrl },
-      // TODO when post has thumbnail
-      // { name: 'twitter:image', content: this.post.thumbnail },
     ]);
+    if (this.post.imageUrl) {
+      this.meta.addTag({ name: 'twitter:image', content: this.post.imageUrl });
+    }
   }
 
   teardownSEO() {
@@ -74,7 +74,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   getDescription(post: Post): string {
-    return this.truncator.words(post.content, 30);
+    return post.description ? post.description : this.truncator.words(post.content, 30);
   }
 
   ngOnDestroy() {

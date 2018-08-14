@@ -8,10 +8,12 @@ class PostMinimalSchema {
 
 export class PostSchema extends PostMinimalSchema {
   id: number;
+  description?: string;
   content: string;
   created: Date;
   published?: Date;
   isDraft: boolean;
+  imageUrl?: string;
   previous?: PostMinimalSchema;
   next?: PostMinimalSchema;
 }
@@ -42,7 +44,9 @@ export class PostAdapter implements IAdapter<Post> {
       id: data.id,
       title: data.title,
       slug: data.slug,
+      description: data.description,
       content: data.content,
+      imageUrl: data.image_url,
       created: new Date(data.created),
       published: data.published ? new Date(data.published) : null,
       isDraft: data.is_draft,
