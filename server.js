@@ -17,6 +17,7 @@ const app = express();
 app.use(morgan('combined'));
 
 const PORT = process.env.PORT || 4200;
+const HOST = process.env.HOST || 'localhost';
 const DIST_FOLDER = join(process.cwd(), 'dist');
 
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
@@ -46,6 +47,6 @@ app.get('*', (req, res) => {
 });
 
 // Start up the Node server
-app.listen(PORT, () => {
-  console.log(`Node server listening on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Node server listening on http://${HOST}:${PORT}`);
 });
