@@ -1,4 +1,13 @@
 {
   "schemaVersion": 1,
-  "templateId": "node/8.7.0"
+  "dockerfileLines": [
+    "FROM node:8.7-alpine",
+    "RUN mkdir -p /usr/app/",
+    "WORKDIR /usr/app/",
+    "COPY ./src/package.json /usr/app/",
+    "RUN npm install --unsafe-perm",
+    "COPY ./src /usr/app/",
+    "EXPOSE 4200",
+    "CMD npm run serve:ssr"
+  ]
 }
