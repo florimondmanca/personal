@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "dockerfileLines": [
-    "FROM node:9.11",
+    "FROM node:10.8.0",
     "RUN mkdir -p /usr/app/",
     "WORKDIR /usr/app/",
     "COPY ./src/package.json /usr/app/",
-    "RUN npm install --unsafe-perm",
+    "RUN npm install",
     "COPY ./src /usr/app/",
     "EXPOSE 4200",
     "CMD npm run serve:ssr"
