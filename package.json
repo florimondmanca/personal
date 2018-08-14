@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "config": "node ./scripts/set-env.js",
-    "start": "ng serve -c dev",
+    "start": "npm run serve:ssr",
     "build": "ng build --prod && npm run build:ssr",
     "build:ssr": "ng run florimondmanca:server:production",
     "serve:ssr": "node server.js",

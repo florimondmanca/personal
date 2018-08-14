@@ -1,14 +1,4 @@
 {
   "schemaVersion": 1,
-  "dockerfileLines": [
-    "FROM node:10.6",
-    "RUN mkdir -p /usr/app/",
-    "WORKDIR /usr/app/",
-    "COPY ./src/package.json /usr/app/",
-    "RUN npm install --unsafe-perm",
-    "COPY ./src /usr/app/",
-    "ENV PORT=80",
-    "EXPOSE 80",
-    "CMD npm run serve:ssr"
-  ]
+  "templateId": "node/8.7.0"
 }
