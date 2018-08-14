@@ -13,7 +13,7 @@ import { User, ANONYMOUS_USER } from './user.model';
 export class AuthService {
 
   private loginUrl: string = environment.apiUrl + '/login/';
-  private user$: BehaviorSubject<User> = new BehaviorSubject(this.user);
+  private user$: BehaviorSubject<User>;
   redirectUrl: string;
   inBrowser: boolean;
 
@@ -23,6 +23,7 @@ export class AuthService {
     @Inject(PLATFORM_ID) platformId: Object,
   ) {
     this.inBrowser = isPlatformBrowser(platformId);
+    this.user$ = new BehaviorSubject(this.user);
   }
 
   login(username: string, password: string): Observable<User> {
@@ -78,6 +79,7 @@ export class AuthService {
     if (this.inBrowser) {
       const userRaw: string = localStorage.getItem('auth-user');
       const user: any = userRaw ? JSON.parse(userRaw) : null;
+      console.log(user);
       return user ? new User(user.id, user.isAdmin) : ANONYMOUS_USER;
     } else {
       return ANONYMOUS_USER;
