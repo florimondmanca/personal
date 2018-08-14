@@ -79,7 +79,6 @@ export class AuthService {
     if (this.inBrowser) {
       const userRaw: string = localStorage.getItem('auth-user');
       const user: any = userRaw ? JSON.parse(userRaw) : null;
-      console.log(user);
       return user ? new User(user.id, user.isAdmin) : ANONYMOUS_USER;
     } else {
       return ANONYMOUS_USER;
