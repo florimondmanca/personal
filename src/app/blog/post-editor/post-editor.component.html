@@ -4,7 +4,6 @@
     <div id="fields">
       <mat-form-field id="title-field" class="full-width">
         <input matInput type="text" formControlName="title" required placeholder="Title">
-        <span matPrefix>#&nbsp;</span>
       </mat-form-field>
 
       <mat-form-field id="slug-field" class="full-width">
@@ -17,12 +16,12 @@
 
       <mat-form-field id="description-field" class="full-width">
         <input matInput type="text" formControlName="description" placeholder="Description">
-        <mat-hint>Should be set for social cards and RSS.</mat-hint>
+        <mat-hint>Should be set for social cards and RSS support.</mat-hint>
       </mat-form-field>
     </div>
 
     <div>
-      <button mat-raised-button [disabled]="!formGroup.valid">
+      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
         Save <ng-template [ngIf]="!post || (post && post.isDraft)">draft</ng-template>
       </button>
       <button mat-button type="button" color="accent" *ngIf="post && post.isDraft" (click)="publish()">
@@ -34,10 +33,10 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #postTools="matMenu">
-        <button *ngIf="post" mat-menu-item [routerLink]="['../']">
+        <a *ngIf="post" mat-menu-item [routerLink]="['../']">
           <mat-icon>launch</mat-icon>
           View post
-        </button>
+        </a>
         <button mat-menu-item (click)="delete()">
           <mat-icon>delete</mat-icon>
           Delete
@@ -45,11 +44,6 @@
       </mat-menu>
     </div>
   </span>
-
-  <p class="text-hint">
-    <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a>
-    is supported.
-  </p>
 
   <app-editor [control]="contentControl" [mdContent]="content"></app-editor>
 </form>

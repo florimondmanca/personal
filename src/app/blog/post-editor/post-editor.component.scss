@@ -1,16 +1,20 @@
-@import 'variables';
+@import 'variables', 'mixins/media';
 
 #header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 2em;
+  @include media-sm {
+    display: grid;
+    grid-column-gap: 2em;
+    grid-template-columns: 1fr auto;
+  }
 }
 
 #fields {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-column-gap: 2em;
-  grid-template-areas: "title slug" "description description";
+  @include media-sm {
+    display: grid;
+    grid-column-gap: 2em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "title slug" "description description";
+  }
 }
 
 #title-field {

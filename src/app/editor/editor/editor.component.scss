@@ -3,16 +3,19 @@
 #editor {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   grid-template-areas: "edit preview";
   grid-column-gap: 2em;
+}
+
+#markdown-hint {
+  padding: 0;
+  margin: 0;
 }
 
 #edit {
   grid-area: edit;
   textarea {
-    padding: 1em;
-    box-sizing: border-box;
-    background-color: $color-gray-lightest;
     font-family: $font-mono;
   }
 }

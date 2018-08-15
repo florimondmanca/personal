@@ -3,13 +3,16 @@
     <mat-icon>image</mat-icon>
   </button>
 </div>
+<p class="text-hint" id="markdown-hint">
+</p>
 <div id="editor">
-  <mat-form-field id="edit" class="full-width">
+  <mat-form-field id="edit" class="full-width" appearance="fill">
+    <mat-label>Markdown is supported.</mat-label>
     <textarea matInput
       [formControl]="control"
       cdkTextareaAutosize
       #autosize="cdkTextareaAutosize"
-      cdkAutosizeMinRows="10"></textarea>
+      cdkAutosizeMinRows="30"></textarea>
   </mat-form-field>
   <markdown id="preview" [data]="mdContent"></markdown>
 </div>
