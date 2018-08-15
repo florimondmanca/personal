@@ -42,9 +42,10 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     const title = this.post ? this.post.title : '';
     const slug = this.post ? this.post.slug : slugify(title);
     const description = this.post ? this.post.description : '';
+    const imageUrl = this.post ? (this.post.imageUrl || '') : '';
     this.content = this.post ? this.post.content : '';
 
-    this.createForm(title, slug, description, this.content);
+    this.createForm(title, slug, description, imageUrl, this.content);
 
     // Delay updates of slug as it is validated by the server
     this.sub.add(this.formGroup.controls.title.valueChanges.pipe(
@@ -61,11 +62,13 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     ).subscribe());
   }
 
-  private createForm(title: string, slug: string, description: string, content: string) {
+  private createForm(title: string, slug: string, description: string, imageUrl: string, content: string) {
+    const urlRegex = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.formGroup = this.fb.group({
-      title: title,
-      content: content,
-      description: description,
+      title,
+      content,
+      description,
+      image_url: [imageUrl, [Validators.pattern(urlRegex)]],
       slug: [slug, null, this.validateSlugNotTaken.bind(this)],
     });
   }
@@ -97,6 +100,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   }
 
   submit() {
+    console.log(this.formGroup.value);
     this.submitted.emit(this.formGroup.value);
   }
 
