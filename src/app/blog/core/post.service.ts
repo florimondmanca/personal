@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { AuthService } from 'app/core';
 import { Post, PostAdapter } from './post.model';
+import { PostPayload } from './post.payload';
 import { environment } from 'environments/environment';
 
 
@@ -37,14 +38,14 @@ export class PostService {
     );
   }
 
-  update(pk: string, args: { title: string, content: string }): Observable<Post> {
+  update(pk: string, args: PostPayload): Observable<Post> {
     const url = this.baseUrl + `${pk}/`;
     return this.http.put(url, args).pipe(
       map((data: any) => this.adapter.adapt(data)),
     );
   }
 
-  create(args: { title: string, content: string }): Observable<Post> {
+  create(args: PostPayload): Observable<Post> {
     return this.http.post(this.baseUrl, args).pipe(
       map((data: any) => this.adapter.adapt(data)),
     );

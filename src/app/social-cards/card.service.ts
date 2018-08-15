@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { OpenGraphTag, TwitterTag } from './tags';
+import { OpenGraphTag, TwitterTag } from './card-tags';
 
 @Injectable({
   providedIn: 'root'

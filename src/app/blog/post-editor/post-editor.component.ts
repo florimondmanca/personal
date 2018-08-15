@@ -27,7 +27,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   @Output() deleted: EventEmitter<void> = new EventEmitter();
   @Output() published: EventEmitter<void> = new EventEmitter();
 
-  contentText: string;
+  content: string;
 
   private sub = new Subscription();
 
@@ -41,29 +41,31 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const title = this.post ? this.post.title : '';
     const slug = this.post ? this.post.slug : slugify(title);
-    this.contentText = this.post ? this.post.content : '';
+    const description = this.post ? this.post.description : '';
+    this.content = this.post ? this.post.content : '';
 
-    this.createForm(title, slug, this.contentText);
+    this.createForm(title, slug, description, this.content);
 
     // Delay updates of slug as it is validated by the server
     this.sub.add(this.formGroup.controls.title.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      tap(title => this.canUpdateSlug && this.slug.setValue(this.slugify(title))),
+      tap(title => this.canUpdateSlug && this.slugControl.setValue(this.slugify(title))),
     ).subscribe());
 
     // Delay updates of content to reduce Markdown rendering frequency
     this.sub.add(this.formGroup.controls.content.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      tap(content => this.contentText = content),
+      tap(content => this.content = content),
     ).subscribe());
   }
 
-  private createForm(title: string, slug: string, content: string) {
+  private createForm(title: string, slug: string, description: string, content: string) {
     this.formGroup = this.fb.group({
       title: title,
       content: content,
+      description: description,
       slug: [slug, null, this.validateSlugNotTaken.bind(this)],
     });
   }
@@ -72,15 +74,11 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     return !this.post || this.post.isDraft;
   }
 
-  get title() {
-    return this.formGroup.controls.title;
-  }
-
-  get slug() {
+  get slugControl() {
     return this.formGroup.controls.slug;
   }
 
-  get content() {
+  get contentControl() {
     return this.formGroup.controls.content;
   }
 

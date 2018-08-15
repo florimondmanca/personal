@@ -8,6 +8,19 @@
 
 #fields {
   display: grid;
-  grid-template-columns: 2fr 1fr auto;
+  grid-template-columns: 2fr 1fr;
   grid-column-gap: 2em;
+  grid-template-areas: "title slug" "description description";
+}
+
+#title-field {
+  grid-area: title;
+}
+
+#slug-field {
+  grid-area: slug;
+}
+
+#description-field {
+  grid-area: description;
 }

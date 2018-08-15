@@ -2,17 +2,22 @@
 
   <span id="header">
     <div id="fields">
-      <mat-form-field class="full-width">
+      <mat-form-field id="title-field" class="full-width">
         <input matInput type="text" formControlName="title" required placeholder="Title">
         <span matPrefix>#&nbsp;</span>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field id="slug-field" class="full-width">
         <input matInput type="text" formControlName="slug" required [readonly]="!canUpdateSlug" placeholder="Slug">
-        <mat-error *ngIf="formGroup.controls.slug.hasError('exists')">
+        <mat-error *ngIf="slugControl.hasError('exists')">
           An article with this slug already exists.
         </mat-error>
         <mat-hint>An identifier used in the blog post's URL.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field id="description-field" class="full-width">
+        <input matInput type="text" formControlName="description" placeholder="Description">
+        <mat-hint>Should be set for social cards and RSS.</mat-hint>
       </mat-form-field>
     </div>
 
@@ -46,5 +51,5 @@
     is supported.
   </p>
 
-  <app-editor [control]="content" [mdContent]="contentText"></app-editor>
+  <app-editor [control]="contentControl" [mdContent]="content"></app-editor>
 </form>
