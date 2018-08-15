@@ -14,19 +14,25 @@ export class EditorComponent {
   @Input() mdContent: string;
   @Input() control: FormControl;
   @ViewChild('autosize') autoSize: MatTextareaAutosize;
+  previewActive = false;
 
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
-    // HACK: Force auto resize after some time
-    // This way, images and other content will have (hopefully) loaded
-    setTimeout(() => this.autoSize.resizeToFitContent(true), 1000);
+    // HACK: Force auto resize after some time, otherwise it's not the correct autosize
+    setTimeout(() => this.autoSize.resizeToFitContent(true), 100);
   }
 
   openUploadDialog() {
     this.dialog.open(ImageUploadDialogComponent, {
       minWidth: '50%',
     });
+  }
+
+  setPreview(active: boolean) {
+    this.previewActive = active;
+    // Force autoresize again
+    this.autoSize.resizeToFitContent(true);
   }
 
 }

@@ -11,6 +11,7 @@ import {
   MatButtonModule,
   MatIconModule,
   MatTableModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
@@ -28,6 +29,7 @@ import { ImageUploadDialogComponent } from './image-upload-dialog/image-upload-d
     MatIconModule,
     MatButtonModule,
     MatTableModule,
+    MatSlideToggleModule,
   ],
   declarations: [
     EditorComponent,

@@ -1,12 +1,13 @@
-<div class="image-upload">
-  <button mat-icon-button type="button" class="mat-elevation-z1" (click)="openUploadDialog()">
-    <mat-icon>image</mat-icon>
-  </button>
+<div id="tools">
+  <span class="image-upload">
+    <button mat-icon-button type="button" class="mat-elevation-z1" (click)="openUploadDialog()">
+      <mat-icon>image</mat-icon>
+    </button>
+  </span>
+  <mat-slide-toggle [checked]="previewActive" (change)="setPreview($event.checked)" id="preview-toggle">Preview</mat-slide-toggle>
 </div>
-<p class="text-hint" id="markdown-hint">
-</p>
 <div id="editor">
-  <mat-form-field id="edit" class="full-width" appearance="fill">
+  <mat-form-field id="edit" class="full-width" appearance="fill" [ngClass]="{'hidden': previewActive}">
     <mat-label>Markdown is supported.</mat-label>
     <textarea matInput
       [formControl]="control"
@@ -14,5 +15,5 @@
       #autosize="cdkTextareaAutosize"
       cdkAutosizeMinRows="30"></textarea>
   </mat-form-field>
-  <markdown id="preview" [data]="mdContent"></markdown>
+  <markdown id="preview" [ngClass]="{'hidden': !previewActive}" [data]="mdContent"></markdown>
 </div>
