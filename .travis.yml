@@ -4,7 +4,7 @@ language: node_js
 sudo: false
 
 addons:
-  ssh_known_hosts: "blog.florimondmanca.com"
+  ssh_known_hosts: "captain.florimondmanca.com"
 
 node_js:
   - "node"

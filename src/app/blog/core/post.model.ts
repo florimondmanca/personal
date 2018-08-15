@@ -8,7 +8,7 @@ class PostMinimalSchema {
 
 export class PostSchema extends PostMinimalSchema {
   id: number;
-  description?: string;
+  description: string;
   content: string;
   created: Date;
   published?: Date;
