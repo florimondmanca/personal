@@ -63,7 +63,8 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   }
 
   private createForm(title: string, slug: string, description: string, imageUrl: string, content: string) {
-    const urlRegex = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    // Regex from: https://www.regextester.com/94502
+    const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
     this.formGroup = this.fb.group({
       title,
       content,
