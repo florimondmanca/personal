@@ -24,7 +24,7 @@ export class SeoService {
     this.title.setTitle(post.title);
 
     // Set the Twitter card tags
-    this.cards.setTag(TwitterTag.CARD_TYPE, 'article');
+    this.cards.setTag(TwitterTag.CARD_TYPE, 'summary');
     this.cards.setTag(TwitterTag.TITLE, post.title);
     this.cards.setTag(TwitterTag.DESCRIPTION, post.description);
     this.cards.setTag(TwitterTag.URL, post.absoluteUrl);
