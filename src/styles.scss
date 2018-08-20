@@ -27,6 +27,11 @@ header {
   padding: 0;
 }
 
+h2 {
+  padding-top: .4em;
+  padding-bottom: .2em;
+}
+
 hr {
     border: 0;
     height: 1px;
@@ -62,10 +67,14 @@ pre {
   background: $color-gray-lightest;
   border-radius: 4px;
   @include card-shadow;
+  margin-bottom: 1em !important;
 }
 
 blockquote {
-  margin: 1em 2em;
+  margin: 1em;
+  @include media-sm {
+    margin-left: 2em;
+  }
   padding: 0;
   color: $color-muted;
   font-size: $font-size-quote;
@@ -90,4 +99,10 @@ input {
     font-style: italic;
     font-size: $font-size-caption;
   }
+}
+
+// Center iframes in markdown content
+markdown iframe {
+  display: block;
+  margin: 1em auto 1.5em auto;
 }
