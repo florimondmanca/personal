@@ -1,12 +1,13 @@
-@mixin link($color) {
+@mixin link($color, $t: 80ms) {
+  $hover-color: rgba($color, 0.2);
   text-decoration: none;
   &:visited {
     color: inherit;
   }
   border-bottom: 1px solid $color;
-  transition: background 100ms;
+  transition: background $t;
   cursor: pointer;
   &:hover {
-    background: rgba($color, 0.3);
+    background-color: $hover-color;
   }
 }

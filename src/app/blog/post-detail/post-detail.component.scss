@@ -1,9 +1,25 @@
+@import 'mixins/media';
+
 .nav {
   margin-top: 2em;
   display: grid;
   grid-template-areas: "previous next";
   grid-template-columns: 1fr 1fr;
   grid-gap: 2em;
+}
+
+header {
+  margin-bottom: 1em;
+  @include media-xs {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+#meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #previous {

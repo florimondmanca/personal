@@ -1,22 +1,23 @@
 <div class="page pad-h-sm">
 
-  <!-- Header -->
-  <div class="text-center pad-h-sm">
-    <h1 class="text-primary">{{ post.title }}</h1>
-    <div *ngIf="canEdit">
-      <p>
-        <a mat-button routerLink="edit">
-          <mat-icon inline="true">edit</mat-icon> Edit
-        </a>
-      </p>
-      <p *ngIf="!post.published">
+  <header>
+    <div id="meta">
+      <label class="text-muted" *ngIf="post.published">
+        {{ post.published | amDateFormat: 'LL' }}
+      </label>
+      <label class="text-muted" *ngIf="!post.published">
         Drafted {{ post.created | amDateFormat: 'LL' }}
-      </p>
+      </label>
+      <a mat-button *ngIf="canEdit" routerLink="edit" color="warn">
+        <mat-icon inline="true">edit</mat-icon> Edit
+      </a>
     </div>
-    <p *ngIf="post.published">
-      {{ post.published | amDateFormat: 'LL' }}
-    </p>
-  </div>
+
+    <h1 class="text-primary">
+      {{ post.title }}
+    </h1>
+  </header>
+
 
   <markdown [data]="post.content"></markdown>
 

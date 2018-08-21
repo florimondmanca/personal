@@ -1,6 +1,6 @@
 <div class="page pad-h-sm">
-  <!-- Header -->
-  <div class="text-center pad-h-sm">
+
+  <header class="text-center">
     <h1 class="text-primary">
       <label>
         ~ CodeSail ~
@@ -14,11 +14,14 @@
     <p>
       by <a routerLink="/about">Florimond Manca</a>
     </p>
-  </div>
+  </header>
 
   <hr id="divide" class="asterisk">
 
-  <p class="text-center text-muted">New fresh blog posts twice per week.</p>
+  <p class="text-center text-muted">
+    New fresh blog posts (mostly) twice per week.
+  </p>
 
   <app-post-list [posts]="posts"></app-post-list>
+
 </div>

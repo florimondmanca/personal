@@ -6,6 +6,7 @@
 
 $primary: map-get($theme, primary);
 $warn: map-get($theme, warn);
+$accent: map-get($theme, accent);
 
 .text-center {
   text-align: center;
@@ -45,6 +46,10 @@ p.text-hint {
 
 .text-warn {
   color: mat-color($warn);
+}
+
+.text-accent {
+  color: mat-color($accent);
 }
 
 .bg-primary {
