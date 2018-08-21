@@ -9,10 +9,17 @@ export class CardService {
 
   constructor(private meta: Meta) { }
 
-  setTag(tag: OpenGraphTag | TwitterTag , value: string) {
+  setName(tag: TwitterTag , value: string) {
     if (!value) {
       return;
     }
     this.meta.addTag({ name: tag.toString(), content: value });
+  }
+
+  setProp(tag: OpenGraphTag, value: string) {
+    if (!value) {
+      return;
+    }
+    this.meta.addTag({ property: tag.toString(), content: value });
   }
 }

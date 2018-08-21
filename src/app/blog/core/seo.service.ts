@@ -24,19 +24,19 @@ export class SeoService {
     this.title.setTitle(post.title);
 
     // Set the Twitter card tags
-    this.cards.setTag(TwitterTag.CARD_TYPE, 'summary');
-    this.cards.setTag(TwitterTag.TITLE, post.title);
-    this.cards.setTag(TwitterTag.DESCRIPTION, post.description);
-    this.cards.setTag(TwitterTag.URL, post.absoluteUrl);
-    this.cards.setTag(TwitterTag.IMAGE, post.imageUrl);
+    this.cards.setName(TwitterTag.CARD_TYPE, 'summary_large_image');
+    this.cards.setName(TwitterTag.TITLE, post.title);
+    this.cards.setName(TwitterTag.DESCRIPTION, post.description);
+    this.cards.setName(TwitterTag.URL, post.absoluteUrl);
+    this.cards.setName(TwitterTag.IMAGE, post.imageUrl);
 
     // Set the OpenGraph (Facebook) card tags
-    this.cards.setTag(OpenGraphTag.CARD_TYPE, 'article');
-    this.cards.setTag(OpenGraphTag.SITE_NAME, 'CodeSail');
-    this.cards.setTag(OpenGraphTag.TITLE, post.title);
-    this.cards.setTag(OpenGraphTag.DESCRIPTION, post.description);
-    this.cards.setTag(OpenGraphTag.URL, post.absoluteUrl);
-    this.cards.setTag(OpenGraphTag.IMAGE, post.imageUrl);
+    this.cards.setProp(OpenGraphTag.CARD_TYPE, 'article');
+    this.cards.setProp(OpenGraphTag.SITE_NAME, 'CodeSail');
+    this.cards.setProp(OpenGraphTag.TITLE, post.title);
+    this.cards.setProp(OpenGraphTag.DESCRIPTION, post.description);
+    this.cards.setProp(OpenGraphTag.URL, post.absoluteUrl);
+    this.cards.setProp(OpenGraphTag.IMAGE, post.imageUrl);
   }
 
   tearDown() {
