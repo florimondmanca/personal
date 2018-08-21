@@ -8,25 +8,9 @@ ul {
 }
 
 .post {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-  @include media-xs {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr;
-  }
-  margin: 1em 0;
+  margin-top: 2em;
 }
 
-.label {
-  position: static;
-  @include media-xs {
-    &::after {
-      content: ':';
-      right: 0;
-      margin-left: .5em;
-      margin-right: 1em;
-      color: $color-muted;
-    }
-  }
+.published-date {
+  margin: 0;
 }

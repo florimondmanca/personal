@@ -1,13 +1,16 @@
 <ul>
   <li class="post" *ngFor="let post of posts">
-    <span class="label text-muted" *ngIf="post.published">
-      {{ post.published | amDateFormat: 'll' }}
-    </span>
-    <span>
+    <label class="text-muted" *ngIf="post.published">
+      {{ post.published | amDateFormat: 'LL' }}
+    </label>
+    <h4>
       <a [routerLink]="action === 'edit' ? ['/', post.slug, 'edit'] : ['/', post.slug]">
         {{ post.title }}
       </a>
-    </span>
+    </h4>
+    <p>
+      {{ post.description }}
+    </p>
   </li>
   <ng-content *ngIf="posts.length === 0" select="[app-post-list-empty]"></ng-content>
 </ul>
