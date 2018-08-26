@@ -37,6 +37,11 @@ export class TechComponent implements OnInit {
       url: 'https://angular.io',
     },
     {
+      title: 'ExpressJS',
+      image: 'express.png',
+      url: 'https://expressjs.com',
+    },
+    {
       title: 'Typescript',
       image: 'typescript.jpg',
       url: 'https://typescriptlang.org',

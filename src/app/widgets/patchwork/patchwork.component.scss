@@ -15,7 +15,7 @@ ul {
   li {
     margin: .5em;
     img {
-      max-height: 3em;
+      max-height: 2.6em;
       width: auto;
     }
     @include filter(#monochrome);
