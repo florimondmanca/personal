@@ -1,0 +1,15 @@
+{
+  "short_name": "CodeSail",
+  "name": "CodeSail by Florimond Manca",
+  "icons": [
+    {
+      "src": "assets/logos/codesail-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#fff",
+  "theme_color": "#59c7b7",
+  "display": "standalone"
+}
