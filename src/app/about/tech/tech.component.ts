@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patch } from 'app/widgets/patchwork/patch.model';
+import { CardService } from 'app/social-cards';
+import { StaticFiles } from 'app/core';
 
 @Component({
   selector: 'app-tech',
@@ -86,9 +88,17 @@ export class TechComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(
+    private cards: CardService,
+    private staticFiles: StaticFiles,
+  ) { }
 
   ngOnInit() {
+    this.cards.configure({
+      title: 'About the Tech',
+      description: `I built this blog to be my own personal Medium. Discover how it's made.`,
+      image: this.staticFiles.imageUrl('tech-stack.png'),
+    });
   }
 
   fullPath(logo: string) {

@@ -7,3 +7,4 @@ export * from './clipboard.service';
 export * from './page-title.service';
 export * from './truncator.service';
 export * from './description.service';
+export * from './staticfiles.service';

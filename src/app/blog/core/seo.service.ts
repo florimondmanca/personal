@@ -23,20 +23,13 @@ export class SeoService {
     // Set the page title
     this.title.setTitle(post.title);
 
-    // Set the Twitter card tags
-    this.cards.setName(TwitterTag.CARD_TYPE, 'summary_large_image');
-    this.cards.setName(TwitterTag.TITLE, post.title);
-    this.cards.setName(TwitterTag.DESCRIPTION, post.description);
-    this.cards.setName(TwitterTag.URL, post.absoluteUrl);
-    this.cards.setName(TwitterTag.IMAGE, post.imageUrl);
+    this.cards.configure({
+      title: post.title,
+      description: post.description,
+      url: post.absoluteUrl,
+      image: post.imageUrl,
+    });
 
-    // Set the OpenGraph (Facebook) card tags
-    this.cards.setProp(OpenGraphTag.CARD_TYPE, 'article');
-    this.cards.setProp(OpenGraphTag.SITE_NAME, 'CodeSail');
-    this.cards.setProp(OpenGraphTag.TITLE, post.title);
-    this.cards.setProp(OpenGraphTag.DESCRIPTION, post.description);
-    this.cards.setProp(OpenGraphTag.URL, post.absoluteUrl);
-    this.cards.setProp(OpenGraphTag.IMAGE, post.imageUrl);
   }
 
   tearDown() {

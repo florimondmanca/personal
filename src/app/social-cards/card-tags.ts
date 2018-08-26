@@ -14,3 +14,12 @@ export enum TwitterTag {
   URL = 'twitter:url',
   IMAGE = 'twitter:image',
 }
+
+export enum TwitterCardType {
+  SUMMARY_LARGE_IMAGE = 'summary_large_image',
+  SUMMARY = 'summary',
+}
+
+export enum OpenGraphCardType {
+  ARTICLE = 'article',
+}
