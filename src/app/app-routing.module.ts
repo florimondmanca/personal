@@ -21,8 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: 'about',
-        component: AboutComponent,
-        data: { pageId: 'about', title: 'About' },
+        loadChildren: './about/about.module#AboutModule',
       },
       {
         path: '',

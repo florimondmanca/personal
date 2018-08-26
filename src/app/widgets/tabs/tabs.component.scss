@@ -1,0 +1,18 @@
+@import 'variables';
+@import '~@angular/material/theming';
+@import 'theme';
+
+$primary: map-get($theme, primary);
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep a.app-tab-link {
+  border: none;
+  padding: .5em 1em;
+  &.active {
+    background: mat-color($primary, 50);
+  }
+}

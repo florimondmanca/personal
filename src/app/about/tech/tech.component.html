@@ -1,0 +1,30 @@
+<div class="page pad-h-sm pad-v-sm">
+  <markdown ngPreserveWhitespaces>
+    This website is a personal project under ongoing improvement. This website was built to be my own personal [Medium](https://medium.com). Under the hood, it includes features such as a Markdown editor, drafts or meta tags management.
+
+    ## Tech Stack
+
+    I make use of many of the tools and frameworks I feel comfortable and proficient with. Here they are in a fancy carousel display.
+
+    > TODO
+
+    ## How It's Made
+
+    The application is structured in two major components:
+
+    1. The backend is responsible for persisting data and making it available through a secure REST API.
+    2. The frontend is responsible for displaying content it fetches through the API.
+
+    ## How It Runs
+
+    This website is hosted on a [DigitalOcean](https://www.digitalocean.com) droplet and is powered by [CaptainDuckDuck](https://captainduckduck.com). Uploaded assets (such as blog post images) are stored on [AWS S3](https://aws.amazon.com/free/storage/?sc_channel=PS&sc_campaign=acquisition_UK&sc_publisher=google&sc_medium=s3_b&sc_content=s3_e&sc_detail=aws%20s3&sc_category=s3&sc_segment=278679876600&sc_matchtype=e&sc_country=UK&s_kwcid=AL!4422!3!278679876600!e!!g!!aws%20s3&ef_id=V2BIgAAABPXZYP5R:20180826005717:s).
+
+    Under the hood, it uses [Docker](https://www.docker.com) to manage apps (API, frontend and database), [Nginx](https://www.nginx.com) to handle requests and manage routing and [Let's Encrypt](https://letsencrypt.org) for certificate management.
+
+    Deployment occurs through automated [TravisCI](https://travis-ci.org/florimondmanca) builds. These are triggered by pushes to the [GitHub](https://github.com/florimondmanca) repositories.
+
+    Diagrams are worth a thousand words, aren't they?
+
+    ![Architecture of florimondmanca.com.](https://florimondmanca-personal-website.s3.amazonaws.com/media/markdownx/4b4bbf1a-d3e0-45b1-ab8d-0df139d26290.png)
+  </markdown>
+</div>

@@ -1,0 +1,24 @@
+<div id="header" class="text-center pad-h-sm">
+  <h1>Florimond Manca</h1>
+  <p class="text-muted">
+    [flɔʁimɔ̃ mɑ̃ka]
+  </p>
+  <p>
+    I write about web development and software engineering. 💻
+  </p>
+  <p>
+    <a routerLink="/">Read the blog</a>
+  </p>
+</div>
+
+<app-tabs>
+  <a app-tab-link *ngFor="let link of links"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+    [routerLink]="link.path">
+    {{ link.label }}
+  </a>
+</app-tabs>
+
+<router-outlet></router-outlet>

@@ -30,7 +30,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
-import { AboutComponent } from './about/about.component';
 import { MainComponent } from './main/main.component';
 
 
@@ -41,7 +40,6 @@ import { MainComponent } from './main/main.component';
     FooterComponent,
     NotFoundComponent,
     LoginComponent,
-    AboutComponent,
     MainComponent,
   ],
   imports: [
