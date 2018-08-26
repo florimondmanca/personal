@@ -21,9 +21,11 @@
     1. The **backend** is responsible for **persisting data** and making it available through a secure **REST API**.
     2. The **frontend** is responsible for **displaying content** in a minimalist and user-friendly fashion.
 
+    The frontend makes use of **server-side rendering** to enable search engine compatibility and social integrations.
+
     #### Infrastructure and pipeline
 
-    This website is **hosted** on a [DigitalOcean](https://www.digitalocean.com) droplet and is powered by [CaptainDuckDuck](https://captainduckduck.com). Uploaded assets (such as blog post images) are stored on [AWS S3](https://aws.amazon.com/s3).
+    This website is hosted on a [DigitalOcean](https://www.digitalocean.com) droplet and is powered by [CaptainDuckDuck](https://captainduckduck.com). Uploaded assets (such as blog post images) are stored on [AWS S3](https://aws.amazon.com/s3).
 
     Under the hood, it uses **open-source, industry-standard technologies**: [Docker](https://www.docker.com) to manage and run app containers (API, frontend and database), [Nginx](https://www.nginx.com) as a reverse proxy and [Let's Encrypt](https://letsencrypt.org) for certificate management.
 

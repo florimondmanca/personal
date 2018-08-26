@@ -17,15 +17,14 @@ export class StaticFiles {
   NOTE: the URL will only effectively return the image if the server is serving assets.
   */
   imageUrl(fileName: string): string {
-    const url = `${this.baseUrl}/assets/img/${fileName}`;
-    return url;
+    return `${this.baseUrl}/assets/img/${fileName}`;
   }
 
   private get baseUrl(): string {
     if (isPlatformServer(this.platformId)) {
       // If on the server, document is not available.
       // Use the request object we injected via ngExpressEngine (see: server.js)
-      return this.injector.get('request').get('host');
+      return 'http://' + this.injector.get('request').get('host');
     } else {
       return this.document.location.origin;
     }
