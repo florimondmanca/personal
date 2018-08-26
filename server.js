@@ -28,12 +28,17 @@ const { ngExpressEngine } = require('@nguniversal/express-engine');
 const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
 
 // Use the Angular Universal template engine for Express
-app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
-}));
+app.engine('html', (_, options, callback) => {
+    let engine = ngExpressEngine({
+      bootstrap: AppServerModuleNgFactory,
+      providers: [
+        // Make request object available to the Angular injector
+        { provide: 'request', useFactory: () => options.req, deps: [] },
+        provideModuleMap(LAZY_MODULE_MAP)
+      ]
+    });
+    engine(_, options, callback);
+});
 
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
