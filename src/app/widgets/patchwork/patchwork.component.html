@@ -1,0 +1,25 @@
+<ul>
+  <li *ngFor="let patch of patches">
+    <a [href]="patch.url" class="no-style" target="_blank">
+      <img [src]="'assets/img/' + patch.image" [title]="patch.title">
+    </a>
+  </li>
+</ul>
+
+<!-- Custom CSS filters -->
+<svg class="defs-only">
+  <filter id="monochrome" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+    <feColorMatrix type="matrix"
+    values=".393 0 0 0 .607
+    0.302 0 0 0 .698
+    0.298 0 0 0 .702
+    0 0 0 1 0"></feColorMatrix>
+  </filter>
+  <filter id="monochrome-dark" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+    <feColorMatrix type="matrix"
+    values=".756 0 0 0 .241
+    0.686 0 0 0 .313
+    0.682 0 0 0 .317
+    0 0 0 1 0"></feColorMatrix>
+  </filter>
+</svg>

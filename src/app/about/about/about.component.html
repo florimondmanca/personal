@@ -11,6 +11,11 @@
   </p>
 </div>
 
+<div id="banner" class="page text-center">
+  <img src="assets/img/profile-banner.jpg" alt="Florimond Manca">
+  <figcaption class="text-muted pad-h-sm">Lauren Mijatovic, 2018.</figcaption>
+</div>
+
 <app-tabs>
   <a app-tab-link *ngFor="let link of links"
     routerLinkActive
@@ -22,3 +27,11 @@
 </app-tabs>
 
 <router-outlet></router-outlet>
+
+<div class="page pad-h-sm">
+  <markdown ngPreserveWhitespaces>
+    ## Keep in touch
+
+    Fancy a chat? Get in touch via [Twitter](https://twitter.com/FlorimondManca) or [LinkedIn](https://linkedin.com/in/florimondmanca) or take a look at my projects over [GitHub](https://github.com/florimondmanca).
+  </markdown>
+</div>

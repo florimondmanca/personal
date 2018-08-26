@@ -29,5 +29,8 @@ ul.motos {
     &::before {
       content: '~ ';
     }
+    &:hover {
+      color: $color-muted-dark;
+    }
   }
 }

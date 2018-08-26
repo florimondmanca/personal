@@ -5,8 +5,10 @@
 $primary: map-get($theme, primary);
 
 nav {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  width: fit-content;
+  margin: 0 auto;
+  grid-auto-flow: column;
 }
 
 ::ng-deep a.app-tab-link {

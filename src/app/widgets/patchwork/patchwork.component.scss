@@ -1,0 +1,34 @@
+@mixin filter($id) {
+  -webkit-filter: url($id);
+  filter:  url($id);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  li {
+    margin: .5em;
+    img {
+      max-height: 3em;
+      width: auto;
+    }
+    @include filter(#monochrome);
+    &:hover {
+      @include filter(#monochrome-dark);
+    }
+  }
+}
+
+.defs-only {
+  position: absolute;
+  height: 0;
+  width: 0;
+  overflow: none;
+  left: -100%;
+}
