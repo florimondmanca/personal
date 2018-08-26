@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 import { MomentModule } from 'ngx-moment';
@@ -31,6 +32,8 @@ import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -68,6 +71,7 @@ import { MainComponent } from './main/main.component';
     MatIconModule,
     MatMenuModule,
     MatProgressBarModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },

@@ -6,6 +6,7 @@
     "config": "node ./scripts/set-env.js",
     "start": "npm run serve:ssr",
     "build": "ng build --prod && npm run build:ssr",
+    "build:dev": "ng build && npm run build:ssr",
     "build:ssr": "ng run florimondmanca:server:production",
     "serve:ssr": "node server.js",
     "test": "ng test",
@@ -25,6 +26,7 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/platform-server": "^6.1.2",
+    "@angular/pwa": "^0.7.5",
     "@angular/router": "^6.0.3",
     "@fortawesome/angular-fontawesome": "^0.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
@@ -49,7 +51,8 @@
     "ts-loader": "^4.4.2",
     "web-animations-js": "^2.3.1",
     "yargs": "^12.0.1",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@angular/service-worker": "^6.0.3"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",

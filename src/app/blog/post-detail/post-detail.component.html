@@ -1,4 +1,4 @@
-<div class="page pad-h-sm">
+<div class="page pad-h-sm" *ngIf="post">
 
   <header>
     <div id="meta">
@@ -17,7 +17,6 @@
       {{ post.title }}
     </h1>
   </header>
-
 
   <markdown [data]="post.content"></markdown>
 

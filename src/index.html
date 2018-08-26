@@ -3,7 +3,10 @@
 
 <head id="head">
   <meta charset="utf-8">
-  <link rel="manifest" href="/manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
 
   <title>CodeSail by Florimond Manca</title>
   <meta name="description" content="A blog about my ongoing journey through web development and software engineering. Read about code, technology, best practices, and much more!">
@@ -14,7 +17,7 @@
   <!-- Browser colors -->
   <meta name="theme-color" content="#59c7b7">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <base href="/">
 
@@ -39,13 +42,17 @@
     }
   </script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
   <app-root></app-root>
+  <noscript>
+    Please enable JavaScript to continue using this application.
+  </noscript>
 </body>
 
 </html>
