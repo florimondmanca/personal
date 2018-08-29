@@ -6,13 +6,13 @@
 
 This is the repository for Florimond Manca's personal website frontend application.
 
-This website also hosts CodeSail, a blog about web development and software engineering written by yours truely.
+This website hosts CodeSail, a blog about web development and software engineering written by yours truely.
 
 [See it live](http://blog.florimondmanca.com)
 
 ## Install
 
-Install Angular CLI
+Install Angular CLI:
 
 ```bash
 $ npm install -g @angular/cli
@@ -24,8 +24,9 @@ Install the dependencies:
 $ npm install
 ```
 
-Create an environment file called `.env` (this filename is excluded from version control),
-containing the following variables:
+## Quickstart
+
+Create an environment file called `.env` (it will be excluded from version control) at the project root, containing the following variables:
 
 - `API_KEY`: a valid API key created via the API administration
 - `BACKEND_URL`: the URL to the backend root **without trailing slash**
@@ -34,7 +35,8 @@ containing the following variables:
 
 For example:
 
-```
+```bash
+# .env
 API_KEY=...
 BACKEND_URL=http://localhost:8000
 API_URL=http://localhost:8000/api
@@ -53,13 +55,39 @@ You can now start the development server, which will run on `http://localhost:42
 $ ng serve -c dev
 ```
 
+## Using server-side rendering
+
+Server side rendering is implemented using [Angular Universal](https://angular.io/guide/universal#angular-universal-server-side-rendering).
+
+Server-side rendering allows to send fully-rendered HTML pages to clients, instead of sending them a blank page and letting Angular fill it in the browser. This reduces the "first meaningful paint" time, helps with referencing and allows integration with social media.
+
+To use the server-rendered app, you must first create a build of the app:
+
+```bash
+$ npm run build:dev
+```
+
+> Note: in production, use `npm run build` instead to create a production-optimized build.
+
+Then start the server-rendered app (an Express server):
+
+```bash
+$ npm run serve:ssr
+```
+
+## Scripts
+
+See `package.json` for the available NPM scripts.
+
 ## CI/CD
 
 [TravisCI](https://travis-ci.org) is configured on this repo and generates a production build on every push to a branch.
 
-## SEO
+## Progressive Web App capabilities
 
-Server side rendering is implemented using [Angular Universal](https://angular.io/guide/universal#angular-universal-server-side-rendering) to enhance referencing and integration with social media.
+In production, a service worker is registered to make the website available offline. This is achieved by caching assets and data.
+
+Angular's service worker extension is not directly compatible with the CLI's development server. To run the service worker locally, you must use the [server-rendered app](#using-server-side-rendering).
 
 ## Deployment
 
@@ -68,4 +96,4 @@ Deployment is configured in `.travis.yml`. After a successful CI build:
 - Static files are securely uploaded using `rsync` to a server running on DigitalOcean.
 - A deploy is triggered via [CaptainDuckDuck](https://captainduckduck.com).
 
-This deploy updates the Docker container that runs the NodeJS app — an Express server which serves server-rendered pages and static files.
+This deploy updates the Docker container that runs the NodeJS app, i.e. the Express server which serves server-rendered pages and static files.
