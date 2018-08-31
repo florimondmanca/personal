@@ -26,9 +26,9 @@
     </div>
 
     <div>
-      <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
+      <!-- <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
         Save <ng-template [ngIf]="!post || (post && post.isDraft)">draft</ng-template>
-      </button>
+      </button> -->
       <button mat-button type="button" color="accent" *ngIf="post && post.isDraft" (click)="publish()">
         <mat-icon>publish</mat-icon>
         Publish
@@ -50,5 +50,9 @@
     </div>
   </span>
 
-  <app-editor [control]="contentControl" [mdContent]="content"></app-editor>
+  <app-editor [control]="contentControl" [mdContent]="content">
+    <button app-editor-tool mat-raised-button color="primary" [disabled]="!formGroup.valid">
+      Save <ng-template [ngIf]="!post || (post && post.isDraft)">draft</ng-template>
+    </button>
+  </app-editor>
 </form>

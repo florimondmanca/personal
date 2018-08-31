@@ -4,6 +4,7 @@
       <mat-icon>image</mat-icon>
     </button>
   </span>
+  <ng-content selector="[app-editor-tool]"></ng-content>
   <mat-slide-toggle [checked]="previewActive" (change)="setPreview($event.checked)" id="preview-toggle">Preview</mat-slide-toggle>
 </div>
 <div id="editor">
@@ -15,5 +16,5 @@
       #autosize="cdkTextareaAutosize"
       cdkAutosizeMinRows="30"></textarea>
   </mat-form-field>
-  <markdown id="preview" [ngClass]="{'hidden': !previewActive}" [data]="mdContent"></markdown>
+  <markdown id="preview" *ngIf="previewActive" [data]="mdContent"></markdown>
 </div>

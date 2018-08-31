@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -51,6 +52,7 @@ import { environment } from '../environments/environment';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,  // required for Angular animations
     MomentModule,
     FontAwesomeModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),

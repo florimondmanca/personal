@@ -17,6 +17,11 @@ export class SeoService {
   ) { }
 
   setUp(post: Post) {
+    if (!post) {
+      // post may be null in some error cases
+      return;
+    }
+
     // Set the description meta tag
     this.description.set(post.description);
 
