@@ -26,9 +26,6 @@
     </div>
 
     <div>
-      <!-- <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
-        Save <ng-template [ngIf]="!post || (post && post.isDraft)">draft</ng-template>
-      </button> -->
       <button mat-button type="button" color="accent" *ngIf="post && post.isDraft" (click)="publish()">
         <mat-icon>publish</mat-icon>
         Publish

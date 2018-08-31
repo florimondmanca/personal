@@ -4,8 +4,10 @@
       <mat-icon>image</mat-icon>
     </button>
   </span>
+  <mat-slide-toggle [checked]="previewActive" (change)="setPreview($event.checked)" id="preview-toggle">
+    Preview
+  </mat-slide-toggle>
   <ng-content selector="[app-editor-tool]"></ng-content>
-  <mat-slide-toggle [checked]="previewActive" (change)="setPreview($event.checked)" id="preview-toggle">Preview</mat-slide-toggle>
 </div>
 <div id="editor">
   <mat-form-field id="edit" class="full-width" appearance="fill" [ngClass]="{'hidden': previewActive}">

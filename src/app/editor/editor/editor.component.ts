@@ -15,14 +15,15 @@ export class EditorComponent {
   @Input() mdContent: string;
   @Input() control: FormControl;
   @ViewChild('autosize') autoSize: MatTextareaAutosize;
-  previewActive = true;
+  previewActive = false;
   mobile = false;
 
   constructor(private dialog: MatDialog, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {
     // HACK: Force auto resize after some time, otherwise it's not the correct autosize
-    setTimeout(() => this.autoSize.resizeToFitContent(true), 100);
+    const force = true;
+    setTimeout(() => this.autoSize.resizeToFitContent(force), 100);
     this.setMobile();
   }
 
