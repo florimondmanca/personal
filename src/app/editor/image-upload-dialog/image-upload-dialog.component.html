@@ -1,29 +1,29 @@
 <h2 mat-dialog-title>Upload image</h2>
 
 <mat-dialog-content>
-  <file-drop (onFileDrop)="dropped($event)">Drop an image here</file-drop>
-
-  <table id="uploaded-files" mat-table [dataSource]="files" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let file">{{ file.relativePath }}</td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['name']"></tr>
-    <tr mat-row *matRowDef="let file; columns: ['name'];"></tr>
-  </table>
-
-  <div id="upload">
-    <button mat-raised-button type="button" color="primary" [disabled]="!files.length" (click)="upload()">
-      Upload
+  <div class="text-center">
+    <input (change)="onSelectFile($event)" type="file" id="input-file" accept="image/jpeg,image/png"/>
+    <button mat-button color="default" (click)="clickItem('input-file')">
+      Select a file
     </button>
   </div>
 
-  <div *ngIf="uploaded">
-    <p>Markdown code</p>
-    <code>
-      <input matInput #imageCodeRef type="text" readonly [value]="imageCode" (click)="copy()">
-    </code>
+  <file-drop (onFileDrop)="dropped($event)">Drop an image here</file-drop>
+
+  <p *ngIf="file">
+    <span class="text-muted">Filename: </span> {{ file.name }}
+  </p>
+
+  <div id="upload">
+    <button mat-raised-button type="button" color="primary" [disabled]="!ready || uploading" (click)="upload()">
+      Upload
+    </button>
+    <app-spinner inline="true" *ngIf="uploading"></app-spinner>
   </div>
+
+  <code *ngIf="uploaded">
+    <input matInput #imageCodeRef type="text" readonly [value]="imageCode" (click)="copy()">
+  </code>
 </mat-dialog-content>
 
 <mat-dialog-actions>

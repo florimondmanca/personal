@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
 import { FileDropModule } from 'ngx-file-drop';
+import { WidgetsModule } from 'app/widgets';
 
 import {
   MatInputModule,
@@ -30,6 +31,7 @@ import { ImageUploadDialogComponent } from './image-upload-dialog/image-upload-d
     MatButtonModule,
     MatTableModule,
     MatSlideToggleModule,
+    WidgetsModule,
   ],
   declarations: [
     EditorComponent,
