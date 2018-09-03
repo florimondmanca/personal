@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs/operators';
 import { Post, PostPayload, PostService, DirtyComponent } from '../core';
 
 
@@ -17,10 +18,10 @@ export class PostCreateComponent implements DirtyComponent {
     private postService: PostService) { }
 
   onSubmit(payload: PostPayload) {
-    this.postService.create(payload).subscribe(
-      (post: Post) => this.router.navigate(['/', post.pk]),
-      (e) => console.log(e)
-    )
+    this.postService.create(payload).pipe(
+      tap(() => this.dirty = false),
+      tap((post: Post) => this.router.navigate(['/', post.pk])),
+    ).subscribe();
   }
 
 }

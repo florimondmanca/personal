@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewContainerRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs/operators';
 import { Post, PostPayload, PostService, DirtyComponent } from '../core';
 
 
@@ -23,23 +24,24 @@ export class PostEditComponent implements OnInit, DirtyComponent {
   }
 
   onSubmit(payload: PostPayload) {
-    this.postService.update(this.post.pk, payload).subscribe(
-      (post: Post) => this.router.navigate(['/', post.pk]),
-      (e) => console.log(e)
-    )
+    this.postService.update(this.post.pk, payload).pipe(
+      tap(() => this.dirty = false),
+      tap((post: Post) => this.router.navigate(['/', post.pk])),
+    ).subscribe();
   }
 
   onDelete() {
-    this.postService.destroy(this.post.pk).subscribe(
-      () => this.router.navigate(['/']),
-      (e) => console.log(e),
-    )
+    this.postService.destroy(this.post.pk).pipe(
+      tap(() => this.dirty = false),
+      tap(() => this.router.navigate(['/'])),
+    ).subscribe();
   }
 
   onPublish() {
-    this.postService.publish(this.post.pk).subscribe(
-      () => this.router.navigate(['/']),
-    )
+    this.postService.publish(this.post.pk).pipe(
+      tap(() => this.dirty = false),
+      tap(() => this.router.navigate(['/'])),
+    ).subscribe();
   }
 
   onDirty() {
