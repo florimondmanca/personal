@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -28,8 +28,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub.add(this.pageTitle.updateOnNavigate().subscribe());
+    // Update navigating on router events
     this.sub.add(this.router.events.pipe(
-      filter(e => e instanceof NavigationStart || e instanceof NavigationEnd),
+      filter(e => e instanceof NavigationStart || e instanceof NavigationEnd || e instanceof NavigationCancel),
       debounceTime(100),  // don't mark fast navigation changes as navigating
       tap((e) => this.navigating = e instanceof NavigationStart),
     ).subscribe());

@@ -1,8 +1,16 @@
-import { Component, Input, ViewChild, Inject, PLATFORM_ID, HostListener } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter,
+  ViewChild, Inject, PLATFORM_ID, HostListener,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatTextareaAutosize } from '@angular/material';
 import { ImageUploadDialogComponent } from '../image-upload-dialog/image-upload-dialog.component';
+
+
+interface EditorChange {
+  text: string;
+}
 
 
 @Component({
@@ -15,6 +23,8 @@ export class EditorComponent {
   @Input() mdContent: string;
   @Input() control: FormControl;
   @ViewChild('autosize') autoSize: MatTextareaAutosize;
+  @Output() dirty: EventEmitter<void> = new EventEmitter();
+  private isDirty = false;
   previewActive = false;
   mobile = false;
 
@@ -46,6 +56,13 @@ export class EditorComponent {
     this.dialog.open(ImageUploadDialogComponent, {
       minWidth: '50%',
     });
+  }
+
+  onTextChange(event: any) {
+    if (!this.isDirty) {
+      this.isDirty = true;
+      this.dirty.emit();
+    }
   }
 
   setPreview(active: boolean) {

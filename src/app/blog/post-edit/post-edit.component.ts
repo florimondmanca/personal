@@ -1,15 +1,17 @@
-import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Post, PostPayload, PostService } from '../core';
+import { Post, PostPayload, PostService, DirtyComponent } from '../core';
+
 
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.scss']
 })
-export class PostEditComponent implements OnInit {
+export class PostEditComponent implements OnInit, DirtyComponent {
 
   post: Post;
+  public dirty = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +40,10 @@ export class PostEditComponent implements OnInit {
     this.postService.publish(this.post.pk).subscribe(
       () => this.router.navigate(['/']),
     )
+  }
+
+  onDirty() {
+    this.dirty = true;
   }
 
 }

@@ -9,6 +9,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { DraftsComponent } from './drafts/drafts.component';
+import { CanDeactivateDirtyPost } from './core';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
         path: 'create',
         component: PostCreateComponent,
         canActivate: [AuthGuard],
+        canDeactivate: [CanDeactivateDirtyPost],
         data: { pageId: 'postCreate' },
       },
       {
@@ -45,6 +47,7 @@ const routes: Routes = [
         path: ':pk/edit',
         component: PostEditComponent,
         canActivate: [AuthGuard],
+        canDeactivate: [CanDeactivateDirtyPost],
         resolve: { post: PostDetailResolver },
         data: { pageId: 'postEdit' },
       },

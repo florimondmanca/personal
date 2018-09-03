@@ -1,6 +1,7 @@
 import {
   Component, OnInit, OnDestroy, Input, Output,
-  ElementRef, ViewChild, EventEmitter, ViewContainerRef
+  ElementRef, ViewChild, EventEmitter, ViewContainerRef,
+  HostListener,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
@@ -26,6 +27,8 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   @Output() submitted: EventEmitter<PostPayload> = new EventEmitter();
   @Output() deleted: EventEmitter<void> = new EventEmitter();
   @Output() published: EventEmitter<void> = new EventEmitter();
+  @Output() dirty: EventEmitter<void> = new EventEmitter();
+  private isDirty = false;
 
   content: string;
 
@@ -62,6 +65,14 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     ).subscribe());
   }
 
+  @HostListener('window:beforeunload', ['$event'])
+  onRefreshOrLeave(event: any) {
+    // Ask for confirmation before refreshing (F5) or leaving the website.
+    const message = this.isDirty ? 'Discard changes on this post?' : '';
+    event.returnValue = message;
+    return message;
+  }
+
   private createForm(title: string, slug: string, description: string, imageUrl: string, content: string) {
     // Regex from: https://www.regextester.com/94502
     const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
@@ -88,8 +99,13 @@ export class PostEditorComponent implements OnInit, OnDestroy {
 
   private slugify(s: string): string {
     const slug = slugify(s, { lower: true });
-    // 80 characters max
+    // Must be 80 characters max (API limitation)
     return slug.substring(0, 80);
+  }
+
+  makeDirty() {
+    this.dirty.emit();
+    this.isDirty = true;
   }
 
   validateSlugNotTaken(control: AbstractControl) {
