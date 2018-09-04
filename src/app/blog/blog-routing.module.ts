@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from 'app/core';
 import { PostListResolver, PostDetailResolver, DraftListResolver } from './core';
-import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostCreateComponent } from './post-create/post-create.component';
@@ -14,44 +13,37 @@ import { CanDeactivateDirtyPost } from './core';
 const routes: Routes = [
   {
     path: '',
-    component: BlogComponent,
-    data: { pageId: 'blog', title: 'CodeSail'},
-    children: [
-      {
-        path: '',
-        component: HomeComponent,
-        resolve: { posts: PostListResolver },
-        data: { pageId: 'home' },
-      },
-      {
-        path: 'create',
-        component: PostCreateComponent,
-        canActivate: [AuthGuard],
-        canDeactivate: [CanDeactivateDirtyPost],
-        data: { pageId: 'postCreate' },
-      },
-      {
-        path: 'drafts',
-        component: DraftsComponent,
-        canActivate: [AuthGuard],
-        resolve: { posts: DraftListResolver },
-        data: { pageId: 'drafts' },
-      },
-      {
-        path: ':pk',
-        component: PostDetailComponent,
-        resolve: { post: PostDetailResolver },
-        data: { pageId: 'postDetail' },
-      },
-      {
-        path: ':pk/edit',
-        component: PostEditComponent,
-        canActivate: [AuthGuard],
-        canDeactivate: [CanDeactivateDirtyPost],
-        resolve: { post: PostDetailResolver },
-        data: { pageId: 'postEdit' },
-      },
-    ],
+    component: HomeComponent,
+    resolve: { posts: PostListResolver },
+    data: { pageId: 'home' },
+  },
+  {
+    path: 'create',
+    component: PostCreateComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateDirtyPost],
+    data: { pageId: 'postCreate' },
+  },
+  {
+    path: 'drafts',
+    component: DraftsComponent,
+    canActivate: [AuthGuard],
+    resolve: { posts: DraftListResolver },
+    data: { pageId: 'drafts' },
+  },
+  {
+    path: ':pk',
+    component: PostDetailComponent,
+    resolve: { post: PostDetailResolver },
+    data: { pageId: 'postDetail' },
+  },
+  {
+    path: ':pk/edit',
+    component: PostEditComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateDirtyPost],
+    resolve: { post: PostDetailResolver },
+    data: { pageId: 'postEdit' },
   },
 ];
 
