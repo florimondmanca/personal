@@ -16,6 +16,9 @@
     <h1 class="text-primary">
       {{ post.title }}
     </h1>
+    <p class="text-muted" *ngIf="post.description">
+      {{ post.description }}
+    </p>
   </header>
 
   <markdown [data]="post.content"></markdown>
