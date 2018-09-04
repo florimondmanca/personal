@@ -1,33 +1,18 @@
-import { Injectable, Inject, Injector, PLATFORM_ID } from '@angular/core';
-import { isPlatformServer } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Injectable } from '@angular/core';
+import { UrlService } from './url.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StaticFiles {
 
-  constructor(
-    private injector: Injector,
-    @Inject(DOCUMENT) private document: any,
-    @Inject(PLATFORM_ID) private platformId: Object,
-  ) { }
+  constructor(private urlService: UrlService) { }
 
   /** Return absolute URL to an image located in the assets/img folder.
   NOTE: the URL will only effectively return the image if the server is serving assets.
   */
-  imageUrl(fileName: string): string {
-    return `${this.baseUrl}/assets/img/${fileName}`;
-  }
-
-  private get baseUrl(): string {
-    if (isPlatformServer(this.platformId)) {
-      // If on the server, document is not available.
-      // Use the request object we injected via ngExpressEngine (see: server.js)
-      return 'http://' + this.injector.get('request').get('host');
-    } else {
-      return this.document.location.origin;
-    }
+  imageUrl(fileName: string, opts: { directory?: string } = { directory: 'assets' }): string {
+    return this.urlService.fromRoot(['assets', opts.directory, fileName]);
   }
 
 }

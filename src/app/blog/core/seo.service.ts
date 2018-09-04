@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CardService, TwitterTag, OpenGraphTag } from 'app/social-cards';
-import { TruncatorService, DescriptionService } from 'app/core';
+import { TruncatorService, DescriptionService, UrlService } from 'app/core';
 import { Title } from '@angular/platform-browser';
 import { Post } from './post.model';
 
@@ -14,6 +14,7 @@ export class SeoService {
     private description: DescriptionService,
     private truncator: TruncatorService,
     private title: Title,
+    private urlService: UrlService,
   ) { }
 
   setUp(post: Post) {
@@ -28,10 +29,12 @@ export class SeoService {
     // Set the page title
     this.title.setTitle(post.title);
 
+    const postUrl = this.urlService.fromRoot([post.slug]);
+
     this.cards.configure({
       title: post.title,
       description: post.description,
-      url: post.absoluteUrl,
+      url: postUrl,
       image: post.imageUrl,
     });
 

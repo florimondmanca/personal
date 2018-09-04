@@ -28,10 +28,6 @@ export class Post extends PostSchema {
   get pk(): string {
     return this.slug;
   }
-
-  get absoluteUrl(): string {
-    return `https://blog.florimondmanca.com/${this.slug}`;
-  }
 }
 
 @Injectable({
