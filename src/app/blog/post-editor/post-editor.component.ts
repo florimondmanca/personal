@@ -117,7 +117,6 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    console.log(this.formGroup.value);
     this.submitted.emit(this.formGroup.value);
   }
 
