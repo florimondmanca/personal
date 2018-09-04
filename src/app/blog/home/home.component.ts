@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       title: this.title.getTitle(),
       description: this.description.get(),
       url: this.urlService.fromRoot(),
-      image: this.staticFiles.imageUrl('icon-512x512.png', { directory: 'icons' }),
+      image: this.staticFiles.imageUrl('codesail-full-600x355.png'),
     })
   }
 
