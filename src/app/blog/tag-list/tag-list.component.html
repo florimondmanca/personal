@@ -1,7 +1,7 @@
 <ul>
   <li *ngFor="let tag of tags">
-    <label>
+    <a [routerLink]="['/tags', tag]" class="no-border">
       #{{ tag }}
-    </label>
+    </a>
   </li>
 </ul>

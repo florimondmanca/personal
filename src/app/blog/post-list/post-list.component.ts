@@ -10,5 +10,6 @@ export class PostListComponent {
 
   @Input() posts: Post[] = [];
   @Input() action = '';
+  @Input() ifEmpty = 'No blog posts here yet. Stay tuned!';
 
 }

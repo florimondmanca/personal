@@ -21,11 +21,13 @@ export class PostService {
   constructor(private http: HttpClient, private adapter: PostAdapter) { }
 
   list(params: { draft?: boolean, tag?: string } = {}): Observable<Post[]> {
-    // 1 for all
-    // 2 for true
-    // 3 for false
-    const draft = params.draft ? '2' : '3';
-    return this.http.get(this.baseUrl, { params: { draft } }).pipe(
+    const queryParams: any = {
+      draft: params.draft ? '2' : '3',
+    };
+    if (params.tag) {
+      queryParams.tag = params.tag;
+    }
+    return this.http.get(this.baseUrl, { params: queryParams }).pipe(
       map((data: any[]) => data.map(item => this.adapter.adapt(item))),
     );
   }
@@ -187,4 +189,36 @@ export class PostDetailResolver implements Resolve<Post> {
     }
   }
 
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TagPostListResolver implements Resolve<Post[]> {
+
+  constructor(
+    private service: PostService,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) { }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<Post[]> {
+    const tag = route.paramMap.get('tag');
+    const KEY = makeStateKey<Post[]>('posts-for-tag');
+
+    if (this.transferState.hasKey(KEY)) {
+      const posts = this.transferState.get<Post[]>(KEY, []);
+      this.transferState.remove(KEY);
+      return of(posts);
+    } else {
+      return this.service.list({ draft: false, tag }).pipe(
+        catchError(() => of([])),
+        tap((posts) => {
+          if (isPlatformServer(this.platformId)) {
+            this.transferState.set(KEY, posts);
+          };
+        }),
+      );
+    }
+  }
 }

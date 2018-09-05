@@ -45,6 +45,9 @@ a {
     border: inherit;
     background: inherit;
   }
+  &.no-border {
+    border: inherit;
+  }
 }
 
 code {

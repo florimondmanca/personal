@@ -16,5 +16,7 @@
       {{ post.description }}
     </p>
   </li>
-  <ng-content *ngIf="posts.length === 0" select="[app-post-list-empty]"></ng-content>
+  <p class="text-center" *ngIf="posts.length === 0">
+    {{ ifEmpty }}
+  </p>
 </ul>

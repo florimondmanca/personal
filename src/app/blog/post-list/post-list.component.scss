@@ -7,7 +7,7 @@ ul {
   padding: 0;
 }
 
-.post {
+.post:not(:first-child) {
   margin-top: 2em;
 }
 

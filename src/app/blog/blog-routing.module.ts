@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from 'app/core';
-import { PostListResolver, PostDetailResolver, DraftListResolver } from './core';
+import { PostListResolver, TagPostListResolver, PostDetailResolver, DraftListResolver } from './core';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
+import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
 import { DraftsComponent } from './drafts/drafts.component';
 import { CanDeactivateDirtyPost } from './core';
+
 
 const routes: Routes = [
   {
@@ -16,6 +18,12 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: { posts: PostListResolver },
     data: { pageId: 'home' },
+  },
+  {
+    path: 'tags/:tag',
+    component: TagPostListComponent,
+    resolve: { posts: TagPostListResolver },
+    data: { pageId: 'tag-posts' },
   },
   {
     path: 'create',
