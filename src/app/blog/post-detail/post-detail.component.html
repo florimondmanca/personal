@@ -6,11 +6,11 @@
         <label class="text-muted" *ngIf="post.published">
           {{ post.published | amDateFormat: 'LL' }}
         </label>
+        <label class="text-muted" *ngIf="!post.published">
+          Drafted {{ post.created | amDateFormat: 'LL' }}
+        </label>
         <app-tag-list id="tags" [tags]="post.tags"></app-tag-list>
       </div>
-      <label class="text-muted" *ngIf="!post.published">
-        Drafted {{ post.created | amDateFormat: 'LL' }}
-      </label>
       <a mat-button *ngIf="canEdit" routerLink="edit" color="warn">
         <mat-icon inline="true">edit</mat-icon> Edit
       </a>
