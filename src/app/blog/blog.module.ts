@@ -30,6 +30,7 @@ import { DeleteDialogComponent } from './post-editor/delete-dialog/delete-dialog
 import { PostNavComponent } from './post-nav/post-nav.component';
 import { PostFooterComponent } from './post-footer/post-footer.component';
 import { TagsFieldComponent } from './tags-field/tags-field.component';
+import { TagListComponent } from './tag-list/tag-list.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { TagsFieldComponent } from './tags-field/tags-field.component';
     PostNavComponent,
     PostFooterComponent,
     TagsFieldComponent,
+    TagListComponent,
   ],
   entryComponents: [
     DeleteDialogComponent,

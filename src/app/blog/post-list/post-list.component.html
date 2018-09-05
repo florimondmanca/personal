@@ -1,22 +1,17 @@
 <ul>
   <li class="post" *ngFor="let post of posts">
-    <section class="text-muted">
-      <label *ngIf="post.published">
-        {{ post.published | amDateFormat: 'LL' }}
-      </label>
-      <ul id="tags" *ngIf="post.tags.length > 0">
-        <li *ngFor="let tag of post.tags">
-          <label>
-            #{{ tag }}
-          </label>
-        </li>
-      </ul>
-    </section>
+    <label class="text-muted" *ngIf="post.published">
+      {{ post.published | amDateFormat: 'LL' }}
+    </label>
+
+    <app-tag-list id="tags" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
+
     <h4>
       <a [routerLink]="action === 'edit' ? ['/', post.slug, 'edit'] : ['/', post.slug]">
         {{ post.title }}
       </a>
     </h4>
+
     <p>
       {{ post.description }}
     </p>

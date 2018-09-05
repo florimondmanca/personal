@@ -2,9 +2,12 @@
 
   <header>
     <div id="meta">
-      <label class="text-muted" *ngIf="post.published">
-        {{ post.published | amDateFormat: 'LL' }}
-      </label>
+      <div>
+        <label class="text-muted" *ngIf="post.published">
+          {{ post.published | amDateFormat: 'LL' }}
+        </label>
+        <app-tag-list id="tags" [tags]="post.tags"></app-tag-list>
+      </div>
       <label class="text-muted" *ngIf="!post.published">
         Drafted {{ post.created | amDateFormat: 'LL' }}
       </label>
@@ -16,6 +19,7 @@
     <h1 class="text-primary">
       {{ post.title }}
     </h1>
+
     <p class="text-muted" *ngIf="post.description">
       {{ post.description }}
     </p>
