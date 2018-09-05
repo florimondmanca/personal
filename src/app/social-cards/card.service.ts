@@ -58,8 +58,8 @@ export class CardService {
     if (!fullTags.image) {
       fullTags.image = this.staticFiles.imageUrl('codesail-full-600x355.png');
     }
-    this.forTwitter(tags, cardType.twitter || (tags.image ? TwitterCardType.SUMMARY_LARGE_IMAGE : TwitterCardType.SUMMARY));
-    this.forOpenGraph(tags, cardType.og || OpenGraphCardType.ARTICLE);
+    this.forTwitter(fullTags, cardType.twitter || TwitterCardType.SUMMARY_LARGE_IMAGE);
+    this.forOpenGraph(fullTags, cardType.og || OpenGraphCardType.ARTICLE);
   }
 
   private fromMapping(tags: CommonTags, mapping: Map<string, any>, tagFieldName: string) {
