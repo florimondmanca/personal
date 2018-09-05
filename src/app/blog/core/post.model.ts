@@ -4,7 +4,7 @@ import { IAdapter } from 'app/core';
 class PostMinimalSchema {
   title: string;
   slug: string;
-  tags: string;
+  tags: string[];
 }
 
 export class PostSchema extends PostMinimalSchema {

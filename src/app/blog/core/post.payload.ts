@@ -4,4 +4,5 @@ export interface PostPayload {
   slug: string;
   description: string;
   image_url: string;
+  tags: string[];
 }

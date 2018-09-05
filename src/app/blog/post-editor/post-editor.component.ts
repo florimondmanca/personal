@@ -46,9 +46,10 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     const slug = this.post ? this.post.slug : slugify(title);
     const description = this.post ? this.post.description : '';
     const imageUrl = this.post ? (this.post.imageUrl || '') : '';
+    const tags = this.post ? this.post.tags : [];
     this.content = this.post ? this.post.content : '';
 
-    this.createForm(title, slug, description, imageUrl, this.content);
+    this.createForm(title, slug, description, imageUrl, this.content, tags);
 
     // Delay updates of slug as it is validated by the server
     this.sub.add(this.formGroup.controls.title.valueChanges.pipe(
@@ -73,7 +74,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     return message;
   }
 
-  private createForm(title: string, slug: string, description: string, imageUrl: string, content: string) {
+  private createForm(title: string, slug: string, description: string, imageUrl: string, content: string, tags: string[]) {
     // Regex from: https://www.regextester.com/94502
     const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
     this.formGroup = this.fb.group({
@@ -82,6 +83,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
       description,
       image_url: [imageUrl, [Validators.pattern(urlRegex)]],
       slug: [slug, null, this.validateSlugNotTaken.bind(this)],
+      tags: [tags],
     });
   }
 
@@ -95,6 +97,10 @@ export class PostEditorComponent implements OnInit, OnDestroy {
 
   get contentControl() {
     return this.formGroup.controls.content;
+  }
+
+  get tagsControl() {
+    return this.formGroup.controls.tags;
   }
 
   private slugify(s: string): string {

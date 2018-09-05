@@ -23,6 +23,8 @@
         <input matInput type="url" formControlName="image_url" placeholder="Image URL" (change)="makeDirty()">
         <mat-hint>Should be set for social cards and RSS support.</mat-hint>
       </mat-form-field>
+
+      <app-tags-field [control]="tagsControl" (change)="makeDirty()"></app-tags-field>
     </div>
 
     <div>

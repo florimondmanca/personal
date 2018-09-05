@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MomentModule } from 'ngx-moment';
 import { MarkdownModule } from 'ngx-markdown';
@@ -11,6 +11,7 @@ import {
   MatInputModule,
   MatMenuModule,
   MatIconModule,
+  MatChipsModule,
 } from '@angular/material';
 
 import { BlogRoutingModule } from './blog-routing.module';
@@ -28,10 +29,12 @@ import { PostEditorComponent } from './post-editor/post-editor.component';
 import { DeleteDialogComponent } from './post-editor/delete-dialog/delete-dialog.component';
 import { PostNavComponent } from './post-nav/post-nav.component';
 import { PostFooterComponent } from './post-footer/post-footer.component';
+import { TagsFieldComponent } from './tags-field/tags-field.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     MomentModule,
     MarkdownModule.forChild(),
@@ -41,6 +44,7 @@ import { PostFooterComponent } from './post-footer/post-footer.component';
     MatInputModule,
     MatMenuModule,
     MatIconModule,
+    MatChipsModule,
     // Project modules
     CoreModule,
     EditorModule,
@@ -58,6 +62,7 @@ import { PostFooterComponent } from './post-footer/post-footer.component';
     DeleteDialogComponent,
     PostNavComponent,
     PostFooterComponent,
+    TagsFieldComponent,
   ],
   entryComponents: [
     DeleteDialogComponent,
