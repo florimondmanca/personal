@@ -21,7 +21,7 @@ export class TagsFieldComponent {
   @Input() control: FormControl;
   @Output() change: EventEmitter<void> = new EventEmitter();
 
-  private get tags(): string[] {
+  get tags(): string[] {
     return this.control.value || [];
   }
 
