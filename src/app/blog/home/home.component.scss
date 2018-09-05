@@ -2,8 +2,20 @@
   margin: 2em 0;
 }
 
-header {
-  h1 {
-    margin: 0;
+#banner {
+  max-width: 20em;
+  margin: auto;
+  img {
+    width: 100%;
+    height: auto;
   }
+}
+
+h2 {
+  margin: 0 2em;  // force text to wrap a bit on big screens
+  font-weight: normal;
+}
+
+#author {
+  margin-top: 1em;
 }
