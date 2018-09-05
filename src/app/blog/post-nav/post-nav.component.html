@@ -1,5 +1,5 @@
 <p *ngIf="relative">
-  <a [routerLink]="['../', relative.slug]">
+  <a [routerLink]="['../', relative.slug]" (click)="scrollTop()">
     <mat-icon>{{ icon }}</mat-icon>
     <span>{{ label }}</span>
   </a>

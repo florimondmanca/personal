@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../core';
+import jump from 'jump.js';
 
 
 @Component({
@@ -18,6 +19,10 @@ export class PostNavComponent {
 
   get icon(): string {
     return this.type === 'previous' ? 'navigate_before' : 'navigate_next';
+  }
+
+  scrollTop() {
+    jump('#top', { duration: 500 })
   }
 
 }
