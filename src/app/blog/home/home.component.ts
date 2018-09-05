@@ -34,8 +34,6 @@ export class HomeComponent implements OnInit {
     this.cards.configure({
       title: this.title.getTitle(),
       description: this.description.get(),
-      url: this.urlService.fromRoot(),
-      image: this.staticFiles.imageUrl('codesail-full-600x355.png'),
     })
   }
 

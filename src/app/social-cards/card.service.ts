@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Meta, DOCUMENT } from '@angular/platform-browser';
 import { OpenGraphTag, TwitterTag, OpenGraphCardType, TwitterCardType } from './card-tags';
+import { UrlService, StaticFiles } from 'app/core';
 
 interface CommonTags {
   title: string;
@@ -26,6 +27,8 @@ export class CardService {
   constructor(
     private meta: Meta,
     @Inject(DOCUMENT) private document: any,
+    private urlService: UrlService,
+    private staticFiles: StaticFiles,
   ) {
     this.twitterTagMap = new Map([
       ['type', TwitterTag.CARD_TYPE],
@@ -47,8 +50,13 @@ export class CardService {
   configure(tags: CommonTags, cardType?: { twitter?: TwitterCardType, og?: OpenGraphCardType }) {
     cardType = cardType || {};
     const fullTags = {...tags};
+    // Use a default URL
     if (!fullTags.url) {
-      fullTags.url = this.document.location.href;
+      fullTags.url = this.urlService.fromRoot();
+    }
+    // Use a default image
+    if (!fullTags.image) {
+      fullTags.image = this.staticFiles.imageUrl('codesail-full-600x355.png');
     }
     this.forTwitter(tags, cardType.twitter || (tags.image ? TwitterCardType.SUMMARY_LARGE_IMAGE : TwitterCardType.SUMMARY));
     this.forOpenGraph(tags, cardType.og || OpenGraphCardType.ARTICLE);

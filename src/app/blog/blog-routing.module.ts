@@ -20,7 +20,7 @@ const routes: Routes = [
     data: { pageId: 'home' },
   },
   {
-    path: 'tags/:tag',
+    path: 't/:tag',
     component: TagPostListComponent,
     resolve: { posts: TagPostListResolver },
     data: { pageId: 'tag-posts' },
