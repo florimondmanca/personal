@@ -4,6 +4,7 @@ import { IAdapter } from 'app/core';
 class PostMinimalSchema {
   title: string;
   slug: string;
+  tags: string;
 }
 
 export class PostSchema extends PostMinimalSchema {
@@ -42,6 +43,7 @@ export class PostAdapter implements IAdapter<Post> {
       slug: data.slug,
       description: data.description,
       content: data.content,
+      tags: data.tags,
       imageUrl: data.image_url,
       created: new Date(data.created),
       published: data.published ? new Date(data.published) : null,
@@ -52,6 +54,6 @@ export class PostAdapter implements IAdapter<Post> {
   }
 
   private adaptMinimal(data: any): PostMinimalSchema {
-    return { title: data.title, slug: data.slug };
+    return { title: data.title, slug: data.slug, tags: data.tags };
   }
 }

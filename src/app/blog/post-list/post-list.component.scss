@@ -14,3 +14,17 @@ ul {
 .published-date {
   margin: 0;
 }
+
+#tags {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  li {
+    margin: 0 .2em;
+  }
+  &::before {
+    content: '\2219';
+  }
+}

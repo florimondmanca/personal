@@ -20,8 +20,7 @@ export class PostService {
 
   constructor(private http: HttpClient, private adapter: PostAdapter) { }
 
-  list(params?: { draft?: boolean }): Observable<Post[]> {
-    params = params || {};
+  list(params: { draft?: boolean, tag?: string } = {}): Observable<Post[]> {
     // 1 for all
     // 2 for true
     // 3 for false
