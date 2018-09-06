@@ -1,9 +1,11 @@
 <div class="page pad-h-sm">
 
   <header class="text-center">
-    <a id="banner" class="no-style" routerLink="/">
-      <img src="assets/img/codesail-home-banner.png" alt="">
-    </a>
+    <h1 id="title">
+      <a routerLink="/" id="banner">
+        CodeSail
+      </a>
+    </h1>
     <h2>
       A journey through web development & software engineering
     </h2>
@@ -18,6 +20,8 @@
     New fresh blog posts (mostly) twice per week.
   </p>
 
-  <app-post-list [posts]="posts"></app-post-list>
+  <section id="post-list">
+    <app-post-list [posts]="posts"></app-post-list>
+  </section>
 
 </div>

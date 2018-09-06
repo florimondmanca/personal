@@ -9,7 +9,7 @@
         <label class="text-muted" *ngIf="!post.published">
           Drafted {{ post.created | amDateFormat: 'LL' }}
         </label>
-        <app-tag-list id="tags" [tags]="post.tags"></app-tag-list>
+        <app-tag-list id="tags" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
       </div>
       <a mat-button *ngIf="canEdit" routerLink="edit" color="warn">
         <mat-icon inline="true">edit</mat-icon> Edit

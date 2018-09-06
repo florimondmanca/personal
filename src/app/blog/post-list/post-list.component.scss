@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'mixins/media';
+@import 'mixins/shadow';
 
 ul {
   list-style-type: none;
@@ -7,8 +8,15 @@ ul {
   padding: 0;
 }
 
-.post:not(:first-child) {
-  margin-top: 2em;
+.post {
+  padding: .75em 1em;
+  & + .post {
+    margin-top: 1em;
+  }
+}
+
+.elevated {
+  @include card-shadow;
 }
 
 .published-date {
@@ -16,7 +24,7 @@ ul {
 }
 
 #tags {
-  &::before {
+  &.separated::before {
     content: '\2219';
   }
 }
