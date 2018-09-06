@@ -1,5 +1,5 @@
 <ul>
-  <li class="post elevated" *ngFor="let post of posts">
+  <li class="post" *ngFor="let post of posts">
     <label class="text-muted" *ngIf="post.published">
       {{ post.published | amDateFormat: 'LL' }}
     </label>
