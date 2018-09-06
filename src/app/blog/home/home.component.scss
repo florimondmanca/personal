@@ -40,8 +40,10 @@ $primary: map-get($theme, primary);
 h2 {
   font-weight: normal;
   // force text to wrap a bit on big screens
-  margin-left: 2em;
-  margin-right: 2em;
+  @include media-sm {
+    margin-left: 2em;
+    margin-right: 2em;
+  }
 }
 
 #author {
