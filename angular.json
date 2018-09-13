@@ -41,7 +41,9 @@
               "node_modules/prismjs/components/prism-http.min.js",
               "node_modules/prismjs/components/prism-typescript.min.js",
               "node_modules/prismjs/components/prism-markdown.min.js",
-              "node_modules/prismjs/components/prism-diff.min.js"
+              "node_modules/prismjs/components/prism-diff.min.js",
+              "node_modules/prismjs/components/prism-docker.min.js",
+              "node_modules/prismjs/components/prism-yaml.min.js"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
