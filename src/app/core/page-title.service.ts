@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router, ActivatedRoute, NavigationEnd, ParamMap } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { tap, filter, map, mergeMap } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class PageTitleService {
 
-  constructor(private router: Router, private route: ActivatedRoute, private title: Title) { }
+  private defaultTitle: string;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private title: Title
+  ) {
+    this.defaultTitle = this.title.getTitle();
+  }
 
   private get(): Observable<string> {
     return this.router.events.pipe(
@@ -28,8 +35,7 @@ export class PageTitleService {
       mergeMap(route => route.data),
       // Retrieve the route title
       map(data => data['title']),
-      filter(title => title),
-      map(title => 'Florimond Manca' + (title ? ' | ' + title : '')),
+      map((title: string) => this.defaultTitle + (title ? ' | ' + title : '')),
     );
   }
 

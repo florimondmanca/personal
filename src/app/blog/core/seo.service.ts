@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CardService, TwitterTag, OpenGraphTag } from 'app/social-cards';
+import { CardService, TwitterTag, OpenGraphTag } from 'app/social';
 import { TruncatorService, DescriptionService, UrlService } from 'app/core';
 import { Title } from '@angular/platform-browser';
 import { Post } from './post.model';

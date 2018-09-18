@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardService } from 'app/social-cards';
+import { CardService } from 'app/social';
 import { StaticFiles } from 'app/core';
 
 @Component({

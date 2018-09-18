@@ -17,7 +17,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     resolve: { posts: PostListResolver },
-    data: { pageId: 'home' },
+    data: { pageId: 'home', title: '' },
   },
   {
     path: 't/:tag',
@@ -30,14 +30,14 @@ const routes: Routes = [
     component: PostCreateComponent,
     canActivate: [AuthGuard],
     canDeactivate: [CanDeactivateDirtyPost],
-    data: { pageId: 'postCreate' },
+    data: { pageId: 'postCreate', title: 'Create post' },
   },
   {
     path: 'drafts',
     component: DraftsComponent,
     canActivate: [AuthGuard],
     resolve: { posts: DraftListResolver },
-    data: { pageId: 'drafts' },
+    data: { pageId: 'drafts', title: 'Drafts' },
   },
   {
     path: ':pk',

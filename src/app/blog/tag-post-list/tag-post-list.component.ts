@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Post } from '../core';
 import { UrlService } from 'app/core';
-import { CardService } from 'app/social-cards';
+import { CardService } from 'app/social';
 
 
 function capitalize(value: string): string {
