@@ -4,6 +4,7 @@ require('reflect-metadata');
 
 const express = require('express');
 const morgan = require('morgan');
+const request = require('request');
 const { join } = require('path');
 const { enableProdMode } = require('@angular/core');
 
@@ -46,7 +47,17 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 
 // Sitemap lives on the API
 app.get('/sitemap.xml', (req, res) => {
-  res.redirect(`${BACKEND_URL}/sitemap.xml`);
+  // NOTE: redirects don't work well with Google. Perform a
+  // request and send the result directly instead.
+  request(`${BACKEND_URL}/sitemap.xml`, (error, response, body) => {
+    if (error) {
+      res.status(500).send({
+        error: `Could not retrieve sitemap.xml from ${BACKEND_URL}`
+      });
+    } else {
+      res.type('application/xml').send(body);
+    }
+  });
 })
 
 // Serve static files from /browser
