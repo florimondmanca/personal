@@ -9,7 +9,7 @@ $primary: map-get($theme, primary);
 .twitter-follow-button {
   padding: .5em;
   color: white;
-  font-size: 0.5 * $font-size;
+  font-size: 0.6 * $font-size;
   background: mat-color($primary, 700);
   border-radius: 3px;
   &:hover {
