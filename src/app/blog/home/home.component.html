@@ -9,16 +9,22 @@
     <h2>
       A journey through web development & software engineering
     </h2>
-    <p id="author">
-      by <a routerLink="/about">Florimond Manca</a>
+    <p>
+      <a routerLink="/about">Learn more</a>
     </p>
   </header>
 
-  <hr id="divide" class="asterisk">
+  <br>
 
-  <p class="text-center text-muted">
-    New fresh blog posts (mostly) every week.
-  </p>
+  <section class="text-center">
+    <p class="text-muted">
+      New fresh blog posts (mostly) every week.
+    </p>
+    <p>
+      Updates: <app-follow-button></app-follow-button>
+    </p>
+  </section>
+
 
   <section id="post-list">
     <app-post-list [posts]="posts"></app-post-list>
