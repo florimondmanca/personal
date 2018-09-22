@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { WidgetsModule } from 'app/widgets';
+import { SocialModule } from 'app/social';
 
 import { AboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about/about.component';
@@ -16,6 +17,7 @@ import { TechComponent } from './tech/tech.component';
     AboutRoutingModule,
     MarkdownModule.forChild(),
     WidgetsModule,
+    SocialModule,
   ],
   declarations: [
     AboutComponent,

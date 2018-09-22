@@ -1,8 +1,12 @@
 @import './mixins/fontface';
+@import '~@angular/material/theming';
+@import 'theme';
+
+$primary: map-get($theme, primary);
 
 // Colors
 $color-text: #424242;
-$color-muted: #738f8f;
+$color-muted: desaturate(darken(mat-color($primary, 50), 40%), 30%);
 $color-muted-dark: darken($color-muted, 20%);
 $color-inline-code: #df5f71;
 $color-gray-light: #F0F0F0;
