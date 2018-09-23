@@ -11,9 +11,9 @@ const envConfigFile = `\
 // ${environment} environment
 export const environment = {
   production: ${isProd},
-  adminSiteUrl: "${process.env.ADMIN_SITE_URL}",
+  adminSiteUrl: "${process.env.BACKEND_URL}/admin",
   backendUrl: "${process.env.BACKEND_URL}",
-  apiUrl: "${process.env.API_URL}",
+  apiUrl: "${process.env.BACKEND_URL}/api",
   apiKey: "${process.env.API_KEY}",
 };
 `
