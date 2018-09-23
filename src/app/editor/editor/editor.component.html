@@ -19,5 +19,8 @@
       #autosize="cdkTextareaAutosize"
       cdkAutosizeMinRows="30"></textarea>
   </mat-form-field>
-  <markdown id="preview" *ngIf="previewActive" [data]="mdContent"></markdown>
+  <section id="preview">
+    <app-image *ngIf="imageUrl" [src]="imageUrl" [caption]="imageCaption" id="image"></app-image>
+    <markdown *ngIf="previewActive" [data]="mdContent"></markdown>
+  </section>
 </div>

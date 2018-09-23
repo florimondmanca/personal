@@ -19,6 +19,7 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { CoreModule } from 'app/core';
 import { EditorModule } from 'app/editor';
 import { SocialModule } from 'app/social';
+import { WidgetsModule } from 'app/widgets';
 import { BlogComponent } from './blog.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { HomeComponent } from './home/home.component';
@@ -52,6 +53,7 @@ import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
     CoreModule,
     EditorModule,
     SocialModule,
+    WidgetsModule,
     BlogRoutingModule,
   ],
   declarations: [

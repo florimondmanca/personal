@@ -16,12 +16,17 @@
 
       <mat-form-field id="description-field" class="full-width">
         <input matInput type="text" formControlName="description" placeholder="Description" (change)="makeDirty()">
-        <mat-hint>Should be set for social cards and RSS support.</mat-hint>
+        <mat-hint>Also used in social cards and RSS.</mat-hint>
       </mat-form-field>
 
       <mat-form-field id="image-url-field" class="full-width">
         <input matInput type="url" formControlName="image_url" placeholder="Image URL" (change)="makeDirty()">
-        <mat-hint>Should be set for social cards and RSS support.</mat-hint>
+        <mat-hint>Also used in social cards and RSS.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field id="image-caption-field" class="full-width">
+        <input matInput type="text" formControlName="image_caption" placeholder="Image caption" (change)="makeDirty()">
+        <mat-hint>Displayed under the image, if set.</mat-hint>
       </mat-form-field>
 
       <app-tags-field [control]="tagsControl" (change)="makeDirty()"></app-tags-field>
@@ -49,7 +54,7 @@
     </div>
   </span>
 
-  <app-editor [control]="contentControl" [mdContent]="content" (dirty)="makeDirty()">
+  <app-editor [control]="contentControl" [mdContent]="content" (dirty)="makeDirty()" [imageUrl]="imageUrl" [imageCaption]="imageCaption">
     <button app-editor-tool mat-raised-button color="primary" [disabled]="!formGroup.valid">
       Save <ng-template [ngIf]="!post || (post && post.isDraft)">draft</ng-template>
     </button>
