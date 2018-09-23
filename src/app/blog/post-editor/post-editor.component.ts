@@ -31,6 +31,8 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   private isDirty = false;
 
   content: string;
+  imageUrl: string;
+  imageCaption: string;
 
   private sub = new Subscription();
 
@@ -44,26 +46,43 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const title = this.post ? this.post.title : '';
     const slug = this.post ? this.post.slug : slugify(title);
-    const description = this.post ? this.post.description : '';
-    const imageUrl = this.post ? (this.post.imageUrl || '') : '';
+    const content = this.post ? this.post.content : '';
+    const description = this.post ? this.post.description : null;
+    const imageUrl = this.post ? (this.post.imageUrl || null) : null;
+    const imageCaption = this.post ? (this.post.imageCaption || null) : null;
     const tags = this.post ? this.post.tags : [];
-    this.content = this.post ? this.post.content : '';
 
-    this.createForm(title, slug, description, imageUrl, this.content, tags);
+    this.content = content;
+    this.imageUrl = imageUrl;
+    this.imageCaption = imageCaption;
 
-    // Delay updates of slug as it is validated by the server
-    this.sub.add(this.formGroup.controls.title.valueChanges.pipe(
-      debounceTime(500),
+    this.createForm(title, slug, description, imageUrl, imageCaption, this.content, tags);
+    this.updateOnChanges();
+  }
+
+  private updateOnChanges(): void {
+    [
+      this.onDelayedUpdate('title', { delay: 500 }).pipe(
+        tap(title => this.canUpdateSlug && this.slugControl.setValue(this.slugify(title))),
+      ),
+      this.onDelayedUpdate('content').pipe(
+        tap(content => this.content = content),
+      ),
+      this.onDelayedUpdate('image_url').pipe(
+        tap(imageUrl => this.imageUrl = imageUrl),
+      ),
+      this.onDelayedUpdate('image_caption').pipe(
+        tap(imageCaption => this.imageCaption = imageCaption),
+      ),
+    ].forEach(observable => this.sub.add(observable.subscribe()));
+  }
+
+  private onDelayedUpdate(controlName: string, opts = { delay: 300 }) {
+    const control = this.formGroup.controls[controlName];
+    return control.valueChanges.pipe(
+      debounceTime(opts.delay),
       distinctUntilChanged(),
-      tap(title => this.canUpdateSlug && this.slugControl.setValue(this.slugify(title))),
-    ).subscribe());
-
-    // Delay updates of content to reduce Markdown rendering frequency
-    this.sub.add(this.formGroup.controls.content.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(content => this.content = content),
-    ).subscribe());
+    );
   }
 
   @HostListener('window:beforeunload', ['$event'])
@@ -74,7 +93,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     return message;
   }
 
-  private createForm(title: string, slug: string, description: string, imageUrl: string, content: string, tags: string[]) {
+  private createForm(title: string, slug: string, description: string, imageUrl: string, imageCaption: string, content: string, tags: string[]) {
     // Regex from: https://www.regextester.com/94502
     const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
     this.formGroup = this.fb.group({
@@ -82,6 +101,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
       content,
       description,
       image_url: [imageUrl, [Validators.pattern(urlRegex)]],
+      image_caption: imageCaption,
       slug: [slug, null, this.validateSlugNotTaken.bind(this)],
       tags: [tags],
     });

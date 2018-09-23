@@ -21,6 +21,8 @@ interface EditorChange {
 export class EditorComponent {
 
   @Input() mdContent: string;
+  @Input() imageUrl: string;
+  @Input() imageCaption: string;
   @Input() control: FormControl;
   @ViewChild('autosize') autoSize: MatTextareaAutosize;
   @Output() dirty: EventEmitter<void> = new EventEmitter();
