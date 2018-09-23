@@ -20,10 +20,7 @@
       cdkAutosizeMinRows="30"></textarea>
   </mat-form-field>
   <section id="preview">
-    <div *ngIf="imageUrl" class="markdown-image" id="image">
-      <img [src]="imageUrl" alt="">
-      <figcaption *ngIf="imageCaption">{{ imageCaption }}</figcaption>
-    </div>
+    <app-image *ngIf="imageUrl" [src]="imageUrl" [caption]="imageCaption" id="image"></app-image>
     <markdown *ngIf="previewActive" [data]="mdContent"></markdown>
   </section>
 </div>

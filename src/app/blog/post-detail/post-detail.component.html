@@ -25,6 +25,8 @@
     </p>
   </header>
 
+  <app-image *ngIf="post.imageUrl" [src]="post.imageUrl" [caption]="post.imageCaption"></app-image>
+
   <markdown [data]="post.content"></markdown>
 
   <app-post-footer></app-post-footer>
