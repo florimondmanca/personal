@@ -8,13 +8,14 @@ import { environment } from 'environments/environment';
 export class KeyInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    request = this.attachKey(request);
+    request = this.attachApiKey(request);
     return next.handle(request);
   }
 
-  private attachKey(request): HttpRequest<any> {
-    const key: string = environment.apiKey;
-    const headers = request.headers.set('Api-Key', key);
+  private attachApiKey(request: HttpRequest<any>): HttpRequest<any> {
+    const token: string = environment.apiToken;
+    const secretKey: string = environment.apiSecretKey;
+    const headers = request.headers.set('Api-Token', token).set('Api-Secret-Key', secretKey);
     return request.clone({ headers });
   }
 
