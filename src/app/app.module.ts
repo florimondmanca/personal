@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 import { environment } from '../environments/environment';
 
@@ -44,6 +45,7 @@ import { environment } from '../environments/environment';
     NotFoundComponent,
     LoginComponent,
     MainComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'florimondmanca-blog' }),
