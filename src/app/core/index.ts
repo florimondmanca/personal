@@ -9,3 +9,4 @@ export * from './truncator.service';
 export * from './description.service';
 export * from './staticfiles.service';
 export * from './url.service';
+export * from './analytics.service';

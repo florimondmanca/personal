@@ -5,19 +5,20 @@ import { NgcCookieConsentConfig } from 'ngx-cookieconsent';
 export function configureCookieConsent(opts: { domain: string }): NgcCookieConsentConfig {
   return {
     cookie: {
-      // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+      // It is mandatory to set a domain for cookies to work properly (see https://goo.gl/S2Hy2A)
       domain: opts.domain,
     },
     position: 'bottom',
-    theme: 'classic',
+    theme: 'edgeless',
     type: 'opt-in',
     content: {
-      message: 'Psst! Cookies allow me to monitor the use of this website. 🍪 Learn more by reading the',
+      message: (
+        'Hi, there! Cookies allow me to monitor website usage. 🍪 ' +
+        'Learn more by reading the'
+      ),
       link: 'Privacy Policy',
-      // dismiss: '',
-      deny: 'Do not allow cookies',
+      deny: `Don't allow cookies`,
       href: '/privacy',
-      header: 'Test',
     },
     palette: {
       popup: {

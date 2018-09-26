@@ -59,7 +59,13 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,  // required for Angular animations
     MomentModule,
     FontAwesomeModule,
-    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
+    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], {
+      // Deactivate page tracking initially/by default
+      developerMode: true,
+      ga: {
+        anonymizeIp: true,
+      },
+    }),
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,

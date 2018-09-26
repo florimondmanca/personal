@@ -4,9 +4,9 @@ import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angul
 import { Subscription } from 'rxjs';
 import { filter, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
-import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
-import { PageTitleService } from './core';
+import { PageTitleService, AnalyticsService } from './core';
+import { CookieConsentService } from './cookie-consent';
 
 @Component({
   selector: 'app-root',
@@ -16,71 +16,42 @@ import { PageTitleService } from './core';
 export class AppComponent implements OnInit, OnDestroy {
 
   sub: Subscription;
-  cookieSub: Subscription;
   navigating = false;
   error = false;
 
   constructor(
     private pageTitle: PageTitleService,
-    private analytics: Angulartics2GoogleAnalytics,
+    private angulartics2: Angulartics2GoogleAnalytics,
     private router: Router,
-    private ccService: NgcCookieConsentService,
+    private cookieConsent: CookieConsentService,
+    private analytics: AnalyticsService,
   ) {
     this.sub = new Subscription();
-    this.cookieSub = new Subscription();
   }
 
   ngOnInit() {
     this.sub.add(this.pageTitle.updateOnNavigate().subscribe());
+
     // Update navigating on router events
     this.sub.add(this.router.events.pipe(
       filter(e => e instanceof NavigationStart || e instanceof NavigationEnd || e instanceof NavigationCancel),
       debounceTime(100),  // don't mark fast navigation changes as navigating
       tap((e) => this.navigating = e instanceof NavigationStart),
     ).subscribe());
-    this.configureCookieConsent();
-  }
 
-  private configureCookieConsent() {
-    // subscribe to cookieconsent observables to react to main events
-    this.ccService.popupOpen$.subscribe(
-      () => {
-        // you can use this.ccService.getConfig() to do stuff...
-      }
-    );
-
-    this.ccService.popupClose$.subscribe(
-      () => {
-        // you can use this.ccService.getConfig() to do stuff...
-      }
-    );
-    this.ccService.initialize$.subscribe(
-      (event: NgcInitializeEvent) => {
-        // you can use this.ccService.getConfig() to do stuff...
-      }
-    );
-
-    this.ccService.statusChange$.subscribe(
-      (event: NgcStatusChangeEvent) => {
-        // you can use this.ccService.getConfig() to do stuff...
-      }
-    );
-
-    this.ccService.revokeChoice$.subscribe(
-      () => {
-        // you can use this.ccService.getConfig() to do stuff...
-      }
-    );
-
-    this.ccService.noCookieLaw$.subscribe(
-      (event: NgcNoCookieLawEvent) => {
-        // you can use this.ccService.getConfig() to do stuff...
-      }
-    );
+    // Configure Cookie Consent
+    if (this.cookieConsent.hasConsented()) {
+      this.analytics.activate();
+    }
+    this.sub.add(this.cookieConsent.onAllow().subscribe(
+      () => this.analytics.activate()
+    ));
+    this.sub.add(this.cookieConsent.onRevoke().subscribe(
+      () => this.analytics.deactivate()
+    ));
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.cookieSub.unsubscribe();
   }
 }
