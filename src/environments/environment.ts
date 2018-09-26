@@ -6,7 +6,8 @@
 // `ng serve --env=dev`
 export const environment = {
   production: false,
-  apiKey: '',
+  apiToken: '',
+  apiSecretKey: '',
   backendUrl: '',
   adminSiteUrl: '',
   apiUrl: '',
