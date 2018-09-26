@@ -21,10 +21,12 @@ import {
 } from '@angular/material';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { NgcCookieConsentModule } from 'ngx-cookieconsent';
 
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor } from './core';
 import { ErrorInterceptor, ErrorsModule } from './errors';
+import { configureCookieConsent } from './cookie-consent/configure';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -64,6 +66,9 @@ import { environment } from '../environments/environment';
         useFactory: markedOptionsFactory,
       }
     }),
+    NgcCookieConsentModule.forRoot(configureCookieConsent({
+      domain: environment.production ? 'blog.florimondmanca.com' : 'localhost',
+    })),
     AppRoutingModule,
     ErrorsModule,
     // Angular Material
