@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,12 @@ const routes: Routes = [
         path: 'about',
         loadChildren: './about/about.module#AboutModule',
       },
+      {
+        path: 'privacy',
+        component: PrivacyPolicyComponent,
+        data: { pageId: 'privacy' },
+      },
+      // Should be at the bottom because '' matches everything
       {
         path: '',
         loadChildren: './blog/blog.module#BlogModule',
