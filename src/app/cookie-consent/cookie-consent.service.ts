@@ -1,10 +1,16 @@
-import { Injectable, Inject, PLATFORM_ID, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { tap, map, filter } from 'rxjs/operators';
 import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 import { CookieConsentResponse } from './response';
-import { CookieConsentPopupComponent } from './cookie-consent-popup/cookie-consent-popup.component';
+
+
+type Status = 'allow' | 'deny';
+
+interface CookieConsentStatusChange {
+  status: Status;
+}
 
 
 @Injectable({
@@ -12,53 +18,62 @@ import { CookieConsentPopupComponent } from './cookie-consent-popup/cookie-conse
 })
 export class CookieConsentService {
 
-  private viewContainer: ViewContainerRef;
-  private hidden: boolean;
+  private STATUS_KEY = 'cookieconsent_status';
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private factoryResolver: ComponentFactoryResolver,
-    private ccService: NgcCookieConsentService,
-  ) {
-    this.factoryResolver = factoryResolver;
+  statusChange: Subject<CookieConsentStatusChange> = new Subject();
+  private statusSubscription: Subscription;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.statusSubscription = this.saveStatusOnChange().subscribe();
   }
 
-  init(view: ViewContainerRef) {
-    if (!this.hasAnswered()) {
-      this.addPopupComponent(view);
-    }
-  }
-
-  private addPopupComponent(view: ViewContainerRef) {
-    const factory = this.factoryResolver.resolveComponentFactory(CookieConsentPopupComponent);
-    const popupComponent = factory.create(view.parentInjector);
-    view.insert(popupComponent.hostView);
-  }
-
-  hasAnswered(): boolean {
-    // Angular Universal support
+  private get status(): Status | null {
     if (isPlatformBrowser(this.platformId)) {
-      return !!localStorage.getItem('cookieconsent_status');
+      const status = localStorage.getItem(this.STATUS_KEY);
+      if (status === 'allow') {
+        return 'allow';
+      } else if (status === 'deny') {
+        return 'deny';
+      } else {
+        return null;
+      }
     }
-    return false;
+    return null;
   }
 
-  hasConsented(): boolean {
-    // Angular Universal support
+  private set status(status: Status) {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem('cookieconsent_status') === 'allow';
+      localStorage.setItem(this.STATUS_KEY, status);
     }
-    return false;
   }
 
-  onAllow(): Observable<void> {
-    return this.ccService.statusChange$.pipe(
-      filter((event: NgcStatusChangeEvent) => event.status === 'allow'),
-      map(() => null),
+  private saveStatusOnChange(): Observable<any> {
+    return this.onChange().pipe(
+      tap((event: CookieConsentStatusChange) => this.status = event.status),
     );
   }
 
-  onRevoke(): Observable<void> {
-    return this.ccService.revokeChoice$;
+  private onChange(): Observable<CookieConsentStatusChange> {
+    return this.statusChange.asObservable();
+  }
+
+  onStatusChange(): Observable<string> {
+    return this.statusChange.asObservable().pipe(
+      map((event) => event.status),
+    );
+  }
+
+  hasAnswered(): boolean {
+    return !!this.status;
+  }
+
+  hasConsented(): boolean {
+    return this.status === 'allow'
+  }
+
+  onAllow(): Observable<any> {
+    return this.onStatusChange().pipe(
+      filter(status => status === 'allow'),
+    );
   }
 }

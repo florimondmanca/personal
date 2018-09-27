@@ -1,3 +1,15 @@
-<p>
-  cookie-consent-popup works!
-</p>
+<div id="consent" class="mat-typography">
+  <p class="message">
+    Hi, there! Cookies allow me to monitor website usage. 🍪
+    Learn more by reading the
+    <a routerLink="/privacy">Privacy Policy</a>.
+  </p>
+  <span class="buttons">
+    <button id="deny" (click)="onDeny()">
+      No, thanks
+    </button>
+    <button id="allow" (click)="onAllow()">
+      Allow cookies
+    </button>
+  </span>
+</div>

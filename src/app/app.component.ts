@@ -6,7 +6,7 @@ import { filter, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { PageTitleService, AnalyticsService } from './core';
-import { CookieConsentService } from './cookie-consent';
+import { CookieConsentService, CookieConsentPopupService } from './cookie-consent';
 
 @Component({
   selector: 'app-root',
@@ -24,17 +24,12 @@ export class AppComponent implements OnInit, OnDestroy {
     private angulartics2: Angulartics2GoogleAnalytics,
     private router: Router,
     private cookieConsent: CookieConsentService,
+    private cookieConsentPopup: CookieConsentPopupService,
     private analytics: AnalyticsService,
     private view: ViewContainerRef,
   ) {
     this.sub = new Subscription();
   }
-
-  // constructor(@Inject(Service) service,
-  //             @Inject(ViewContainerRef) viewContainerRef) {
-  //   service.setRootViewContainerRef(viewContainerRef)
-  //   service.addDynamicComponent()
-  // }
 
   ngOnInit() {
     this.sub.add(this.pageTitle.updateOnNavigate().subscribe());
@@ -46,7 +41,9 @@ export class AppComponent implements OnInit, OnDestroy {
       tap((e) => this.navigating = e instanceof NavigationStart),
     ).subscribe());
 
-    this.cookieConsent.init(this.view);
+    if (!this.cookieConsent.hasAnswered()) {
+      this.cookieConsentPopup.createFor(this.view);
+    }
 
     // Configure Cookie Consent
     if (this.cookieConsent.hasConsented()) {
@@ -54,9 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     this.sub.add(this.cookieConsent.onAllow().subscribe(
       () => this.analytics.activate()
-    ));
-    this.sub.add(this.cookieConsent.onRevoke().subscribe(
-      () => this.analytics.deactivate()
     ));
   }
 
