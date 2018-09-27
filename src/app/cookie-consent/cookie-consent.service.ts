@@ -12,7 +12,6 @@ interface CookieConsentStatusChange {
   status: Status;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
