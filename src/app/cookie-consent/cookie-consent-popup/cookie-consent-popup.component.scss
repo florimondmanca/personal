@@ -1,0 +1,63 @@
+@import '~@angular/material/theming';
+@import 'mixins/media';
+@import 'variables';
+@import 'theme';
+
+$primary: map-get($theme, primary);
+$accent: map-get($theme, accent);
+
+#consent {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: mat-color($primary, 50);
+  display: grid;
+  grid-template-areas: "message" "buttons";
+  grid-template-rows: auto auto;
+  align-items: center;
+  @include media-xs {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "message buttons";
+  }
+  font-size: 0.8 * $font-size;
+}
+
+.message {
+  grid-area: message;
+  margin: 1em 2em;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-area: buttons;
+  height: 100%;
+  button {
+    font-family: inherit;
+    font-size: inherit;
+    border: 0;
+    padding: 1em 1.5em;
+    box-sizing: border-box;
+    margin: 0;
+    height: 100%;
+    outline: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    &#allow {
+      background: mat-color($accent);
+      color: white;
+      &:hover {
+        background: mat-color($accent, 400);  // lighter
+      }
+    }
+    &#deny {
+      background: transparent;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

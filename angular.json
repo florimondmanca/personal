@@ -30,8 +30,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/prismjs/themes/prism-tomorrow.css",
-              "node_modules/cookieconsent/build/cookieconsent.min.css"
+              "node_modules/prismjs/themes/prism-tomorrow.css"
             ],
             "scripts": [
               "node_modules/marked/lib/marked.js",
@@ -44,8 +43,7 @@
               "node_modules/prismjs/components/prism-markdown.min.js",
               "node_modules/prismjs/components/prism-diff.min.js",
               "node_modules/prismjs/components/prism-docker.min.js",
-              "node_modules/prismjs/components/prism-yaml.min.js",
-              "node_modules/cookieconsent/build/cookieconsent.min.js"
+              "node_modules/prismjs/components/prism-yaml.min.js"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

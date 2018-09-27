@@ -8,7 +8,7 @@ import { filter, tap, debounceTime, distinctUntilChanged, mergeMap } from 'rxjs/
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { PageTitleService, AnalyticsService } from './core';
-import { CookieConsentService } from './cookie-consent';
+import { CookieConsentService, CookieConsentPopupService } from './cookie-consent';
 import { AppUpdatesService } from './app-updates';
 
 @Component({
@@ -27,7 +27,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private angulartics2: Angulartics2GoogleAnalytics,
     private router: Router,
     private cookieConsent: CookieConsentService,
+    private cookieConsentPopup: CookieConsentPopupService,
     private analytics: AnalyticsService,
+
     private appUpdates: AppUpdatesService,
     private viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private document: any,
@@ -44,6 +46,10 @@ export class AppComponent implements OnInit, OnDestroy {
       debounceTime(100),  // don't mark fast navigation changes as navigating
       tap((e) => this.navigating = e instanceof NavigationStart),
     ).subscribe());
+
+    if (!this.cookieConsent.hasAnswered()) {
+      this.cookieConsentPopup.createFor(this.viewContainerRef);
+    }
 
     // Configure Cookie Consent
     if (this.cookieConsent.hasConsented()) {
