@@ -2,8 +2,6 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { tap, map, filter } from 'rxjs/operators';
-import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
-import { CookieConsentResponse } from './response';
 
 
 type Status = 'allow' | 'deny';
