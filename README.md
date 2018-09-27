@@ -9,6 +9,8 @@
 
 This is the repository for the **frontend application** powering [CodeSail](https://blog.florimondmanca.com), my personal website and blog.
 
+For the backend API, see [personal-api](https://github.com/florimondmanca/personal-api).
+
 ## Install
 
 Install Angular CLI:
@@ -27,14 +29,15 @@ $ npm install
 
 Create an environment file called `.env` (it will be excluded from version control) at the project root, containing the following variables:
 
-- `API_KEY`: a valid API key created via the API administration
-- `BACKEND_URL`: the URL to the backend root **without trailing slash**
+- `API_TOKEN`, `API_SECRET_KEY`: valid API token and secret key created via the API administration.
+- `BACKEND_URL`: the URL to the backend root (**without trailing slash**).
 
 For example:
 
 ```bash
 # .env
-API_KEY=mysecretapikey
+API_TOKEN=mytoken
+API_SECRET_KEY=mysecretkey
 BACKEND_URL=http://localhost:8000
 ```
 
