@@ -11,13 +11,14 @@ export function configureCookieConsent(opts: { domain: string }): NgcCookieConse
     position: 'bottom',
     theme: 'edgeless',
     type: 'opt-in',
+    revokeBtn: '<div class="cc-revoke {{classes}}">Cookies</div>',
     content: {
       message: (
         'Hi, there! Cookies allow me to monitor website usage. 🍪 ' +
         'Learn more by reading the'
       ),
       link: 'Privacy Policy',
-      deny: `Don't allow cookies`,
+      deny: `No, thanks`,
       href: '/privacy',
     },
     palette: {
