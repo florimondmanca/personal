@@ -27,6 +27,7 @@ import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor } from './core';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { configureCookieConsent } from './cookie-consent/configure';
+import { CookieConsentModule } from './cookie-consent';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -77,6 +78,7 @@ import { environment } from '../environments/environment';
     })),
     AppRoutingModule,
     ErrorsModule,
+    CookieConsentModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,

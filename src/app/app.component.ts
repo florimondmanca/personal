@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -25,9 +25,16 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private cookieConsent: CookieConsentService,
     private analytics: AnalyticsService,
+    private view: ViewContainerRef,
   ) {
     this.sub = new Subscription();
   }
+
+  // constructor(@Inject(Service) service,
+  //             @Inject(ViewContainerRef) viewContainerRef) {
+  //   service.setRootViewContainerRef(viewContainerRef)
+  //   service.addDynamicComponent()
+  // }
 
   ngOnInit() {
     this.sub.add(this.pageTitle.updateOnNavigate().subscribe());
@@ -38,6 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
       debounceTime(100),  // don't mark fast navigation changes as navigating
       tap((e) => this.navigating = e instanceof NavigationStart),
     ).subscribe());
+
+    this.cookieConsent.init(this.view);
 
     // Configure Cookie Consent
     if (this.cookieConsent.hasConsented()) {
