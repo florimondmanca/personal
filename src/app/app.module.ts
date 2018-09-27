@@ -24,6 +24,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor } from './core';
+import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
 import { AppRoutingModule } from './app-routing.module';
@@ -74,6 +75,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     ErrorsModule,
     CookieConsentModule,
+    AppUpdatesModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,

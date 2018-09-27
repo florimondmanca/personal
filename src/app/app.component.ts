@@ -1,12 +1,15 @@
-import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewContainerRef } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { filter, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { SwUpdate } from '@angular/service-worker';
+import { DOCUMENT } from '@angular/common';
+import { Subscription, from } from 'rxjs';
+import { filter, tap, debounceTime, distinctUntilChanged, mergeMap } from 'rxjs/operators';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { PageTitleService, AnalyticsService } from './core';
 import { CookieConsentService, CookieConsentPopupService } from './cookie-consent';
+import { AppUpdatesService } from './app-updates';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +29,10 @@ export class AppComponent implements OnInit, OnDestroy {
     private cookieConsent: CookieConsentService,
     private cookieConsentPopup: CookieConsentPopupService,
     private analytics: AnalyticsService,
-    private view: ViewContainerRef,
+
+    private appUpdates: AppUpdatesService,
+    private viewContainerRef: ViewContainerRef,
+    @Inject(DOCUMENT) private document: any,
   ) {
     this.sub = new Subscription();
   }
@@ -42,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ).subscribe());
 
     if (!this.cookieConsent.hasAnswered()) {
-      this.cookieConsentPopup.createFor(this.view);
+      this.cookieConsentPopup.createFor(this.viewContainerRef);
     }
 
     // Configure Cookie Consent
@@ -52,6 +58,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.sub.add(this.cookieConsent.onAllow().subscribe(
       () => this.analytics.activate()
     ));
+
+    // Update app immediately when an update is available and user agreed
+    this.appUpdates.init(this.viewContainerRef);
+    this.sub.add(this.appUpdates.onUpdate().pipe(
+      tap(() => this.document.location.reload()),
+    ).subscribe());
   }
 
   ngOnDestroy() {
