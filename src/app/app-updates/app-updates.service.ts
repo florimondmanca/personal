@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentFactoryResolver, ViewContainerRef, ComponentRef } from '@angular/core';
 import { Inject } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { DOCUMENT } from '@angular/common';
 import { Observable, from, of } from 'rxjs';
-import { mergeMap, filter } from 'rxjs/operators';
+import { mergeMap, filter, map, tap } from 'rxjs/operators';
+import { UpdatePromptComponent } from './update-prompt/update-prompt.component';
 
 
 @Injectable({
@@ -11,10 +12,18 @@ import { mergeMap, filter } from 'rxjs/operators';
 })
 export class AppUpdatesService {
 
-  constructor(private updates: SwUpdate) { }
+  private view: ViewContainerRef;
+
+  constructor(
+    private updates: SwUpdate,
+    private factoryResolver: ComponentFactoryResolver,
+  ) { }
+
+  init(view: ViewContainerRef) {
+    this.view = view;
+  }
 
   onUpdate(): Observable<any> {
-    // Update app immediately when service worker has a new version available
     return this.updates.available.pipe(
       mergeMap(() => from(this.updates.activateUpdate())),
       mergeMap(() => this.promptUserForUpdate()),
@@ -23,8 +32,13 @@ export class AppUpdatesService {
   }
 
   private promptUserForUpdate(): Observable<boolean> {
-    // TODO display a popup to ask user if they want to update now
-    return of(false);
+    const factory = this.factoryResolver.resolveComponentFactory(UpdatePromptComponent);
+    const prompt: ComponentRef<UpdatePromptComponent> = factory.create(this.view.parentInjector);
+    this.view.insert(prompt.hostView);
+    return prompt.instance.onClose().pipe(
+      map(result => result.accept),
+      tap(() => prompt.destroy()),
+    );
   }
 
 }

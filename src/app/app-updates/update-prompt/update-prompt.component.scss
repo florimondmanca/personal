@@ -1,0 +1,31 @@
+@import 'mixins/media';
+
+#wrapper {
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#prompt {
+  position: fixed;
+  top: .5em;
+  right: .5em;
+  padding: .5em;
+  background: white;
+  display: grid;
+  align-items: center;
+  grid-template-areas: "message" "buttons";
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 1fr;
+  #message {
+    grid-area: message;
+  }
+  #buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+  }
+  p {
+    margin: .5em 1em;
+  }
+}

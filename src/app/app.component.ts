@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewContainerRef } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private cookieConsent: CookieConsentService,
     private analytics: AnalyticsService,
     private appUpdates: AppUpdatesService,
+    private viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private document: any,
   ) {
     this.sub = new Subscription();
@@ -53,6 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ));
 
     // Update app immediately when an update is available and user agreed
+    this.appUpdates.init(this.viewContainerRef);
     this.sub.add(this.appUpdates.onUpdate().pipe(
       tap(() => this.document.location.reload()),
     ).subscribe());

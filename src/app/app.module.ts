@@ -25,6 +25,7 @@ import { NgcCookieConsentModule } from 'ngx-cookieconsent';
 
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor } from './core';
+import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { configureCookieConsent } from './cookie-consent/configure';
 import { AppRoutingModule } from './app-routing.module';
@@ -77,6 +78,7 @@ import { environment } from '../environments/environment';
     })),
     AppRoutingModule,
     ErrorsModule,
+    AppUpdatesModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,
