@@ -7,7 +7,7 @@
     <app-tag-list id="tags" [ngClass]="{'separated': post.published}" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
 
     <h4>
-      <a [routerLink]="action === 'edit' ? ['/', post.slug, 'edit'] : ['/', post.slug]">
+      <a [routerLink]="getLink(post)" (click)="scrollTop()">
         {{ post.title }}
       </a>
     </h4>

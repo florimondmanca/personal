@@ -7,7 +7,7 @@ import jump from 'jump.js';
 })
 export class ScrollService {
 
-  toTop(duration: number = 500) {
-    jump('#top', { duration });
+  toTop(opts = {duration: 500}) {
+    jump('#top', opts);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../core';
-import jump from 'jump.js';
+import { ScrollService } from 'app/core';
 
 
 @Component({
@@ -13,6 +13,8 @@ export class PostNavComponent {
   @Input() relative: Post;
   @Input() type: string;
 
+  constructor(private scroll: ScrollService) { }
+
   get label(): string {
     return this.type === 'previous' ? 'Prev' : 'Next';
   }
@@ -22,7 +24,7 @@ export class PostNavComponent {
   }
 
   scrollTop() {
-    jump('#top', { duration: 500 })
+    this.scroll.toTop();
   }
 
 }
