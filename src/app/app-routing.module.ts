@@ -28,6 +28,10 @@ const routes: Routes = [
         component: PrivacyPolicyComponent,
         data: { pageId: 'privacy' },
       },
+      {
+        path: 'a',
+        loadChildren: './admin/admin.module#AdminModule',
+      },
       // Should be at the bottom because '' matches everything
       {
         path: '',
