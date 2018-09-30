@@ -16,18 +16,15 @@ import {
 
 import { BlogRoutingModule } from './blog-routing.module';
 
+import { BloggingSharedModule } from 'app/blogging-shared';
 import { CoreModule } from 'app/core';
-import { EditorModule } from 'app/editor';
 import { SocialModule } from 'app/social';
 import { WidgetsModule } from 'app/widgets';
 import { BlogComponent } from './blog.component';
-import { PostListComponent } from './post-list/post-list.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostNavComponent } from './post-nav/post-nav.component';
 import { PostFooterComponent } from './post-footer/post-footer.component';
-import { TagsFieldComponent } from './tags-field/tags-field.component';
-import { TagListComponent } from './tag-list/tag-list.component';
 import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
 
 @NgModule({
@@ -46,20 +43,17 @@ import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
     MatChipsModule,
     // Project modules
     CoreModule,
-    EditorModule,
     SocialModule,
     WidgetsModule,
     BlogRoutingModule,
+    BloggingSharedModule,
   ],
   declarations: [
     BlogComponent,
-    PostListComponent,
     HomeComponent,
     PostDetailComponent,
     PostNavComponent,
     PostFooterComponent,
-    TagsFieldComponent,
-    TagListComponent,
     TagPostListComponent,
   ],
 })

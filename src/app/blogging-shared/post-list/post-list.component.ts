@@ -21,7 +21,7 @@ export class PostListComponent {
 
   getLink(post: Post): string[] {
     if (this.action === 'edit') {
-      return ['/', post.slug, 'edit'];
+      return ['/a/', post.slug, 'edit'];
     } else {
       return ['/', post.slug];
     }
