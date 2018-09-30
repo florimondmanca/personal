@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Post } from '../core';
 import { ScrollService } from 'app/core';
+import { Post } from 'app/blogging-core';
 
 @Component({
   selector: 'app-post-list',

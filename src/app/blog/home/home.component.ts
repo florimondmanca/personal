@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Post } from '../core';
-import { CardService } from 'app/social';
 import { StaticFiles, DescriptionService, UrlService } from 'app/core';
+import { Post } from 'app/blogging-core';
+import { CardService } from 'app/social';
 import { environment } from 'environments/environment';
 
 

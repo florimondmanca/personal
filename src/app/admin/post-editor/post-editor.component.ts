@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material';
 import { Observable, fromEvent, Subscription } from 'rxjs';
 import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import slugify from 'slugify';
-import { Post, PostPayload, PostService } from '../core';
+import { Post, PostPayload, PostService } from 'app/blogging-core';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 

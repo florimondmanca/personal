@@ -24,11 +24,6 @@ import { BlogComponent } from './blog.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
-import { PostCreateComponent } from './post-create/post-create.component';
-import { PostEditComponent } from './post-edit/post-edit.component';
-import { DraftsComponent } from './drafts/drafts.component';
-import { PostEditorComponent } from './post-editor/post-editor.component';
-import { DeleteDialogComponent } from './post-editor/delete-dialog/delete-dialog.component';
 import { PostNavComponent } from './post-nav/post-nav.component';
 import { PostFooterComponent } from './post-footer/post-footer.component';
 import { TagsFieldComponent } from './tags-field/tags-field.component';
@@ -61,19 +56,11 @@ import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
     PostListComponent,
     HomeComponent,
     PostDetailComponent,
-    PostCreateComponent,
-    PostEditComponent,
-    DraftsComponent,
-    PostEditorComponent,
-    DeleteDialogComponent,
     PostNavComponent,
     PostFooterComponent,
     TagsFieldComponent,
     TagListComponent,
     TagPostListComponent,
-  ],
-  entryComponents: [
-    DeleteDialogComponent,
   ],
 })
 export class BlogModule { }

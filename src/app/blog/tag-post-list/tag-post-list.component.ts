@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Post } from '../core';
+import { Post } from 'app/blogging-core';
 import { UrlService } from 'app/core';
 import { CardService } from 'app/social';
 
