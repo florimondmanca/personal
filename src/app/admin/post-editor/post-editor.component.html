@@ -42,7 +42,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #postTools="matMenu">
-        <a *ngIf="post" mat-menu-item [routerLink]="['../']">
+        <a *ngIf="post" mat-menu-item [routerLink]="['/', post.pk]">
           <mat-icon>launch</mat-icon>
           View post
         </a>

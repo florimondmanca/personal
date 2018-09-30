@@ -3,12 +3,12 @@
 #wrapper {
   margin: auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 #prompt {
   position: fixed;
-  top: .5em;
+  bottom: .5em;
   right: .5em;
   padding: .5em;
   background: white;

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { Post } from '../../core';
+import { Post } from 'app/blogging-core';
 
 @Component({
   selector: 'app-delete-dialog',

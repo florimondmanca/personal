@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Post } from '../core';
 import { ScrollService } from 'app/core';
+import { Post } from 'app/blogging-core';
 
 @Component({
   selector: 'app-post-list',
@@ -21,7 +21,7 @@ export class PostListComponent {
 
   getLink(post: Post): string[] {
     if (this.action === 'edit') {
-      return ['/', post.slug, 'edit'];
+      return ['/a/', post.slug, 'edit'];
     } else {
       return ['/', post.slug];
     }

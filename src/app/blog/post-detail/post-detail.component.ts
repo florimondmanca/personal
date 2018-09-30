@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/core';
 import { Subscription } from 'rxjs';
 import { map, filter, tap } from 'rxjs/operators';
-import { Post, SeoService } from '../core';
+import { Post, SeoService } from 'app/blogging-core';
 
 
 @Component({
