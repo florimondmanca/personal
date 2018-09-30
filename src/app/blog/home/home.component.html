@@ -1,33 +1,29 @@
-<div class="page pad-h-sm">
+<header class="text-center">
+  <h1 id="title">
+    <a routerLink="/" id="banner">
+      CodeSail
+    </a>
+  </h1>
+  <h2>
+    A journey through web development & software engineering
+  </h2>
+  <p>
+    <a routerLink="/about">Learn more</a>
+  </p>
+</header>
 
-  <header class="text-center">
-    <h1 id="title">
-      <a routerLink="/" id="banner">
-        CodeSail
-      </a>
-    </h1>
-    <h2>
-      A journey through web development & software engineering
-    </h2>
-    <p>
-      <a routerLink="/about">Learn more</a>
-    </p>
-  </header>
+<br>
 
-  <br>
-
-  <section class="text-center">
-    <p class="text-muted">
-      New fresh blog posts (mostly) every week.
-    </p>
-    <p>
-      Updates: <app-follow-button></app-follow-button>
-    </p>
-  </section>
+<section class="text-center">
+  <p class="text-muted">
+    New fresh blog posts (mostly) every week.
+  </p>
+  <p>
+    Updates: <app-follow-button></app-follow-button>
+  </p>
+</section>
 
 
-  <section id="post-list">
-    <app-post-list [posts]="posts"></app-post-list>
-  </section>
-
-</div>
+<section id="post-list">
+  <app-post-list [posts]="posts"></app-post-list>
+</section>
