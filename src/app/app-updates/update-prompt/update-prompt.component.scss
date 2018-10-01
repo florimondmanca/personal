@@ -1,15 +1,13 @@
 @import 'mixins/media';
 
-#wrapper {
-  margin: auto;
-  display: flex;
-  justify-content: center;
-}
-
 #prompt {
   position: fixed;
   bottom: .5em;
   right: .5em;
+  left: .5em;
+  @include media-xs {
+    left: inherit;
+  }
   padding: .5em;
   background: white;
   display: grid;
