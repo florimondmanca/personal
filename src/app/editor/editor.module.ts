@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { MarkdownModule } from 'ngx-markdown';
 import { FileDropModule } from 'ngx-file-drop';
+
+import { CoreModule } from 'app/core';
 import { WidgetsModule } from 'app/widgets';
 
 import {
@@ -13,6 +16,7 @@ import {
   MatIconModule,
   MatTableModule,
   MatSlideToggleModule,
+  MatSnackBarModule,
 } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
@@ -23,6 +27,7 @@ import { ImageUploadDialogComponent } from './image-upload-dialog/image-upload-d
     CommonModule,
     ReactiveFormsModule,
     MarkdownModule.forChild(),
+    CoreModule,
     FileDropModule,
     MatFormFieldModule,
     MatInputModule,
@@ -31,6 +36,7 @@ import { ImageUploadDialogComponent } from './image-upload-dialog/image-upload-d
     MatButtonModule,
     MatTableModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
     WidgetsModule,
   ],
   declarations: [
