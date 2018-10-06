@@ -7,9 +7,9 @@
     "start": "npm run serve:ssr",
     "build": "ng build --prod && npm run build:ssr",
     "build:dev": "ng build -c dev && npm run build:ssr",
-    "build:ssr": "ng run florimondmanca:server:production",
+    "build:ssr": "ng run florimondmanca:server:production && npm run setup:http2",
     "serve:ssr": "node server.js",
-    "setup:http2": "node ./scripts/setup-server-push.js",
+    "setup:http2": "node ./scripts/setup-http2.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
