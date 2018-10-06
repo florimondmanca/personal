@@ -14,13 +14,13 @@ import {
 
 import { BloggingSharedModule } from 'app/blogging-shared';
 import { EditorModule } from 'app/editor';
+import { WidgetsModule } from 'app/widgets';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { DraftsComponent } from './drafts/drafts.component';
 import { PostEditorComponent } from './post-editor/post-editor.component';
-import { DeleteDialogComponent } from './post-editor/delete-dialog/delete-dialog.component';
 import { TagsFieldComponent } from './tags-field/tags-field.component';
 
 @NgModule({
@@ -39,6 +39,7 @@ import { TagsFieldComponent } from './tags-field/tags-field.component';
     MatChipsModule,
     // App
     EditorModule,
+    WidgetsModule,
     BloggingSharedModule,
     AdminRoutingModule,
   ],
@@ -47,11 +48,7 @@ import { TagsFieldComponent } from './tags-field/tags-field.component';
     PostEditComponent,
     DraftsComponent,
     PostEditorComponent,
-    DeleteDialogComponent,
     TagsFieldComponent,
-  ],
-  entryComponents: [
-    DeleteDialogComponent,
   ],
 })
 export class AdminModule { }

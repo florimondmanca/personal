@@ -10,7 +10,7 @@ import { Observable, fromEvent, Subscription } from 'rxjs';
 import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from 'app/blogging-core';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { ConfirmDialogComponent, ConfirmDialogConfig } from 'app/widgets';
 
 
 @Component({
@@ -146,19 +146,46 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     this.submitted.emit(this.formGroup.value);
   }
 
+  /** Delete the post being edited. */
   delete() {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { post: this.post },
-    });
-    dialogRef.afterClosed().pipe(
-      filter(result => result)
-    ).subscribe(
-      () => this.deleted.emit()
+    this.onConfirm({
+      messages: {
+        title: `Delete "${this.post.title}?"`,
+        content: 'This cannot be undone.',
+        dismiss: 'No, do not delete this post.',
+        confirm: 'Yes, delete this post.',
+      },
+      colors: {
+        confirmButton: 'warn',
+      },
+    }).subscribe(
+      () => this.deleted.emit(),
     );
   }
 
+  /** Publish the post being edited. */
   publish() {
-    this.published.emit();
+    this.onConfirm({
+      messages: {
+        title: `Publish "${this.post.title}?"`,
+        content: 'People and systems subscribed to new posts will be notified.',
+        dismiss: 'No, do not publish this post yet.',
+        confirm: 'Yes, publish this post.',
+      },
+      colors: {
+        confirmButton: 'accent',
+      },
+    }).subscribe(
+      () => this.published.emit()
+    )
+  }
+
+  /** Open a confirmation dialog
+  @returns Observable that contains an event only if user has confirmed.
+  */
+  private onConfirm(config: ConfirmDialogConfig): Observable<void> {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, { data: config });
+    return dialogRef.afterClosed().pipe(filter(confirm => confirm));
   }
 
   ngOnDestroy() {
