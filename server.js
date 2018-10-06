@@ -58,7 +58,7 @@ app.get('/sitemap.xml', (req, res) => {
       res.type('application/xml').send(body);
     }
   });
-})
+});
 
 // Serve static files from /browser
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
