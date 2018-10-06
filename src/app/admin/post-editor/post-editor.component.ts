@@ -10,7 +10,7 @@ import { Observable, fromEvent, Subscription } from 'rxjs';
 import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from 'app/blogging-core';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { ConfirmDialogComponent, ConfirmDialogConfig } from 'app/widgets';
 
 
 @Component({
@@ -147,12 +147,21 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   }
 
   delete() {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { post: this.post },
-    });
-    dialogRef.afterClosed().pipe(
-      filter(result => result)
-    ).subscribe(
+    const config: ConfirmDialogConfig = {
+      messages: {
+        title: `Delete ${this.post.title}?`,
+        content: 'This cannot be undone.',
+        dismiss: 'No, do not delete this post.',
+        confirm: 'Yes, delete this post.',
+      },
+      colors: {
+        confirmButton: 'warn',
+      },
+    };
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: config,
+    })
+    dialogRef.afterClosed().pipe(filter(Boolean)).subscribe(
       () => this.deleted.emit()
     );
   }

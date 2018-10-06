@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{ config.messages.title }}</h2>
+<mat-dialog-content>
+  {{ config.messages.content }}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [matDialogClose]="false">
+    {{ config.messages.dismiss }}
+  </button>
+  <button mat-raised-button [color]="config.colors.confirmButton" [matDialogClose]="true">
+    {{ config.messages.confirm }}
+  </button>
+</mat-dialog-actions>
