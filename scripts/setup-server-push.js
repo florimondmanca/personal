@@ -69,7 +69,7 @@ const setUpLinks = (root) => {
   // Setup preloading of stylesheets
   let styles = [...root.querySelectorAll('link[rel="stylesheet"]')];
   styles.filter(isLocal).forEach(
-    el => updateLink(el, 'stylesheet')
+    el => updateLink(el, 'style')
   );
 }
 
