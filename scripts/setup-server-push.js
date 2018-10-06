@@ -52,13 +52,6 @@ const addLink = (root, sourceElement, as) => {
   console.log(`Added ${repr}`);
 }
 
-const updateLink = (linkElement, as) => {
-  linkElement.setAttribute('rel', 'preload');
-  linkElement.setAttribute('as', as);
-  const href = getHref(linkElement, as);
-  console.log(`Updated <link href="${href}" rel="preload" as="${as}">`);
-}
-
 const setUpLinks = (root) => {
   // Setup preloading of generated scripts
   let scripts = [...root.querySelectorAll('script')];
@@ -69,7 +62,7 @@ const setUpLinks = (root) => {
   // Setup preloading of stylesheets
   let styles = [...root.querySelectorAll('link[rel="stylesheet"]')];
   styles.filter(isLocal).forEach(
-    el => updateLink(el, 'style')
+    el => addLink(root, el, 'style')
   );
 }
 
