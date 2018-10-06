@@ -9,6 +9,7 @@
     "build:dev": "ng build -c dev && npm run build:ssr",
     "build:ssr": "ng run florimondmanca:server:production",
     "serve:ssr": "node server.js",
+    "setup:http2": "node ./scripts/setup-server-push.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -41,6 +42,7 @@
     "express": "^4.16.3",
     "hammerjs": "^2.0.8",
     "hoek": "^5.0.3",
+    "jsdom": "^12.1.0",
     "jump.js": "^1.0.2",
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
