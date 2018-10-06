@@ -11,8 +11,7 @@ export class CookieConsentPopupService {
 
   createFor(view: ViewContainerRef) {
     const factory = this.factoryResolver.resolveComponentFactory(CookieConsentPopupComponent);
-    const popupComponent = factory.create(view.parentInjector);
-    view.insert(popupComponent.hostView);
+    const popupComponent = view.createComponent(factory);
     popupComponent.instance._ref = popupComponent;
   }
 }

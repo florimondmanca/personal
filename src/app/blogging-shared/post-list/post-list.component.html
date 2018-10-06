@@ -4,7 +4,7 @@
       {{ post.published | amDateFormat: 'LL' }}
     </label>
 
-    <app-tag-list id="tags" [ngClass]="{'separated': post.published}" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
+    <app-tag-list id="tag-list" [ngClass]="{'separated': post.published}" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
 
     <h4>
       <a [routerLink]="getLink(post)" (click)="scrollTop()">

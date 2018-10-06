@@ -20,7 +20,7 @@ ul {
   margin: 0;
 }
 
-#tags {
+#tag-list {
   &.separated::before {
     content: '\2219';
   }
