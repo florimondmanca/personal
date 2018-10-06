@@ -58,16 +58,15 @@ const getLinkHeader = (root) => {
       );
     }
   );
-
   return links.join(', ');
 };
 
-const write = (location, contents) => {
+const write = (location, contents, callback) => {
   fs.writeFile(location, contents, (err) => {
     if (err) {
       throw err;
     }
-    console.log(`Successfully wrote to ${location}`);
+    if (callback) { callback(); }
   })
 };
 
@@ -90,11 +89,11 @@ const main = (location) => {
     const configString = JSON.stringify(config, null, 4);
 
     const outputContents = `module.exports = ${configString};\n`;
+    write(OUTPUT, outputContents, () => {
+      console.log(`Successfully generated HTTP/2 config file at ${OUTPUT}`);
+      console.log(outputContents);
+    });
 
-    console.log(`Successfully generated HTTP/2 config file at ${OUTPUT}`);
-    console.log(outputContents);
-
-    write(OUTPUT, outputContents);
   });
 };
 
