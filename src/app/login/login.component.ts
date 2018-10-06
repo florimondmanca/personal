@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/core';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,9 @@ export class LoginComponent implements OnInit {
   username: FormControl;
   password: FormControl;
 
+  faSpinner = faSpinner;
+
+  loading = false;
   failed: boolean;
 
   constructor(
@@ -31,9 +35,15 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.failed = false;
+    this.loading = true;
     this.auth.login(this.username.value, this.password.value).subscribe(
-      () => this.router.navigate([this.auth.redirectUrl || '/']),
-      (e) => this.failed = true,
+      () => {
+        this.router.navigate([this.auth.redirectUrl || '/']);
+      },
+      (e) => {
+        this.failed = true;
+        this.loading = false;
+      },
     );
   }
 

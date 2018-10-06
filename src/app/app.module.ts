@@ -27,6 +27,7 @@ import { KeyInterceptor, TokenInterceptor } from './core';
 import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
+import { WidgetsModule } from './widgets';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -76,6 +77,7 @@ import { environment } from '../environments/environment';
     ErrorsModule,
     CookieConsentModule,
     AppUpdatesModule,
+    WidgetsModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,

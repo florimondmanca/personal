@@ -10,8 +10,9 @@
     <mat-form-field>
       <input type="password" matInput required [formControl]="password" placeholder="Password">
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="!formValid">
+    <button mat-raised-button color="primary" [disabled]="loading || !formValid">
       Log in
+      <fa-icon [icon]="faSpinner" spin="true" *ngIf="loading"></fa-icon>
     </button>
     <p class="text-warn pad-v-sm text-center" *ngIf="failed">
       Could not log in with the credentials provided.
