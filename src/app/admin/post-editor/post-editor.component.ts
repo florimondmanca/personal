@@ -150,7 +150,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   delete() {
     this.onConfirm({
       messages: {
-        title: `Delete ${this.post.title}?`,
+        title: `Delete "${this.post.title}?"`,
         content: 'This cannot be undone.',
         dismiss: 'No, do not delete this post.',
         confirm: 'Yes, delete this post.',
@@ -167,7 +167,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   publish() {
     this.onConfirm({
       messages: {
-        title: `Publish ${this.post.title}?`,
+        title: `Publish "${this.post.title}?"`,
         content: 'People and systems subscribed to new posts will be notified.',
         dismiss: 'No, do not publish this post yet.',
         confirm: 'Yes, publish this post.',
