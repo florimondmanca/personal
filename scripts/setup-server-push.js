@@ -12,8 +12,8 @@ Examples:
 - <script src="http://cdn.com/script.js"> => false
 - <script src="script.js"> => true
 */
-const isLocal = (element, type) => {
-  const href = getHref(element, type);
+const isLocal = (element) => {
+  const href = getHref(element);
   return href ? !href.startsWith('http') : false;
 };
 
@@ -21,31 +21,23 @@ const setupScriptPreload = (scriptElement) => {
   scriptElement.attributes['rel'] = 'preload';
 };
 
-const getHref = (element, as) => {
-  switch (as) {
-    case 'script':
-      return element.getAttribute('src');
-    case 'stylesheet':
-      return element.getAttribute('href');
-    default:
-      throw new Error('Unknown value for "as": ' + as);
-  }
+const getHref = (element) => {
+  return element.getAttribute('src') || element.getAttribute('href');
 };
 
-
-const preloadLinkExists = (root, href) => {
+const linkExists = (root, href) => {
   return !!root.querySelector(`link[rel="preload"][href="${href}"]`);
 }
 
-const preloadLinkRepr = (href, as) => {
+const linkRepr = (href, as) => {
   return `<link href="${href}" rel="preload" as="${as}">`;
 }
 
 const addLink = (root, sourceElement, as) => {
-  const href = getHref(sourceElement, as);
-  const repr = preloadLinkRepr(href, as);
+  const href = getHref(sourceElement);
+  const repr = linkRepr(href, as);
 
-  if (preloadLinkExists(root, href)) {
+  if (linkExists(root, href)) {
     console.log(`Skipped ${repr} because it already exists`);
     return;
   }
@@ -70,13 +62,13 @@ const updateLink = (linkElement, as) => {
 const setUpLinks = (root) => {
   // Setup preloading of generated scripts
   let scripts = [...root.querySelectorAll('script')];
-  scripts.filter((el => isLocal(el, 'script'))).forEach(
+  scripts.filter(isLocal).forEach(
     el => addLink(root, el, 'script')
   );
 
   // Setup preloading of stylesheets
   let styles = [...root.querySelectorAll('link[rel="stylesheet"]')];
-  styles.filter((el => isLocal(el, 'stylesheet'))).forEach(
+  styles.filter(isLocal).forEach(
     el => updateLink(el, 'stylesheet')
   );
 }
@@ -96,7 +88,6 @@ const main = (location) => {
     if (err) {
       throw err;
     }
-
     // Read buffer as string
     const html = data.toString('utf8');
 
