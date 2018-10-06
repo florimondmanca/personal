@@ -20,6 +20,7 @@ script:
   - npm run config -- --env=prod
   - npm run build
   - npm run setup:http2
+  - npm test
 
 before_deploy:
   - source scripts/before_deploy.sh

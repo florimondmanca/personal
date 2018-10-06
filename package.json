@@ -10,10 +10,16 @@
     "build:ssr": "ng run florimondmanca:server:production && npm run setup:http2",
     "serve:ssr": "node server.js",
     "setup:http2": "node ./scripts/setup-http2.js",
-    "test": "ng test",
+    "test": "bundlesize",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "bundlesize": [
+    {
+      "path": "./dist/**/*.js",
+      "maxSize": "300kB"
+    }
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.7",
@@ -64,6 +70,7 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "bundlesize": "^0.17.0",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
