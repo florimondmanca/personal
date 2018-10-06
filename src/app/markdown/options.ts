@@ -4,7 +4,8 @@ export function markedOptionsFactory(): MarkedOptions {
   const renderer = new MarkedRenderer();
 
   renderer.link = (href: string, title: string, text: string) => {
-    return `<a target="_blank" href="${href}" title="${title}">${text}</a>`;
+    const target = href.startsWith('#') ? '_self' : '_target';
+    return `<a target="${target}" href="${href}" title="${title}">${text}</a>`;
   };
 
   renderer.image = (href: string, title: string, text: string) => {
