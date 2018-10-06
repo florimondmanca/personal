@@ -146,8 +146,9 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     this.submitted.emit(this.formGroup.value);
   }
 
+  /** Delete the post being edited. */
   delete() {
-    const config: ConfirmDialogConfig = {
+    this.onConfirm({
       messages: {
         title: `Delete ${this.post.title}?`,
         content: 'This cannot be undone.',
@@ -157,17 +158,34 @@ export class PostEditorComponent implements OnInit, OnDestroy {
       colors: {
         confirmButton: 'warn',
       },
-    };
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: config,
-    })
-    dialogRef.afterClosed().pipe(filter(Boolean)).subscribe(
-      () => this.deleted.emit()
+    }).subscribe(
+      () => this.deleted.emit(),
     );
   }
 
+  /** Publish the post being edited. */
   publish() {
-    this.published.emit();
+    this.onConfirm({
+      messages: {
+        title: `Publish ${this.post.title}?`,
+        content: 'People and systems subscribed to new posts will be notified.',
+        dismiss: 'No, do not publish this post yet.',
+        confirm: 'Yes, publish this post.',
+      },
+      colors: {
+        confirmButton: 'accent',
+      },
+    }).subscribe(
+      () => this.published.emit()
+    )
+  }
+
+  /** Open a confirmation dialog
+  @returns Observable that contains an event only if user has confirmed.
+  */
+  private onConfirm(config: ConfirmDialogConfig): Observable<void> {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, { data: config });
+    return dialogRef.afterClosed().pipe(filter(confirm => confirm));
   }
 
   ngOnDestroy() {
