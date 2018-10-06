@@ -22,6 +22,9 @@ const HOST = process.env.HOST || 'localhost';
 const DIST_FOLDER = join(process.cwd(), 'dist');
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
+// NOTE: this file is generated during SSR build
+const http2Config = require('./dist/server/http2.config');
+
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
 
 // Express Engine
@@ -60,11 +63,12 @@ app.get('/sitemap.xml', (req, res) => {
   });
 });
 
-// Serve static files from /browser
+// Serve static files from /dist/browser
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
+  res.set('Link', http2Config.linkHeader);
   res.render('index.html', { req, res });
 });
 
