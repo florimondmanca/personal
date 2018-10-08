@@ -28,6 +28,8 @@ export class PostService {
       queryParams.tag = params.tag;
     }
     return this.http.get(this.baseUrl, { params: queryParams }).pipe(
+      map((data: any) => data['results'] || data),  // Temporary migration fix
+      // TODO only get through the results field once pagination is rolled out
       map((data: any[]) => data.map(item => this.adapter.adapt(item))),
     );
   }
