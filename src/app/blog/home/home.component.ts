@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { StaticFiles, DescriptionService, UrlService } from 'app/core';
-import { Post } from 'app/blogging-core';
+import { Post, CursorPaginator } from 'app/blogging-core';
 import { CardService } from 'app/social';
 import { environment } from 'environments/environment';
 
@@ -14,7 +14,7 @@ import { environment } from 'environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  posts: Post[] = [];
+  paginator: CursorPaginator<Post>;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.posts = this.route.snapshot.data.posts;
+    this.paginator = this.route.snapshot.data.paginator;
     this.setUpCards();
   }
 

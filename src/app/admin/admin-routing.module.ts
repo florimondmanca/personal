@@ -23,7 +23,7 @@ const routes: Routes = [
       {
         path: 'drafts',
         component: DraftsComponent,
-        resolve: { posts: DraftListResolver },
+        resolve: { paginator: DraftListResolver },
         data: { pageId: 'drafts', title: 'Drafts' },
       },
       {

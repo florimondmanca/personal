@@ -9,6 +9,7 @@ import { AuthService } from 'app/core';
 import { Post, PostAdapter } from './post.model';
 import { PostPayload } from './post.payload';
 import { environment } from 'environments/environment';
+import { CursorPaginator } from './paginator';
 
 
 @Injectable({
@@ -20,17 +21,26 @@ export class PostService {
 
   constructor(private http: HttpClient, private adapter: PostAdapter) { }
 
-  list(params: { draft?: boolean, tag?: string } = {}): Observable<Post[]> {
-    const queryParams: any = {
-      draft: params.draft ? '2' : '3',
-    };
-    if (params.tag) {
-      queryParams.tag = params.tag;
+  list(params: { draft?: boolean, tag?: string, cursor?: string, url?: string } = {}): Observable<CursorPaginator<Post>> {
+    let url: string;
+    let queryParams: any;
+
+    // If URL is given, is it directly.
+    if (params.url) {
+      url = params.url;
+      queryParams = null;
+    } else {
+      url = this.baseUrl;
+      queryParams = {
+        draft: params.draft ? '2' : '3',
+      };
+      if (params.tag) {
+        queryParams.tag = params.tag;
+      }
     }
-    return this.http.get(this.baseUrl, { params: queryParams }).pipe(
-      map((data: any) => data['results'] || data),  // Temporary migration fix
-      // TODO only get through the results field once pagination is rolled out
-      map((data: any[]) => data.map(item => this.adapter.adapt(item))),
+
+    return this.http.get(url, { params: queryParams }).pipe(
+      map((data: any) => this.adapter.forPagination(data)),
     );
   }
 
@@ -68,37 +78,39 @@ export class PostService {
 
   slugExists(slug: string, postId?: string): Observable<boolean> {
     return this.http.get(this.baseUrl, { params: { slug } }).pipe(
-      map((data: any[]) => data.map(item => item.slug)),
+      map((data: any) => data['results']),
+      map((results: any[]) => results.map(item => item.slug)),
       map((pks: string[]) => pks.length > 0 && !pks.includes(postId)),
     );
   }
 }
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class PostListResolver implements Resolve<Post[]> {
+/** Reusable resolver for post lists returned in as cursor-paginated list */
+abstract class PaginatedResolver implements Resolve<CursorPaginator<Post>> {
+
+  key: string;
 
   constructor(
-    private service: PostService,
+    protected service: PostService,
     private transferState: TransferState,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  resolve() {
-    const KEY = makeStateKey<Post[]>('posts');
+  abstract source(route: ActivatedRouteSnapshot): Observable<CursorPaginator<Post>>;
 
+  resolve(route: ActivatedRouteSnapshot) {
+    const KEY = makeStateKey<CursorPaginator<Post>>(this.key);
     if (this.transferState.hasKey(KEY)) {
-      const posts = this.transferState.get<Post[]>(KEY, []);
+      const paginator = this.transferState.get(KEY, CursorPaginator.empty<Post>());
       this.transferState.remove(KEY);
-      return of(posts);
+      return of(paginator);
     } else {
-      return this.service.list({ draft: false }).pipe(
-        catchError(() => of([])),
-        tap((posts) => {
+      return this.source(route).pipe(
+        catchError(() => of(CursorPaginator.empty<Post>())),
+        tap((paginator) => {
           if (isPlatformServer(this.platformId)) {
-            this.transferState.set(KEY, posts);
+            this.transferState.set(KEY, paginator.results);
           };
         }),
       );
@@ -110,31 +122,25 @@ export class PostListResolver implements Resolve<Post[]> {
 @Injectable({
   providedIn: 'root'
 })
-export class DraftListResolver implements Resolve<Post[]> {
+export class PostListResolver extends PaginatedResolver {
 
-  constructor(
-    private service: PostService,
-    private transferState: TransferState,
-    @Inject(PLATFORM_ID) private platformId: Object,
-  ) { }
+  key = 'posts-list';
 
-  resolve() {
-    const KEY = makeStateKey<Post[]>('posts-drafts');
+  source(): Observable<CursorPaginator<Post>> {
+    return this.service.list({ draft: false });
+  }
+}
 
-    if (this.transferState.hasKey(KEY)) {
-      const posts = this.transferState.get<Post[]>(KEY, []);
-      this.transferState.remove(KEY);
-      return of(posts);
-    } else {
-      return this.service.list({ draft: true }).pipe(
-        catchError(() => of([])),
-        tap((posts) => {
-          if (isPlatformServer(this.platformId)) {
-            this.transferState.set(KEY, posts);
-          };
-        }),
-      );
-    }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DraftListResolver extends PaginatedResolver {
+
+  key = 'drafts-list';
+
+  source(): Observable<CursorPaginator<Post>> {
+    return this.service.list({ draft: true });
   }
 }
 
@@ -190,37 +196,17 @@ export class PostDetailResolver implements Resolve<Post> {
       );
     }
   }
-
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class TagPostListResolver implements Resolve<Post[]> {
+export class TagPostListResolver extends PaginatedResolver {
 
-  constructor(
-    private service: PostService,
-    private transferState: TransferState,
-    @Inject(PLATFORM_ID) private platformId: Object,
-  ) { }
+  key = 'tag-posts-list';
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Post[]> {
+  source(route): Observable<CursorPaginator<Post>> {
     const tag = route.paramMap.get('tag');
-    const KEY = makeStateKey<Post[]>('posts-for-tag');
-
-    if (this.transferState.hasKey(KEY)) {
-      const posts = this.transferState.get<Post[]>(KEY, []);
-      this.transferState.remove(KEY);
-      return of(posts);
-    } else {
-      return this.service.list({ draft: false, tag }).pipe(
-        catchError(() => of([])),
-        tap((posts) => {
-          if (isPlatformServer(this.platformId)) {
-            this.transferState.set(KEY, posts);
-          };
-        }),
-      );
-    }
+    return this.service.list({ draft: false, tag });
   }
 }

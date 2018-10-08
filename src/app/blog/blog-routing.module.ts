@@ -17,13 +17,13 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        resolve: { posts: PostListResolver },
+        resolve: { paginator: PostListResolver },
         data: { pageId: 'home', title: '' },
       },
       {
         path: 't/:tag',
         component: TagPostListComponent,
-        resolve: { posts: TagPostListResolver },
+        resolve: { paginator: TagPostListResolver },
         data: { pageId: 'tag-posts' },
       },
       {

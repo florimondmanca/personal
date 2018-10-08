@@ -4,3 +4,4 @@ export * from './post.payload';
 export * from './seo.service';
 export * from './dirty-component.interface';
 export * from './dirty-post.guard';
+export * from './paginator';

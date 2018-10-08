@@ -20,3 +20,9 @@
     {{ ifEmpty }}
   </p>
 </ul>
+
+<div class="text-center">
+  <button mat-button *ngIf="hasMorePosts()" [disabled]="loadingMore" (click)="loadMore()">
+    Load more
+  </button>
+</div>
