@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { URLSearchParams } from '@angular/http';
 import * as qs from 'querystring';
 

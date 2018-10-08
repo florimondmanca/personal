@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { isPlatformServer } from '@angular/common';
 import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { AuthService } from 'app/core';
 import { Post, PostAdapter } from './post.model';
@@ -18,6 +18,7 @@ import { CursorPaginator } from './paginator';
 export class PostService {
 
   private baseUrl: string = environment.apiUrl + '/posts/';
+  private reset$: Subject<Post[]> = new Subject();
 
   constructor(private http: HttpClient, private adapter: PostAdapter) { }
 
@@ -82,6 +83,16 @@ export class PostService {
       map((results: any[]) => results.map(item => item.slug)),
       map((pks: string[]) => pks.length > 0 && !pks.includes(postId)),
     );
+  }
+
+  // Event handling functions
+
+  reset(posts: Post[]) {
+    this.reset$.next(posts);
+  }
+
+  onReset(): Observable<Post[]> {
+    return this.reset$.asObservable();
   }
 }
 

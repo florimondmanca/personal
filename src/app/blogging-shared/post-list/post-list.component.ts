@@ -14,7 +14,7 @@ export class PostListComponent {
   @Input() action = '';
   @Input() ifEmpty = 'No blog posts here yet. Stay tuned!';
 
-  posts: Post[];
+  posts: Post[] = [];
   loadingMore = false;
 
   constructor(
@@ -23,11 +23,10 @@ export class PostListComponent {
   ) { }
 
   ngOnInit() {
-    if (this.paginator) {
-      this.posts = this.paginator.results;
-    } else {
-      this.posts = [];
-    }
+    this.posts = this.paginator.results;
+    this.postService.onReset().subscribe(
+      (posts) => this.posts = posts,
+    );
   }
 
   scrollTop() {
