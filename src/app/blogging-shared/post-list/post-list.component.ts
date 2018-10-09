@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { tap } from 'rxjs/operators';
 import { ScrollService } from 'app/core';
-import { Post } from 'app/blogging-core';
+import { Post, PostService, CursorPaginator } from 'app/blogging-core';
 
 @Component({
   selector: 'app-post-list',
@@ -9,11 +10,24 @@ import { Post } from 'app/blogging-core';
 })
 export class PostListComponent {
 
-  @Input() posts: Post[] = [];
+  @Input() paginator: CursorPaginator<Post>;
   @Input() action = '';
   @Input() ifEmpty = 'No blog posts here yet. Stay tuned!';
 
-  constructor(private scroll: ScrollService) { }
+  posts: Post[] = [];
+  loadingMore = false;
+
+  constructor(
+    private scroll: ScrollService,
+    private postService: PostService,
+  ) { }
+
+  ngOnInit() {
+    this.posts = this.paginator.results;
+    this.postService.onReset().subscribe(
+      (posts) => this.posts = posts,
+    );
+  }
 
   scrollTop() {
     this.scroll.toTop();
@@ -25,6 +39,20 @@ export class PostListComponent {
     } else {
       return ['/', post.slug];
     }
+  }
+
+  hasMorePosts(): boolean {
+    return !!this.paginator.next;
+  }
+
+  // TODO: how to trigger loadMore() when scrolling down to bottom of list?
+  loadMore() {
+    this.loadingMore = true;
+    this.postService.list({ url: this.paginator.next }).pipe(
+      tap(() => this.loadingMore = false),
+      tap((paginator) => this.posts = this.posts.concat(paginator.results)),
+      tap((paginator) => this.paginator = paginator),
+    ).subscribe();
   }
 
 }

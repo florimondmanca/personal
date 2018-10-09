@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Post } from 'app/blogging-core';
+import { Post, CursorPaginator } from 'app/blogging-core';
 
 @Component({
   selector: 'app-drafts',
@@ -9,12 +9,12 @@ import { Post } from 'app/blogging-core';
 })
 export class DraftsComponent implements OnInit {
 
-  posts: Post[];
+  paginator: CursorPaginator<Post>;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.posts = this.route.snapshot.data.posts;
+    this.paginator = this.route.snapshot.data.paginator;
   }
 
 }

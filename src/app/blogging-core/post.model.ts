@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IAdapter } from 'app/core';
+import { CursorPaginator } from './paginator';
 
 class PostMinimalSchema {
   title: string;
@@ -53,6 +54,11 @@ export class PostAdapter implements IAdapter<Post> {
       previous: data.previous ? this.adaptMinimal(data.previous) : null,
       next: data.next ? this.adaptMinimal(data.next) : null,
     });
+  }
+
+  forPagination(data: any): CursorPaginator<Post> {
+    const posts: Post[] = data['results'].map(item => this.adapt(item));
+    return new CursorPaginator<Post>(data.next, posts);
   }
 
   private adaptMinimal(data: any): PostMinimalSchema {

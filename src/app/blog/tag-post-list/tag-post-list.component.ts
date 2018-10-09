@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Post } from 'app/blogging-core';
+import { Post, PostService, CursorPaginator } from 'app/blogging-core';
 import { UrlService } from 'app/core';
 import { CardService } from 'app/social';
 
@@ -21,7 +21,7 @@ function capitalize(value: string): string {
 })
 export class TagPostListComponent implements OnInit, OnDestroy {
 
-  posts: Post[];
+  paginator: CursorPaginator<Post>;
   tag: string;
   sub = new Subscription();
 
@@ -29,11 +29,13 @@ export class TagPostListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private cards: CardService,
     private urlService: UrlService,
+    private postService: PostService,
   ) { }
 
   ngOnInit() {
     this.sub.add(this.route.data.pipe(
-      tap((data) => this.posts = data.posts),
+      tap((data) => this.paginator = data.paginator),
+      tap(() => this.postService.reset(this.paginator.results)),
     ).subscribe());
     this.sub.add(this.route.paramMap.pipe(
       map((paramMap) => paramMap.get('tag')),

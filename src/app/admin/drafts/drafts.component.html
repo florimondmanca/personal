@@ -5,5 +5,5 @@
   <p>
     <a mat-raised-button routerLink="../create">New draft</a>
   </p>
-  <app-post-list [posts]="posts" action="edit" ifEmpty="No drafts yet."></app-post-list>
+  <app-post-list [paginator]="paginator" action="edit" ifEmpty="No drafts yet."></app-post-list>
 </div>
