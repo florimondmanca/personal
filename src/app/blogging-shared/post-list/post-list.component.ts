@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Component, Input, HostListener, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { of } from 'rxjs';
+import { tap, catchError, filter } from 'rxjs/operators';
 import { ScrollService } from 'app/core';
 import { Post, PostService, CursorPaginator } from 'app/blogging-core';
 
@@ -17,9 +19,12 @@ export class PostListComponent {
   posts: Post[] = [];
   loadingMore = false;
 
+  SCROLL_PERCENT_TRIGGER = 0.6;
+
   constructor(
     private scroll: ScrollService,
     private postService: PostService,
+    @Inject(DOCUMENT) private document: any,
   ) { }
 
   ngOnInit() {
@@ -27,6 +32,23 @@ export class PostListComponent {
     this.postService.onReset().subscribe(
       (posts) => this.posts = posts,
     );
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll() {
+    if (!this.hasMorePosts()) {
+      return;
+    }
+    if (this.getScrolledPercentage() > this.SCROLL_PERCENT_TRIGGER && !this.loadingMore) {
+      this.loadMore();
+    }
+  }
+
+  private getScrolledPercentage(): number {
+    const scrollTop = this.document.body.scrollTop;
+    const bodyHeight = this.document.body.scrollHeight - window.innerHeight;
+    const scrollPercentage = (scrollTop / bodyHeight);
+    return scrollPercentage;
   }
 
   scrollTop() {
@@ -49,7 +71,11 @@ export class PostListComponent {
   loadMore() {
     this.loadingMore = true;
     this.postService.list({ url: this.paginator.next }).pipe(
-      tap(() => this.loadingMore = false),
+      catchError(() => {
+        this.loadingMore = false;
+        return of(false);
+      }),
+      filter(Boolean),
       tap((paginator) => this.posts = this.posts.concat(paginator.results)),
       tap((paginator) => this.paginator = paginator),
     ).subscribe();
