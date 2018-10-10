@@ -18,7 +18,7 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         resolve: { paginator: PostListResolver },
-        data: { pageId: 'home', title: '' },
+        data: { pageId: 'home' },
       },
       {
         path: 't/:tag',
@@ -30,7 +30,7 @@ const routes: Routes = [
         path: ':pk',
         component: PostDetailComponent,
         resolve: { post: PostDetailResolver },
-        data: { pageId: 'postDetail' },
+        data: { pageId: 'post-detail' },
       },
     ],
   },

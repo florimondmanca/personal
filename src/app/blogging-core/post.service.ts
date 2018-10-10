@@ -97,48 +97,37 @@ export class PostService {
 }
 
 
-/** Reusable resolver for post lists returned in as cursor-paginated list */
-abstract class PaginatedResolver implements Resolve<CursorPaginator<Post>> {
-
-  key: string;
+@Injectable({
+  providedIn: 'root'
+})
+export class PaginatedResolverFactory {
 
   constructor(
-    protected service: PostService,
+    private service: PostService,
     private transferState: TransferState,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  abstract source(route: ActivatedRouteSnapshot): Observable<CursorPaginator<Post>>;
-
-  resolve(route: ActivatedRouteSnapshot) {
-    const KEY = makeStateKey<CursorPaginator<Post>>(this.key);
+  private resolve(source: Observable<CursorPaginator<Post>>, key: string): Observable<CursorPaginator<Post>> {
+    const KEY = makeStateKey<CursorPaginator<Post>>(key);
     if (this.transferState.hasKey(KEY)) {
       const paginator = this.transferState.get(KEY, CursorPaginator.empty<Post>());
       this.transferState.remove(KEY);
       return of(paginator);
     } else {
-      return this.source(route).pipe(
+      return source.pipe(
         catchError(() => of(CursorPaginator.empty<Post>())),
         tap((paginator) => {
           if (isPlatformServer(this.platformId)) {
-            this.transferState.set(KEY, paginator.results);
+            this.transferState.set(KEY, paginator);
           };
         }),
       );
     }
   }
-}
 
-
-@Injectable({
-  providedIn: 'root'
-})
-export class PostListResolver extends PaginatedResolver {
-
-  key = 'posts-list';
-
-  source(): Observable<CursorPaginator<Post>> {
-    return this.service.list({ draft: false });
+  resolveFor(opts: { source: Observable<CursorPaginator<Post>>, key: string }) {
+    return this.resolve(opts.source, opts.key);
   }
 }
 
@@ -146,15 +135,59 @@ export class PostListResolver extends PaginatedResolver {
 @Injectable({
   providedIn: 'root'
 })
-export class DraftListResolver extends PaginatedResolver {
+export class PostListResolver implements Resolve<CursorPaginator<Post>> {
 
-  key = 'drafts-list';
+  constructor(
+    private service: PostService,
+    private factory: PaginatedResolverFactory,
+  ) { }
 
-  source(): Observable<CursorPaginator<Post>> {
-    return this.service.list({ draft: true });
+  resolve() {
+    return this.factory.resolveFor({
+      source: this.service.list({ draft: false }),
+      key: 'posts-list',
+    });
   }
 }
 
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DraftListResolver implements Resolve<CursorPaginator<Post>> {
+
+  constructor(
+    private service: PostService,
+    private factory: PaginatedResolverFactory,
+  ) { }
+
+  resolve() {
+    return this.factory.resolveFor({
+      source: this.service.list({ draft: true }),
+      key: 'drafts-list',
+    });
+  }
+}
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TagPostListResolver implements Resolve<CursorPaginator<Post>> {
+
+  constructor(
+    private service: PostService,
+    private factory: PaginatedResolverFactory,
+  ) { }
+
+  resolve(route: ActivatedRouteSnapshot) {
+    const tag = route.paramMap.get('tag');
+    return this.factory.resolveFor({
+      source: this.service.list({ draft: false, tag }),
+      key: 'tag-posts-list',
+    });
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -206,18 +239,5 @@ export class PostDetailResolver implements Resolve<Post> {
         }),
       );
     }
-  }
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class TagPostListResolver extends PaginatedResolver {
-
-  key = 'tag-posts-list';
-
-  source(route): Observable<CursorPaginator<Post>> {
-    const tag = route.paramMap.get('tag');
-    return this.service.list({ draft: false, tag });
   }
 }

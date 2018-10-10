@@ -47,11 +47,10 @@ export class AppComponent implements OnInit, OnDestroy {
       tap((e) => this.navigating = e instanceof NavigationStart),
     ).subscribe());
 
+    // Configure Cookie Consent
     if (!this.cookieConsent.hasAnswered()) {
       this.cookieConsentPopup.createFor(this.viewContainerRef);
     }
-
-    // Configure Cookie Consent
     if (this.cookieConsent.hasConsented()) {
       this.analytics.activate();
     }
