@@ -35,7 +35,9 @@ export class CookieConsentService {
         return null;
       }
     }
-    return null;
+    // Cookie consent should not be shown on server-rendered page.
+    // Say user has denied by default.
+    return 'deny';
   }
 
   private set status(status: Status) {
@@ -65,7 +67,7 @@ export class CookieConsentService {
   }
 
   hasConsented(): boolean {
-    return this.status === 'allow'
+    return this.status === 'allow';
   }
 
   onAllow(): Observable<any> {

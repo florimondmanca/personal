@@ -5,11 +5,7 @@ import * as qs from 'querystring';
 export class CursorPaginator<T> {
 
   // NOTE: next is a fully qualified URL
-  constructor(public next: string, private _results: T[]) { }
-
-  get results(): T[] {
-    return this._results;
-  }
+  constructor(public next: string, public results: T[]) { }
 
   static empty<T>(): CursorPaginator<T> {
     return new CursorPaginator<T>(null, []);
