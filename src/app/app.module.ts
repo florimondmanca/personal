@@ -23,7 +23,7 @@ import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { markedOptionsFactory } from './markdown/options';
-import { KeyInterceptor, TokenInterceptor } from './core';
+import { KeyInterceptor, TokenInterceptor, HttpsInterceptor } from './core';
 import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
@@ -85,12 +85,14 @@ import { environment } from '../environments/environment';
     MatIconModule,
     MatMenuModule,
     MatProgressBarModule,
+    // Service worker
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]
