@@ -23,12 +23,12 @@
     &:visited {
       color: inherit;
     }
-    &:not(.mat-button):not(.mat-icon-button):not(.mat-raised-button):not(.mat-menu-item):not(.app-tab-link) {
+    &:not(.mat-button):not(.mat-icon-button):not(.mat-raised-button):not(.mat-menu-item):not(.twitter-follow-button) {
       @include link(mat-color(map-get($t, primary)));
       color: inherit;
-      &.no-border {
-        border: inherit;
-      }
+    }
+    &.no-border {
+      border: none !important;
     }
     &.twitter-follow-button {
       padding: .5em;
@@ -41,10 +41,9 @@
       }
     }
     &.app-tab-link {
-      border: none;
       padding: .5em 1em;
       &.active {
-        background: rgba(mat-color(map-get($t, primary)), 0.4);
+        background: rgba(mat-color(map-get($t, primary)), 0.4) !important;
       }
     }
   }
