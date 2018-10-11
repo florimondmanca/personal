@@ -19,12 +19,36 @@
   }
 
   a {
-    @include link(mat-color(map-get($t, primary)));
-    color: inherit;
-    &.no-border {
-      border: inherit;
+    &:not(.mat-raised-button),
+    &:not(.mat-menu-item),
+    &:not(.app-tab-link),
+    &:not(.twitter-follow-button) {
+      @include link(mat-color(map-get($t, primary)));
+      color: inherit;
+      &.no-border {
+        border: inherit;
+      }
+    }
+    &.twitter-follow-button {
+      padding: .5em;
+      color: white;
+      font-size: 0.6 * $font-size;
+      background: mat-color(map-get($t, primary), 700);
+      border-radius: 3px;
+      &:hover {
+        background: mat-color(map-get($t, primary), 500);
+      }
+    }
+    &.app-tab-link {
+      border: none;
+      padding: .5em 1em;
+      &.active {
+        background: rgba(mat-color(map-get($t, primary)), 0.4);
+      }
     }
   }
+
+
 
   pre {
     overflow: auto;
@@ -114,18 +138,15 @@
       margin-top: 0em;
     }
   }
-  a.app-tab-link {
-    border: none;
-    padding: .5em 1em;
-    &.active {
-      background: rgba(mat-color(map-get($t, primary)), 0.4);
-    }
-  }
 
   #dev-icon-svg {
     path {
       fill: mat-color(map-get($t, foreground), text);
     }
+  }
+
+  #editor-tools {
+    background: mat-color(map-get($t, background), background);
   }
 }
 

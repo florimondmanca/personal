@@ -17,7 +17,7 @@
   }
 }
 
-#tools {
+#editor-tools {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -25,7 +25,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background: white;
+  // NOTE: background defined in _material.scss
   padding: .5em;
 }
 
