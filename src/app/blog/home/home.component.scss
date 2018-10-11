@@ -3,7 +3,7 @@
 @import 'mixins/link', 'mixins/media';
 @import 'theme';
 
-$primary: map-get($theme, primary);
+$primary: map-get($light-theme, primary);
 
 #title {
   $f: 1.6;

@@ -1,7 +1,7 @@
 <!-- For programmatic scrolls -->
 <span id="top"></span>
 
-<main class="mat-typography mat-app-background" [ngClass]="{'mat-theme': theme === 'light', 'mat-dark-theme': theme === 'dark'}">
+<main class="mat-typography mat-app-background" [ngClass]="{'mat-light-theme': theme === 'light', 'mat-dark-theme': theme === 'dark'}">
   <app-theme-switch></app-theme-switch>
 
   <mat-progress-bar *ngIf="navigating" id="progress" mode="indeterminate"></mat-progress-bar>

@@ -150,9 +150,9 @@
   }
 }
 
-.mat-theme {
-  @include angular-material-theme($theme);
-  @include custom-components-theme($theme);
+.mat-light-theme {
+  @include angular-material-theme($light-theme);
+  @include custom-components-theme($light-theme);
 }
 
 .mat-dark-theme {

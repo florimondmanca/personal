@@ -29,20 +29,20 @@ $theme-warn: mat-palette($warn);
 
 
 // LIGHT THEME
-$theme: mat-light-theme(
+$light-theme: mat-light-theme(
     $theme-primary,
     $theme-accent,
     $theme-warn
 );
-$theme: theme-foreground(
-  $theme,
+$light-theme: theme-foreground(
+  $light-theme,
   $mat-light-theme-foreground,
   $text-color: #424242,
   $muted-color: #698e89,
   $inline-code-color: #df5f71,
 );
-$theme: theme-background(
-  $theme,
+$light-theme: theme-background(
+  $light-theme,
   $mat-light-theme-background,
   $bg-color: white,
   $card-color: #f2f4f5,
