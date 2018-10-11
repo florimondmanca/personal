@@ -4,3 +4,7 @@
   left: 0;
   width: 100vw;
 }
+
+main {
+  transition: background 300ms, color 900ms;
+}

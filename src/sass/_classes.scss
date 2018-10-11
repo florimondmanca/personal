@@ -1,13 +1,5 @@
 @import '~@angular/material/theming';
 @import 'variables';
-@import 'functions';
-@import 'mixins/link';
-@import 'mixins/code';
-@import 'theme';
-
-$primary: map-get($theme, primary);
-$warn: map-get($theme, warn);
-$accent: map-get($theme, accent);
 
 .text-center {
   text-align: center;
@@ -33,31 +25,6 @@ $accent: map-get($theme, accent);
   padding-bottom: 1em;
 }
 
-.text-muted {
-  color: color-muted($theme);
-}
-
-p.text-hint {
-  color: color-muted($theme);
-  font-size: small;
-}
-
-.text-primary {
-  color: mat-color($primary);
-}
-
-.text-warn {
-  color: mat-color($warn);
-}
-
-.text-accent {
-  color: mat-color($accent);
-}
-
-.bg-primary {
-  background: mat-color($primary);
-}
-
 hr.sm {
   max-width: 20em;
   margin: auto;
@@ -71,21 +38,8 @@ hr.sm {
   width: fit-content;
 }
 
-.code {
-  @include code;
-}
-
 .clickable {
   cursor: pointer;
-}
-
-// Links
-
-a {
-  &.warn {
-    @include link(mat-color($warn));
-    color: mat-color($warn);
-  }
 }
 
 // Sticky content

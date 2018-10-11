@@ -5,32 +5,65 @@ $theme-primary: mat-palette($primary);
 $theme-accent: mat-palette($accent);
 $theme-warn: mat-palette($warn);
 
+
+// Theme tweaking functions
+
+@function theme-foreground($t, $base, $text-color, $muted-color, $inline-code-color) {
+  @return map-merge($t, (
+    foreground: map-merge($base, (
+      text: $text-color,
+      muted: $muted-color,  // custom
+      inline-code: $inline-code-color,  // custom
+    ))
+  ));
+}
+
+@function theme-background($t, $bg, $bg-color, $card-color) {
+  @return map-merge($t, (
+    background: map-merge($bg, (
+      background: $bg-color,
+      card: $card-color
+    ))
+  ));
+}
+
+
+// LIGHT THEME
 $theme: mat-light-theme(
     $theme-primary,
     $theme-accent,
     $theme-warn
 );
+$theme: theme-foreground(
+  $theme,
+  $mat-light-theme-foreground,
+  $text-color: #424242,
+  $muted-color: #556269,
+  $inline-code-color: #df5f71,
+);
+$theme: theme-background(
+  $theme,
+  $mat-light-theme-background,
+  $bg-color: transparent,
+  $card-color: #f0f0f0,
+);
 
+// DARK THEME
 $dark-theme: mat-dark-theme(
   $theme-primary,
   $theme-accent,
   $theme-warn
 );
-
-@function theme-text($t, $fg, $color) {
-  @return map-merge($t, (
-    foreground: map-merge($fg, (text: $color))
-  ));
-}
-
-@function theme-background($t, $bg, $color) {
-  @return map-merge($t, (
-    background: map-merge($bg, (background: $color))
-  ));
-}
-
-// Specific colors for text and background on light and dark themes
-$theme: theme-text($theme, $mat-light-theme-foreground, #424242);
-$theme: theme-background($theme, $mat-light-theme-background, transparent);
-$dark-theme: theme-text($dark-theme, $mat-dark-theme-foreground, white);
-$dark-theme: theme-background($dark-theme, $mat-dark-theme-background, #333f45);
+$dark-theme: theme-foreground(
+  $dark-theme,
+  $mat-dark-theme-foreground,
+  $text-color: #e7ecf3,
+  $muted-color: #8fc1ba,
+  $inline-code-color: #ef677a,
+);
+$dark-theme: theme-background(
+  $dark-theme,
+  $mat-dark-theme-background,
+  $bg-color: #333f45,
+  $card-color: #42535b,
+);

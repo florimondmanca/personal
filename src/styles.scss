@@ -34,9 +34,6 @@ code {
 pre > code {
   font-size: .9em;
 }
-code:not(pre > code) {
-  @include code;
-}
 
 input {
   font: inherit;

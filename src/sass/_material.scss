@@ -1,19 +1,20 @@
 @import '~@angular/material/theming';
 @import 'theme';
-@import 'functions';
 @import 'typography';
 @import 'mixins/media';
 @import 'mixins/shadow';
-@import 'mixins/code';
 @import 'mixins/link';
 @import 'variables';
 
 
+// Definition of component theming relying on Material theme colors
 @mixin custom-components-theme($t) {
+  $muted: mat-color(map-get($t, foreground), muted);
+
   ul.motos li {
-    color: color-muted($t);
+    color: $muted;
     &:hover {
-      color: color-muted-dark($t);
+      color: darken($muted, 20%);
     }
   }
 
@@ -38,7 +39,7 @@
   hr {
     border: 0;
     height: 1px;
-    background: color-muted($t);
+    background: $muted;
   }
 
   blockquote {
@@ -47,9 +48,12 @@
       margin-left: 2em;
     }
     padding: 0;
-    color: color-muted($t) !important;
-    // color: color-muted($t);
+    color: $muted !important;
     font-size: $font-size-quote;
+  }
+
+  app-post-footer .container {
+    background: mat-color(map-get($t, background), card);
   }
 
   .markdown-image {
@@ -62,11 +66,55 @@
     figcaption {
       padding-top: 1em;
       text-align: center;
-      color: color-muted($t);
+      color: $muted;
       font-style: italic;
       font-size: $font-size-caption;
     }
   }
+
+  .text-muted {
+    color: $muted;
+  }
+
+  p.text-hint {
+    color: $muted;
+    font-size: small;
+  }
+
+  .text-primary {
+    color: mat-color(map-get($t, primary));
+  }
+
+  .text-warn {
+    color: mat-color(map-get($t, warn));
+  }
+
+  .text-accent {
+    color: mat-color(map-get($t, accent));
+  }
+
+  .bg-primary {
+    background: mat-color(map-get($t, primary));
+  }
+
+  code:not(pre > code), .code {
+    $bg: mat-color(map-get($t, background), card);
+    background: $bg;
+    border-radius: 3px;
+    padding: .1em .1em;
+    box-sizing: content-box;
+    color: mat-color(map-get($t, foreground), inline-code);
+    font-family: $font-mono, Courier, monospace;
+  }
+
+  .post {
+    padding: 1em 0;
+    & + .post {
+      border-top: 1px solid mat-color(map-get($t, foreground), divider);
+      margin-top: 0em;
+    }
+  }
+
 }
 
 .mat-theme {

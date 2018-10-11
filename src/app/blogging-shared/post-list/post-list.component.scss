@@ -9,11 +9,7 @@ ul {
 }
 
 .post {
-  padding: 1em 0;
-  & + .post {
-    border-top: 1px solid $color-gray-light;
-    margin-top: 0em;
-  }
+  // NOTE: defined in _material.scss
 }
 
 .published-date {
