@@ -29,6 +29,7 @@ import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
 import { WidgetsModule } from './widgets';
 import { ThemingModule } from './theming';
+import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -80,6 +81,7 @@ import { environment } from '../environments/environment';
     AppUpdatesModule,
     WidgetsModule,
     ThemingModule,
+    SocialModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,
