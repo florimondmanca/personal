@@ -1,9 +1,5 @@
 @mixin link($color, $t: 80ms, $border-width: 1px) {
   $hover-color: rgba($color, 0.2);
-  text-decoration: none;
-  &:visited {
-    color: inherit;
-  }
   border-bottom: $border-width solid $color;
   transition: background $t;
   cursor: pointer;

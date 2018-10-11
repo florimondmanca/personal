@@ -19,10 +19,11 @@
   }
 
   a {
-    &:not(.mat-raised-button),
-    &:not(.mat-menu-item),
-    &:not(.app-tab-link),
-    &:not(.twitter-follow-button) {
+    text-decoration: none;
+    &:visited {
+      color: inherit;
+    }
+    &:not(.mat-button):not(.mat-icon-button):not(.mat-raised-button):not(.mat-menu-item):not(.app-tab-link) {
       @include link(mat-color(map-get($t, primary)));
       color: inherit;
       &.no-border {
