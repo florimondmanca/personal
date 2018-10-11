@@ -1,6 +1,6 @@
 @import './mixins/fontface';
 @import '~@angular/material/theming';
-@import 'theme';
+@import './theme';
 
 $primary: map-get($theme, primary);
 

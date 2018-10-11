@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import 'variables';
+@import 'functions';
 @import 'mixins/link';
 @import 'mixins/code';
 @import 'theme';
@@ -33,11 +34,11 @@ $accent: map-get($theme, accent);
 }
 
 .text-muted {
-  color: $color-muted;
+  color: color-muted($theme);
 }
 
 p.text-hint {
-  color: $color-muted;
+  color: color-muted($theme);
   font-size: small;
 }
 
@@ -60,19 +61,6 @@ p.text-hint {
 hr.sm {
   max-width: 20em;
   margin: auto;
-}
-
-hr.asterisk {
-  position: relative;
-  background: none;
-  &::before {
-    content: '***';
-    width: 100%;
-    position: absolute;
-    top: -.5em;
-    text-align: center;
-    color: $color-muted;
-  }
 }
 
 .full-width {

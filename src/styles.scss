@@ -1,14 +1,10 @@
-@import '~@angular/material/theming';
-@import 'fonts';
 @import 'variables';
-@import 'classes';
-@import 'material';
-@import 'mixins/link';
-@import 'mixins/code';
-@import 'mixins/shadow';
-@import 'theme';
 
-$primary: map-get($theme, primary);
+// Include custom classes and Material theming
+@import 'classes';
+@import 'fonts';
+@import 'theme';
+@import 'material';
 
 html {
   min-height: 100%;
@@ -20,7 +16,6 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  color: $color-text;
 }
 
 header {
@@ -33,24 +28,6 @@ h2 {
   padding-bottom: .2em;
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background: $color-muted;
-}
-
-a {
-  @include link(mat-color($primary));
-  color: inherit;
-  &.no-style {
-    border: inherit;
-    background: inherit;
-  }
-  &.no-border {
-    border: inherit;
-  }
-}
-
 code {
   font-family: $font-mono, Courier, monospace;
 }
@@ -61,44 +38,9 @@ code:not(pre > code) {
   @include code;
 }
 
-pre {
-  overflow: auto;
-  padding: 1em;
-  background: $color-gray-lightest;
-  border-radius: 4px;
-  @include card-shadow;
-  margin-bottom: 1em !important;
-}
-
-blockquote {
-  margin: 1em;
-  @include media-sm {
-    margin-left: 2em;
-  }
-  padding: 0;
-  color: $color-muted;
-  font-size: $font-size-quote;
-}
-
 input {
   font: inherit;
   font-size: inherit;
-}
-
-.markdown-image {
-  margin: 2em 0;
-  img {
-    display: block;
-    max-width: 100%;
-    margin: auto;
-  }
-  figcaption {
-    padding-top: 1em;
-    text-align: center;
-    color: $color-muted;
-    font-style: italic;
-    font-size: $font-size-caption;
-  }
 }
 
 // Center iframes in markdown content

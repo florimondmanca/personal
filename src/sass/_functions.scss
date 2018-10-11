@@ -1,0 +1,8 @@
+@function color-muted($theme) {
+  $primary: map-get($theme, primary);
+  @return desaturate(darken(mat-color($primary, 50), 40%), 30%);
+}
+
+@function color-muted-dark($theme) {
+  @return darken(color-muted($theme), 20%);
+}

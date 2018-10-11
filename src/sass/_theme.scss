@@ -10,3 +10,27 @@ $theme: mat-light-theme(
     $theme-accent,
     $theme-warn
 );
+
+$dark-theme: mat-dark-theme(
+  $theme-primary,
+  $theme-accent,
+  $theme-warn
+);
+
+@function theme-text($t, $fg, $color) {
+  @return map-merge($t, (
+    foreground: map-merge($fg, (text: $color))
+  ));
+}
+
+@function theme-background($t, $bg, $color) {
+  @return map-merge($t, (
+    background: map-merge($bg, (background: $color))
+  ));
+}
+
+// Specific colors for text and background on light and dark themes
+$theme: theme-text($theme, $mat-light-theme-foreground, #424242);
+$theme: theme-background($theme, $mat-light-theme-background, transparent);
+$dark-theme: theme-text($dark-theme, $mat-dark-theme-foreground, white);
+$dark-theme: theme-background($dark-theme, $mat-dark-theme-background, #333f45);

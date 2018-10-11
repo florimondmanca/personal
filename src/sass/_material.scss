@@ -1,14 +1,89 @@
 @import '~@angular/material/theming';
-@import './theme';
-@import './typography';
-@import './mixins/media';
+@import 'theme';
+@import 'functions';
+@import 'typography';
+@import 'mixins/media';
+@import 'mixins/shadow';
+@import 'mixins/code';
+@import 'mixins/link';
+@import 'variables';
 
+
+@mixin custom-components-theme($t) {
+  ul.motos li {
+    color: color-muted($t);
+    &:hover {
+      color: color-muted-dark($t);
+    }
+  }
+
+  a {
+    @include link(mat-color(map-get($t, primary)));
+    color: inherit;
+    &.no-style {
+      border: inherit;
+      background: inherit;
+    }
+    &.no-border {
+      border: inherit;
+    }
+  }
+
+  pre {
+    overflow: auto;
+    padding: 1em;
+    background: mat-color(map-get($t, background), hover);
+    border-radius: 4px;
+    @include card-shadow;
+    margin-bottom: 1em !important;
+  }
+
+  // NOTE: may not work at all actually?
+  hr {
+    border: 0;
+    height: 1px;
+    background: color-muted($t);
+  }
+
+  blockquote {
+    margin: 1em;
+    @include media-sm {
+      margin-left: 2em;
+    }
+    padding: 0;
+    color: color-muted($t);
+    font-size: $font-size-quote;
+  }
+
+  .markdown-image {
+    margin: 2em 0;
+    img {
+      display: block;
+      max-width: 100%;
+      margin: auto;
+    }
+    figcaption {
+      padding-top: 1em;
+      text-align: center;
+      color: color-muted($t);
+      font-style: italic;
+      font-size: $font-size-caption;
+    }
+  }
+}
 
 .mat-theme {
   @include angular-material-theme($theme);
+  @include custom-components-theme($theme);
+}
+
+.mat-dark-theme {
+  @include angular-material-theme($dark-theme);
+  @include custom-components-theme($dark-theme);
 }
 
 @include mat-core($typography-small);
+
 @include media-xs {
   @include mat-core($typography);
 }
