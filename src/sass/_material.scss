@@ -114,6 +114,13 @@
       margin-top: 0em;
     }
   }
+  a.app-tab-link {
+    border: none;
+    padding: .5em 1em;
+    &.active {
+      background: rgba(mat-color(map-get($t, primary)), 0.4);
+    }
+  }
 
 }
 

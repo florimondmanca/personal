@@ -12,9 +12,5 @@ nav {
 }
 
 ::ng-deep a.app-tab-link {
-  border: none;
-  padding: .5em 1em;
-  &.active {
-    background: mat-color($primary, 100);
-  }
+  // NOTE: defined in _material.scss
 }
