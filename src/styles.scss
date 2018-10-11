@@ -43,6 +43,17 @@ input {
   font-size: inherit;
 }
 
+button {
+  /* Remove styles */
+  background: none;
+  color: inherit;
+  border: none;
+  box-sizing: border-box;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 // Center iframes in markdown content
 markdown iframe {
   display: block;

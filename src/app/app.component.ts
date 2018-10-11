@@ -10,6 +10,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { PageTitleService, AnalyticsService } from './core';
 import { CookieConsentService, CookieConsentPopupService } from './cookie-consent';
 import { AppUpdatesService } from './app-updates';
+import { ThemeService, Theme } from './theming';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   sub: Subscription;
   navigating = false;
   error = false;
+  theme: Theme;
 
   constructor(
     private pageTitle: PageTitleService,
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private cookieConsent: CookieConsentService,
     private cookieConsentPopup: CookieConsentPopupService,
     private analytics: AnalyticsService,
-
+    private themeService: ThemeService,
     private appUpdates: AppUpdatesService,
     private viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private document: any,
@@ -62,6 +64,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.appUpdates.init(this.viewContainerRef);
     this.sub.add(this.appUpdates.onUpdate().pipe(
       tap(() => this.document.location.reload()),
+    ).subscribe());
+
+    this.sub.add(this.themeService.getTheme().pipe(
+      tap((theme) => this.theme = theme),
     ).subscribe());
   }
 

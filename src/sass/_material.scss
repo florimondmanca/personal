@@ -20,10 +20,6 @@
   a {
     @include link(mat-color(map-get($t, primary)));
     color: inherit;
-    &.no-style {
-      border: inherit;
-      background: inherit;
-    }
     &.no-border {
       border: inherit;
     }
@@ -51,7 +47,8 @@
       margin-left: 2em;
     }
     padding: 0;
-    color: color-muted($t);
+    color: color-muted($t) !important;
+    // color: color-muted($t);
     font-size: $font-size-quote;
   }
 

@@ -1,8 +1,13 @@
 <!-- For programmatic scrolls -->
 <span id="top"></span>
 
-<main class="mat-theme mat-typography mat-app-background">
-  <router-outlet></router-outlet>
+<main class="mat-typography mat-app-background" [ngClass]="{'mat-theme': theme === 'light', 'mat-dark-theme': theme === 'dark'}">
+  <app-theme-switch></app-theme-switch>
+
   <mat-progress-bar *ngIf="navigating" id="progress" mode="indeterminate"></mat-progress-bar>
+
   <app-error-list></app-error-list>
+
+  <!-- Main component area -->
+  <router-outlet></router-outlet>
 </main>
