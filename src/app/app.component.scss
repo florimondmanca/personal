@@ -4,3 +4,8 @@
   left: 0;
   width: 100vw;
 }
+
+main {
+  min-height: 100vh;
+  transition: background 300ms, background-color 300ms, color 900ms;
+}

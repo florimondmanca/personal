@@ -1,18 +1,5 @@
-@import '~@angular/material/theming';
-@import 'theme';
-@import 'variables';
-
-$primary: map-get($theme, primary);
-
 // Using the official twitter scripts sometimes does not work
 // Provide custom style as a fallback
 .twitter-follow-button {
-  padding: .5em;
-  color: white;
-  font-size: 0.6 * $font-size;
-  background: mat-color($primary, 700);
-  border-radius: 3px;
-  &:hover {
-    background: mat-color($primary, 500);
-  }
+  // NOTE: defined in _material.scss
 }

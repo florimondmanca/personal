@@ -2,7 +2,7 @@
 
 #footer {
   text-align: center;
-  margin: 4em 0;
+  padding: 4em 0;
 }
 
 ul.socials {
@@ -19,5 +19,5 @@ ul.socials {
 }
 
 #dev-icon {
-  opacity: 0.75;
+  // NOTE: defined in _material.scss
 }

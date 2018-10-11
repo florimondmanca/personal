@@ -3,8 +3,8 @@
 @import 'variables';
 @import 'theme';
 
-$primary: map-get($theme, primary);
-$accent: map-get($theme, accent);
+$primary: map-get($light-theme, primary);
+$accent: map-get($light-theme, accent);
 
 #consent {
   position: fixed;

@@ -1,14 +1,167 @@
 @import '~@angular/material/theming';
-@import './theme';
-@import './typography';
-@import './mixins/media';
+@import 'theme';
+@import 'typography';
+@import 'mixins/media';
+@import 'mixins/shadow';
+@import 'mixins/link';
+@import 'variables';
 
 
-.mat-theme {
-  @include angular-material-theme($theme);
+// Definition of component theming relying on Material theme colors
+@mixin custom-components-theme($t) {
+  $muted: mat-color(map-get($t, foreground), muted);
+
+  ul.motos li {
+    color: $muted;
+    &:hover {
+      color: darken($muted, 20%);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    &:visited {
+      color: inherit;
+    }
+    &:not(.mat-button):not(.mat-icon-button):not(.mat-raised-button):not(.mat-menu-item):not(.twitter-follow-button) {
+      @include link(mat-color(map-get($t, primary)));
+      color: inherit;
+    }
+    &.no-border {
+      border: none !important;
+    }
+    &.twitter-follow-button {
+      padding: .5em;
+      color: white;
+      font-size: 0.6 * $font-size;
+      background: mat-color(map-get($t, primary), 700);
+      border-radius: 3px;
+      &:hover {
+        background: mat-color(map-get($t, primary), 500);
+      }
+    }
+    &.app-tab-link {
+      padding: .5em 1em;
+      &.active {
+        background: rgba(mat-color(map-get($t, primary)), 0.4) !important;
+      }
+    }
+  }
+
+
+
+  pre {
+    overflow: auto;
+    padding: 1em;
+    background: mat-color(map-get($t, background), hover);
+    border-radius: 4px;
+    @include card-shadow;
+    margin-bottom: 1em !important;
+  }
+
+  // NOTE: may not work at all actually?
+  hr {
+    border: 0;
+    height: 1px;
+    background: $muted;
+  }
+
+  blockquote {
+    margin: 1em;
+    @include media-sm {
+      margin-left: 2em;
+    }
+    padding: 0;
+    color: $muted !important;
+    font-size: $font-size-quote;
+  }
+
+  app-post-footer .container {
+    background: mat-color(map-get($t, background), card);
+  }
+
+  .markdown-image {
+    margin: 2em 0;
+    img {
+      display: block;
+      max-width: 100%;
+      margin: auto;
+    }
+    figcaption {
+      padding-top: 1em;
+      text-align: center;
+      color: $muted;
+      font-style: italic;
+      font-size: $font-size-caption;
+    }
+  }
+
+  .text-muted {
+    color: $muted;
+  }
+
+  p.text-hint {
+    color: $muted;
+    font-size: small;
+  }
+
+  .text-primary {
+    color: mat-color(map-get($t, primary));
+  }
+
+  .text-warn {
+    color: mat-color(map-get($t, warn));
+  }
+
+  .text-accent {
+    color: mat-color(map-get($t, accent));
+  }
+
+  .bg-primary {
+    background: mat-color(map-get($t, primary));
+  }
+
+  code:not(pre > code), .code {
+    $bg: mat-color(map-get($t, background), card);
+    background: $bg;
+    border-radius: 3px;
+    padding: .1em .1em;
+    box-sizing: content-box;
+    color: mat-color(map-get($t, foreground), inline-code);
+    font-family: $font-mono, Courier, monospace;
+  }
+
+  .post {
+    padding: 1em 0;
+    & + .post {
+      border-top: 1px solid mat-color(map-get($t, foreground), divider);
+      margin-top: 0em;
+    }
+  }
+
+  #dev-icon-svg {
+    path {
+      fill: mat-color(map-get($t, foreground), text);
+    }
+  }
+
+  #editor-tools {
+    background: mat-color(map-get($t, background), background);
+  }
+}
+
+.mat-light-theme {
+  @include angular-material-theme($light-theme);
+  @include custom-components-theme($light-theme);
+}
+
+.mat-dark-theme {
+  @include angular-material-theme($dark-theme);
+  @include custom-components-theme($dark-theme);
 }
 
 @include mat-core($typography-small);
+
 @include media-xs {
   @include mat-core($typography);
 }

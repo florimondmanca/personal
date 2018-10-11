@@ -8,7 +8,7 @@ export class TabLinkDirective {
   private ELEMENT_CLASS = 'app-tab-link';
   private ACTIVE_CLASS = 'active';
 
-  private _elementClass: string[] = [this.ELEMENT_CLASS];
+  private _elementClass: string[] = [this.ELEMENT_CLASS, 'no-border'];
 
   @HostBinding('class')
   get elementClass(): string {

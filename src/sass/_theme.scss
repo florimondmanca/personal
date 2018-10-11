@@ -5,8 +5,65 @@ $theme-primary: mat-palette($primary);
 $theme-accent: mat-palette($accent);
 $theme-warn: mat-palette($warn);
 
-$theme: mat-light-theme(
+
+// Theme tweaking functions
+
+@function theme-foreground($t, $base, $text-color, $muted-color, $inline-code-color) {
+  @return map-merge($t, (
+    foreground: map-merge($base, (
+      text: $text-color,
+      muted: $muted-color,  // custom
+      inline-code: $inline-code-color,  // custom
+    ))
+  ));
+}
+
+@function theme-background($t, $bg, $bg-color, $card-color) {
+  @return map-merge($t, (
+    background: map-merge($bg, (
+      background: $bg-color,
+      card: $card-color
+    ))
+  ));
+}
+
+
+// LIGHT THEME
+$light-theme: mat-light-theme(
     $theme-primary,
     $theme-accent,
     $theme-warn
+);
+$light-theme: theme-foreground(
+  $light-theme,
+  $mat-light-theme-foreground,
+  $text-color: #424242,
+  $muted-color: #698e89,
+  $inline-code-color: #df5f71,
+);
+$light-theme: theme-background(
+  $light-theme,
+  $mat-light-theme-background,
+  $bg-color: white,
+  $card-color: #f2f4f5,
+);
+
+// DARK THEME
+$dark-theme: mat-dark-theme(
+  $theme-primary,
+  $theme-accent,
+  $theme-warn
+);
+$dark-theme: theme-foreground(
+  $dark-theme,
+  $mat-dark-theme-foreground,
+  $text-color: #e7ecf3,
+  $muted-color: #8fc1ba,
+  $inline-code-color: #d67ebd,
+);
+$dark-theme: theme-background(
+  $dark-theme,
+  $mat-dark-theme-background,
+  $bg-color: #333f45,
+  $card-color: #42535b,
 );
