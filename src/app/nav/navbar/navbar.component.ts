@@ -22,10 +22,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     ));
   }
 
-  logout() {
-    this.auth.logout();
-  }
-
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

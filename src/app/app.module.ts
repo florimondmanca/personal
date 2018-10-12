@@ -16,7 +16,6 @@ import {
   MatInputModule,
   MatButtonModule,
   MatIconModule,
-  MatMenuModule,
   MatProgressBarModule,
 } from '@angular/material';
 import { Angulartics2Module } from 'angulartics2';
@@ -32,7 +31,7 @@ import { ThemingModule } from './theming';
 import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavModule } from './nav';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -45,7 +44,6 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     FooterComponent,
     NotFoundComponent,
     LoginComponent,
@@ -82,12 +80,12 @@ import { environment } from '../environments/environment';
     WidgetsModule,
     ThemingModule,
     SocialModule,
+    NavModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule,
     MatProgressBarModule,
     // Service worker
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
