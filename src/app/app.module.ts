@@ -27,7 +27,7 @@ import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
 import { WidgetsModule } from './widgets';
-import { ThemingModule } from './theming';
+import { ThemingModule, ThemeService } from './theming';
 import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -100,7 +100,22 @@ import { environment } from '../environments/environment';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(overlayContainer: OverlayContainer) {
-    overlayContainer.getContainerElement().classList.add('mat-theme', 'mat-typography');
+  constructor(private themeService: ThemeService, overlayContainer: OverlayContainer) {
+    // Set overlays CSS classes
+    const el = overlayContainer.getContainerElement();
+    el.classList.add('mat-typography');
+
+    // Update overlay theme when theme changes.
+    let currentThemeClass: string;
+    this.themeService.getTheme().subscribe(
+      (theme) => {
+        if (currentThemeClass) {
+          el.classList.remove(currentThemeClass);
+        }
+        const newThemeClass = `mat-${theme}-theme`;
+        el.classList.add(newThemeClass);
+        currentThemeClass = newThemeClass;
+      }
+    );
   }
 }
