@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from 'app/core';
-import { PostListResolver, TagPostListResolver, PostDetailResolver } from 'app/blogging-core';
+import { PostListResolver, TagPostListResolver, PostDetailResolver, PostSearchResolver } from 'app/blogging-core';
 import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
@@ -36,6 +36,7 @@ const routes: Routes = [
       {
         path: 'search/:term',
         component: SearchComponent,
+        resolve: { paginator: PostSearchResolver },
         data: { pageId: 'search' },
       }
     ],

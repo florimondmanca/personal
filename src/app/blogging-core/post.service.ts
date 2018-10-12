@@ -22,7 +22,7 @@ export class PostService {
 
   constructor(private http: HttpClient, private adapter: PostAdapter) { }
 
-  list(params: { draft?: boolean, tag?: string, cursor?: string, url?: string } = {}): Observable<CursorPaginator<Post>> {
+  list(params: { draft?: boolean, tag?: string, cursor?: string, search?: string, url?: string } = {}): Observable<CursorPaginator<Post>> {
     let url: string;
     let queryParams: any;
 
@@ -37,6 +37,9 @@ export class PostService {
       };
       if (params.tag) {
         queryParams.tag = params.tag;
+      }
+      if (params.search) {
+        queryParams.search = params.search;
       }
     }
 
@@ -185,6 +188,25 @@ export class TagPostListResolver implements Resolve<CursorPaginator<Post>> {
     return this.factory.resolveFor({
       source: this.service.list({ draft: false, tag }),
       key: 'tag-posts-list',
+    });
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostSearchResolver implements Resolve<CursorPaginator<Post>> {
+
+  constructor(
+    private service: PostService,
+    private factory: PaginatedResolverFactory,
+  ) { }
+
+  resolve(route: ActivatedRouteSnapshot) {
+    const searchTerm = route.paramMap.get('term');
+    return this.factory.resolveFor({
+      source: this.service.list({ draft: false, search: searchTerm }),
+      key: 'posts-search-results',
     });
   }
 }
