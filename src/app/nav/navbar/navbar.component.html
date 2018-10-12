@@ -19,16 +19,13 @@
         </span>
       </form>
     </li>
-    <li>
-      <a routerLink="/about">About</a>
-      <span *ngIf="loggedIn">
-        <button mat-icon-button type="button" [matMenuTriggerFor]="adminTools">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <mat-menu #adminTools="matMenu">
-          <app-admin-menu></app-admin-menu>
-        </mat-menu>
-      </span>
+    <li *ngIf="loggedIn">
+      <button mat-icon-button type="button" [matMenuTriggerFor]="adminTools">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #adminTools="matMenu">
+        <app-admin-menu></app-admin-menu>
+      </mat-menu>
     </li>
   </ul>
 </nav>
