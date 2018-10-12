@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'app/core';
 import { Subscription } from 'rxjs';
+import { FormControl } from '@angular/forms';
 import { environment } from 'environments/environment';
 
 @Component({
@@ -13,6 +14,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   loggedIn: boolean;
   adminSiteUrl = environment.adminSiteUrl;
   private sub = new Subscription();
+  searchControl = new FormControl(null);
 
   constructor(private auth: AuthService) { }
 
@@ -20,6 +22,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.sub.add(this.auth.getUser().subscribe(
       () => this.loggedIn = this.auth.isLoggedIn,
     ));
+  }
+
+  performSearch() {
+    console.log(this.searchControl.value);
   }
 
   ngOnDestroy() {

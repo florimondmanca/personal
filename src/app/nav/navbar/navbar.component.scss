@@ -1,3 +1,11 @@
+@import '~@angular/material/theming';
+@import 'variables';
+@import 'mixins/media';
+@import 'mixins/link';
+@import 'theme';
+
+$primary: map-get($light-theme, primary);
+
 #nav {
   padding-top: 2em;  // don't use margin, it will push the body down
   margin-bottom: 1em;
@@ -5,11 +13,35 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
     li {
       margin: 0 1em;
     }
   }
+}
+
+#search-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+#title {
+  $f: 0.8;
+  font-size: $f * $font-size-h1-sm;
+  @include media-xs {
+    font-size: $f * $font-size-h1;
+  }
+  line-height: 0.8 * $font-line-height;
+  width: fit-content;
+  margin: auto;
+  a {
+    @include link(mat-color($primary), $border-width: 6px);
+    @include media-xs {
+      @include link(mat-color($primary), $border-width: 8px);
+    }
+  }
+  margin-bottom: .1em;
 }

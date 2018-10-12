@@ -1,40 +1,6 @@
-@import '~@angular/material/theming';
-@import 'variables';
-@import 'mixins/link', 'mixins/media';
-@import 'theme';
-
-$primary: map-get($light-theme, primary);
-
-#title {
-  $f: 1.6;
-  font-size: $f * $font-size-h1-sm;
-  @include media-xs {
-    font-size: $f * $font-size-h1;
-  }
-  line-height: 0.8 * $font-line-height;
-  width: fit-content;
-  margin: auto;
-  a {
-    @include link(mat-color($primary), $border-width: 6px);
-    @include media-xs {
-      @include link(mat-color($primary), $border-width: 8px);
-    }
-  }
-  margin-bottom: .1em;
-}
-
+@import 'mixins/media';
 #divide {
   margin: 1em 0;
-}
-
-#banner {
-  display: block;
-  max-width: 20em;
-  margin: auto;
-  img {
-    width: 100%;
-    height: auto;
-  }
 }
 
 h2 {
