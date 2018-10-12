@@ -7,6 +7,7 @@ import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,11 @@ const routes: Routes = [
         resolve: { post: PostDetailResolver },
         data: { pageId: 'post-detail' },
       },
+      {
+        path: 'search/:term',
+        component: SearchComponent,
+        data: { pageId: 'search' },
+      }
     ],
   },
 ];
