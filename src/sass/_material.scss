@@ -48,8 +48,6 @@
     }
   }
 
-
-
   pre {
     overflow: auto;
     padding: 1em;
@@ -147,6 +145,10 @@
 
   #editor-tools {
     background: mat-color(map-get($t, background), background);
+  }
+
+  #theme-switch {
+    color: mat-color(map-get($t, foreground), muted);
   }
 }
 
