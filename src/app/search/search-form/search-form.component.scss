@@ -1,0 +1,9 @@
+@import 'mixins/media';
+@import 'variables';
+
+form {
+  font-size: 0.7 * $font-size;
+  @include media-xxs {
+    font-size: inherit;
+  }
+}
