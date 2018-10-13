@@ -31,11 +31,7 @@
       border: none !important;
     }
     &.twitter-follow-button {
-      padding: .5em;
-      color: white;
-      font-size: 0.6 * $font-size;
       background: mat-color(map-get($t, primary), 700);
-      border-radius: 3px;
       &:hover {
         background: mat-color(map-get($t, primary), 500);
       }

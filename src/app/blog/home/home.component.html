@@ -1,24 +1,17 @@
-<header class="text-center">
+<aside>
   <h2>
     A journey through web development & software engineering
   </h2>
   <p>
     <a routerLink="/about">by Florimond Manca</a>
   </p>
-</header>
-
-<br>
-
-<section class="text-center">
   <p class="text-muted">
     New fresh blog posts (mostly) every week.
   </p>
   <p>
     Updates: <app-follow-button></app-follow-button>
   </p>
-</section>
-
-
-<section id="post-list">
+</aside>
+<section>
   <app-post-list [paginator]="paginator"></app-post-list>
 </section>

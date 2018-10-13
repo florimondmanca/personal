@@ -1,21 +1,20 @@
 @import 'mixins/media';
+@import 'variables';
+
+:host {
+  @include media-sm {
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    grid-gap: 2em;
+    padding: 0 1em;
+  }
+}
+
 #divide {
   margin: 1em 0;
 }
 
 h2 {
   font-weight: normal;
-  // force text to wrap a bit on big screens
-  @include media-sm {
-    margin-left: 2em;
-    margin-right: 2em;
-  }
-}
-
-#author {
-  margin-top: 1em;
-}
-
-#post-list {
-  margin-top: 2em;
+  font-size: 0.7 * $font-size-h2;
 }
