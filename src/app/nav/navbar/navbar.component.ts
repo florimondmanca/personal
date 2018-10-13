@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'app/core';
-import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +10,6 @@ import { environment } from 'environments/environment';
 export class NavbarComponent implements OnInit, OnDestroy {
 
   loggedIn: boolean;
-  adminSiteUrl = environment.adminSiteUrl;
   private sub = new Subscription();
 
   constructor(private auth: AuthService) { }
