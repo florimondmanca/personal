@@ -15,7 +15,7 @@ $primary: map-get($light-theme, primary);
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     grid-gap: 1em;
     align-items: center;
   }
