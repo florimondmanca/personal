@@ -16,7 +16,13 @@ ul {
   }
 }
 
-.post {
+.post-header {
+  font-size: smaller;
+  margin-bottom: .25em;
+  @include media-xs {
+    margin-bottom: 0;
+    font-size: inherit;
+  }
 }
 
 .published-date {
