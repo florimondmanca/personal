@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, debounceTime, distinctUntilChanged, filter, tap, mergeMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, tap } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 
 const SIG_RESET = 'dshhjrstjfRGER34';

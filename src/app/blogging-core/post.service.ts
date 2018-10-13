@@ -106,7 +106,6 @@ export class PostService {
 export class PaginatedResolverFactory {
 
   constructor(
-    private service: PostService,
     private transferState: TransferState,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }

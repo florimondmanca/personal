@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/core';
 import { Subscription } from 'rxjs';
-import { map, filter, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Post, SeoService } from 'app/blogging-core';
 
 
@@ -22,11 +21,9 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private auth: AuthService,
     private seo: SeoService,
-    private title: Title,
   ) { }
 
   ngOnInit() {
-    const initialTitle = this.title.getTitle();
     this.route.data.pipe(
       map(data => data.post),
       tap((post) => this.post = post),

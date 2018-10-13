@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { DirtyComponent } from './dirty-component.interface';
 
 
@@ -10,12 +9,7 @@ import { DirtyComponent } from './dirty-component.interface';
 })
 export class CanDeactivateDirtyPost implements CanDeactivate<DirtyComponent> {
 
-  canDeactivate(
-    component: DirtyComponent,
-    currentRoute,
-    currentState,
-    nextState,
-  ): Observable<boolean> | boolean {
+  canDeactivate(component: DirtyComponent): Observable<boolean> | boolean {
     if (component.dirty) {
       return this.confirm('Discard changes on this blog post?');
     }

@@ -1,6 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { tap, map, filter } from 'rxjs/operators';
 
 
@@ -18,10 +18,9 @@ export class CookieConsentService {
   private STATUS_KEY = 'cookieconsent_status';
 
   statusChange: Subject<CookieConsentStatusChange> = new Subject();
-  private statusSubscription: Subscription;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.statusSubscription = this.saveStatusOnChange().subscribe();
+    this.saveStatusOnChange().subscribe();
   }
 
   private get status(): Status | null {

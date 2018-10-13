@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { StaticFiles, DescriptionService, UrlService } from 'app/core';
+import { DescriptionService } from 'app/core';
 import { Post, CursorPaginator } from 'app/blogging-core';
 import { CardService } from 'app/social';
-import { environment } from 'environments/environment';
 
 
 @Component({
@@ -20,8 +19,6 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private cards: CardService,
     private title: Title,
-    private staticFiles: StaticFiles,
-    private urlService: UrlService,
     private description: DescriptionService,
   ) { }
 

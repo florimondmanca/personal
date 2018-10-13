@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from 'app/core';
 import { PostListResolver, TagPostListResolver, PostDetailResolver, PostSearchResolver } from 'app/blogging-core';
 import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';

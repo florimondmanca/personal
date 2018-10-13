@@ -1,8 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
-import { UploadEvent, UploadFile } from 'ngx-file-drop';
+import { UploadEvent } from 'ngx-file-drop';
 import { ImageUploadService, ClipboardService } from 'app/core';
-import { Observable, of, from } from 'rxjs';
+import { of } from 'rxjs';
 import { mergeMap, filter, tap } from 'rxjs/operators';
 
 @Component({
@@ -21,7 +20,6 @@ export class ImageUploadDialogComponent {
 
   constructor(
     private imageUploadService: ImageUploadService,
-    private snackBar: MatSnackBar,
     private clipboard: ClipboardService,
   ) { }
 

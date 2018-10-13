@@ -1,7 +1,3 @@
-import { Observable, Subject } from 'rxjs';
-import { URLSearchParams } from '@angular/http';
-import * as qs from 'querystring';
-
 export class CursorPaginator<T> {
 
   // NOTE: next is a fully qualified URL

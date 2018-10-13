@@ -1,13 +1,12 @@
 import {
   Component, OnInit, OnDestroy, Input, Output,
-  ElementRef, ViewChild, EventEmitter, ViewContainerRef,
+  EventEmitter,
   HostListener,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { Observable, fromEvent, Subscription } from 'rxjs';
-import { filter, tap, mergeMap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { filter, tap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from 'app/blogging-core';
 import { ConfirmDialogComponent, ConfirmDialogConfig } from 'app/widgets';
@@ -39,7 +38,6 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private postService: PostService,
-    private router: Router,
     private dialog: MatDialog,
   ) { }
 

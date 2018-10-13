@@ -27,6 +27,7 @@ export class ErrorService {
 
   serverError() {
     const text = `Aw, snap! Something went horribly wrong. 😞 We need to fix this. Fancy reporting the issue?`;
+    this.error(text);
   }
 
   unknownError() {
