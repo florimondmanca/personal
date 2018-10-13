@@ -125,12 +125,8 @@
     font-family: $font-mono, Courier, monospace;
   }
 
-  .post {
-    padding: 1em 0;
-    & + .post {
-      border-top: 1px solid mat-color(map-get($t, foreground), divider);
-      margin-top: 0em;
-    }
+  .post + .post {
+    border-top: 1px solid mat-color(map-get($t, foreground), divider);
   }
 
   #editor-tools {
@@ -139,6 +135,10 @@
 
   #theme-switch {
     color: mat-color(map-get($t, foreground), muted);
+  }
+
+  #nav {
+    background-color: mat-color(map-get($t, background), card);
   }
 }
 

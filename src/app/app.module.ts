@@ -26,7 +26,7 @@ import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
 import { WidgetsModule } from './widgets';
-import { ThemeService } from './theming';
+import { ThemingModule, ThemeService } from './theming';
 import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -79,6 +79,7 @@ import { environment } from '../environments/environment';
     WidgetsModule,
     SocialModule,
     NavModule,
+    ThemingModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,
