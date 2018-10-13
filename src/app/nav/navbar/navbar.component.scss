@@ -7,8 +7,12 @@
 $primary: map-get($light-theme, primary);
 
 #nav {
-  padding-top: 2em;  // don't use margin, it will push the body down
-  margin-bottom: 1em;
+  // don't use margin, it would push the body down
+  padding-top: .5em;
+  @include media-sm {
+    padding-top: 1em;
+  }
+
   ul {
     list-style-type: none;
     margin: 0;
