@@ -22,12 +22,6 @@ $primary: map-get($light-theme, primary);
   }
 }
 
-#search-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-}
-
 #title {
   $f: 0.8;
   font-size: $f * $font-size-h1-sm;

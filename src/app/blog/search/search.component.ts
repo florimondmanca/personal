@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Post, CursorPaginator, PostService } from 'app/blogging-core';
+import { SearchService } from 'app/search';
 
 @Component({
   selector: 'app-search',
@@ -17,6 +18,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
+    private searchService: SearchService,
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    // Reset search when leaving this component
+    this.searchService.reset();
   }
 
 }

@@ -2,22 +2,13 @@
   <ul>
     <li>
       <h1 id="title">
-        <a routerLink="/" (click)="resetSearchTerm()">
+        <a routerLink="/">
           CodeSail
         </a>
       </h1>
     </li>
     <li>
-      <form id="search-form" class="full-width" (ngSubmit)="performSearch()">
-        <mat-form-field class="full-width">
-          <input matInput type="search" autocomplete="off" [formControl]="searchControl" placeholder="Search" (input)="onSearchChange()">
-        </mat-form-field>
-        <span>
-          <button mat-icon-button type="submit">
-            <mat-icon>search</mat-icon>
-          </button>
-        </span>
-      </form>
+      <app-search-form></app-search-form>
     </li>
     <li *ngIf="loggedIn">
       <button mat-icon-button type="button" [matMenuTriggerFor]="adminTools">
