@@ -7,6 +7,7 @@ import {
   MatMenuModule,
 } from '@angular/material';
 import { SearchModule } from 'app/search';
+import { ThemingModule } from 'app/theming';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 
@@ -19,6 +20,7 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
     MatIconModule,
     MatMenuModule,
     SearchModule,
+    ThemingModule,
   ],
   declarations: [NavbarComponent, AdminMenuComponent],
   exports: [NavbarComponent],

@@ -20,14 +20,13 @@ import {
 } from '@angular/material';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
-
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor, HttpsInterceptor } from './core';
 import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
 import { WidgetsModule } from './widgets';
-import { ThemingModule, ThemeService } from './theming';
+import { ThemeService } from './theming';
 import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -78,7 +77,6 @@ import { environment } from '../environments/environment';
     CookieConsentModule,
     AppUpdatesModule,
     WidgetsModule,
-    ThemingModule,
     SocialModule,
     NavModule,
     // Angular Material

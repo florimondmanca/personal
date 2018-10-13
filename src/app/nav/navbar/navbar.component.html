@@ -1,9 +1,10 @@
-<nav id="nav">
+<nav id="nav" class="pad-h-responsive">
   <ul>
     <li>
       <h1 id="title">
         <a routerLink="/">
-          CodeSail
+          <span id="brand-long">CodeSail</span>
+          <span id="brand-short">CS</span>
         </a>
       </h1>
     </li>
@@ -17,6 +18,9 @@
       <mat-menu #adminTools="matMenu">
         <app-admin-menu></app-admin-menu>
       </mat-menu>
+    </li>
+    <li>
+      <app-theme-switch></app-theme-switch>
     </li>
   </ul>
 </nav>

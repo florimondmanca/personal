@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import 'variables';
+@import 'mixins/media';
 
 .text-center {
   text-align: center;
@@ -14,10 +15,25 @@
   margin: auto;
 }
 
-.pad-h-sm {
-  padding-left: 1em;
-  padding-right: 1em;
+@mixin pad-h($amount) {
   box-sizing: border-box;
+  padding-left: $amount;
+  padding-right: $amount;
+}
+
+@mixin pad-h-sm() {
+  @include pad-h(1em);
+}
+
+.pad-h-responsive {
+  @include pad-h-sm();
+  @include media-sm {
+    @include pad-h(2em);
+  }
+}
+
+.pad-h-sm {
+  @include pad-h-sm();
 }
 
 .pad-v-sm {
