@@ -133,12 +133,6 @@
     }
   }
 
-  #dev-icon-svg {
-    path {
-      fill: mat-color(map-get($t, foreground), text);
-    }
-  }
-
   #editor-tools {
     background: mat-color(map-get($t, background), background);
   }
