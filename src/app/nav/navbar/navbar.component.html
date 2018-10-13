@@ -10,7 +10,7 @@
     <li>
       <form id="search-form" class="full-width" (ngSubmit)="performSearch()">
         <mat-form-field class="full-width">
-          <input matInput type="search" [formControl]="searchControl" placeholder="Search" (input)="onSearchChange()">
+          <input matInput type="search" autocomplete="off" [formControl]="searchControl" placeholder="Search" (input)="onSearchChange()">
         </mat-form-field>
         <span>
           <button mat-icon-button type="submit">
