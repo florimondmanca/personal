@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav [autoFocus]="false" mode="side">
+  <mat-sidenav #sidenav [autoFocus]="false" [mode]="onMobile ? 'over' : 'side'">
     <h2>
       A journey through web development & software engineering
     </h2>

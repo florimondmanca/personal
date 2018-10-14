@@ -1,34 +1,38 @@
-import { Component, ViewChild } from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { SidenavService } from 'app/core';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent {
-
-  private desktopQuery: MediaQueryList;
+export class MainComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  constructor(media: MediaMatcher) {
-    this.desktopQuery = media.matchMedia('(min-width: 600px)');
-  }
+  constructor(
+    private sidenavService: SidenavService,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) { }
 
   ngOnInit() {
-    // Open sidenav by default on desktops
-    if (this.desktopQuery.matches) {
-      this.sidenav.open();
-    }
+    this.sidenavService.init(this.sidenav, this.changeDetectorRef);
   }
 
   toggleSidenav() {
-    if (this.sidenav.opened) {
-      this.sidenav.close();
+    if (this.sidenavService.sidenav.opened) {
+      this.sidenavService.sidenav.close();
     } else {
-      this.sidenav.open();
+      this.sidenavService.sidenav.open();
     }
+  }
+
+  get onMobile(): boolean {
+    return this.sidenavService.onMobile();
+  }
+
+  ngOnDestroy() {
+    this.sidenavService.destroy();
   }
 }
