@@ -15,7 +15,7 @@
       Updates: <app-follow-button></app-follow-button>
     </p>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()">
     <section id="toggle-container" class="pad-h-responsive">
       <button mat-icon-button (click)="toggleSidenav()">
         <mat-icon>menu</mat-icon>

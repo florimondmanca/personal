@@ -20,6 +20,18 @@ export class MainComponent implements OnInit, OnDestroy {
     this.sidenavService.init(this.sidenav, this.changeDetectorRef);
   }
 
+  onSwipeLeft() {
+    if (this.sidenavService.sidenav.opened) {
+      this.sidenavService.sidenav.close();
+    }
+  }
+
+  onSwipeRight() {
+    if (!this.sidenavService.sidenav.opened) {
+      this.sidenavService.sidenav.open();
+    }
+  }
+
   toggleSidenav() {
     if (this.sidenavService.sidenav.opened) {
       this.sidenavService.sidenav.close();
