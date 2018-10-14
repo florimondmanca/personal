@@ -11,16 +11,13 @@
     <li>
       <app-search-form></app-search-form>
     </li>
-    <li *ngIf="loggedIn">
-      <button mat-icon-button type="button" [matMenuTriggerFor]="adminTools">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <mat-menu #adminTools="matMenu">
-        <app-admin-menu></app-admin-menu>
-      </mat-menu>
-    </li>
     <li>
-      <app-theme-switch></app-theme-switch>
+      <button mat-icon-button type="button" [matMenuTriggerFor]="navMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #navMenu="matMenu">
+        <app-nav-menu></app-nav-menu>
+      </mat-menu>
     </li>
   </ul>
 </nav>

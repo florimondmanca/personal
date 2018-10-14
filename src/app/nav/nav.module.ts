@@ -9,7 +9,7 @@ import {
 import { SearchModule } from 'app/search';
 import { ThemingModule } from 'app/theming';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
     SearchModule,
     ThemingModule,
   ],
-  declarations: [NavbarComponent, AdminMenuComponent],
+  declarations: [NavbarComponent, NavMenuComponent],
   exports: [NavbarComponent],
 })
 export class NavModule { }
