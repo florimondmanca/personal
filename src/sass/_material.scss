@@ -9,7 +9,13 @@
 
 // Definition of component theming relying on Material theme colors
 @mixin custom-components-theme($t) {
-  $muted: mat-color(map-get($t, foreground), muted);
+  $foreground: map-get($t, foreground);
+  $background: map-get($t, background);
+  $primary: map-get($t, primary);
+  $warn: map-get($t, warn);
+  $accent: map-get($t, accent);
+
+  $muted: mat-color($foreground, muted);
 
   ul.motos li {
     color: $muted;
@@ -24,22 +30,22 @@
       color: inherit;
     }
     &:not(.mat-button):not(.mat-icon-button):not(.mat-raised-button):not(.mat-menu-item):not(.twitter-follow-button) {
-      @include link(mat-color(map-get($t, primary)));
+      @include link(mat-color($primary));
       color: inherit;
     }
     &.no-border {
       border: none !important;
     }
     &.twitter-follow-button {
-      background: mat-color(map-get($t, primary), 700);
+      background: mat-color($primary, 700);
       &:hover {
-        background: mat-color(map-get($t, primary), 500);
+        background: mat-color($primary, 500);
       }
     }
     &.app-tab-link {
       padding: .5em 1em;
       &.active {
-        background: rgba(mat-color(map-get($t, primary)), 0.4) !important;
+        background: rgba(mat-color($primary), 0.4) !important;
       }
     }
   }
@@ -47,7 +53,7 @@
   pre {
     overflow: auto;
     padding: 1em;
-    background: mat-color(map-get($t, background), hover);
+    background: mat-color($background, hover);
     border-radius: 4px;
     @include card-shadow;
     margin-bottom: 1em !important;
@@ -71,7 +77,7 @@
   }
 
   app-post-footer .container {
-    background: mat-color(map-get($t, background), card);
+    background: mat-color($background, card);
   }
 
   .markdown-image {
@@ -100,45 +106,51 @@
   }
 
   .text-primary {
-    color: mat-color(map-get($t, primary));
+    color: mat-color($primary);
   }
 
   .text-warn {
-    color: mat-color(map-get($t, warn));
+    color: mat-color($warn);
   }
 
   .text-accent {
-    color: mat-color(map-get($t, accent));
+    color: mat-color($accent);
   }
 
   .bg-primary {
-    background: mat-color(map-get($t, primary));
+    background: mat-color($primary);
   }
 
   code:not(pre > code), .code {
-    $bg: mat-color(map-get($t, background), card);
+    $bg: mat-color($background, card);
     background: $bg;
     border-radius: 3px;
     padding: .1em .1em;
     box-sizing: content-box;
-    color: mat-color(map-get($t, foreground), inline-code);
+    color: mat-color($foreground, inline-code);
     font-family: $font-mono, Courier, monospace;
   }
 
   .post + .post {
-    border-top: 1px solid mat-color(map-get($t, foreground), divider);
+    border-top: 1px solid mat-color($foreground, divider);
   }
 
   #editor-tools {
-    background: mat-color(map-get($t, background), background);
+    background: mat-color($background, background);
   }
 
   #theme-switch {
-    color: mat-color(map-get($t, foreground), muted);
+    color: mat-color($foreground, muted);
   }
 
   #nav {
-    background-color: mat-color(map-get($t, background), card);
+    background-color: mat-color($background, card);
+  }
+
+  // See:
+  // https://github.com/angular/material2/blob/master/src/lib/sidenav/_sidenav-theme.scss
+  .mat-drawer-backdrop.mat-drawer-shown {
+    background-color: mat-color($background, background, 0.8);
   }
 }
 
