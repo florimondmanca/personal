@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.sidenavService.openOnDesktop();
+    this.sidenavService.closeOnMobile();
   }
 
   private setUpCards() {

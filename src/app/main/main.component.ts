@@ -32,6 +32,10 @@ export class MainComponent implements OnInit, OnDestroy {
     }
   }
 
+  onClickAbout() {
+    this.sidenavService.closeOnMobile();
+  }
+
   toggleSidenav() {
     if (this.sidenavService.sidenav.opened) {
       this.sidenavService.sidenav.close();

@@ -34,6 +34,12 @@ export class SidenavService {
     }
   }
 
+  closeOnMobile() {
+    if (this.onMobile()) {
+      this._sidenav.close();
+    }
+  }
+
   get sidenav(): MatSidenav {
     return this._sidenav;
   }
