@@ -17,6 +17,7 @@ import {
   MatButtonModule,
   MatIconModule,
   MatProgressBarModule,
+  MatSidenavModule,
 } from '@angular/material';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
@@ -86,6 +87,7 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     MatIconModule,
     MatProgressBarModule,
+    MatSidenavModule,
     // Service worker
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],

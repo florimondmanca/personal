@@ -1,3 +1,27 @@
 <app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [autoFocus]="false" mode="side">
+    <h2>
+      A journey through web development & software engineering
+    </h2>
+    <p>
+      <a routerLink="/about">by Florimond Manca</a>
+    </p>
+    <p class="text-muted">
+      New fresh blog posts (mostly) every week.
+    </p>
+    <p>
+      Updates: <app-follow-button></app-follow-button>
+    </p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <section id="toggle-container" class="pad-h-responsive">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </section>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

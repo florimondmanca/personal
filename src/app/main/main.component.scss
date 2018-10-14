@@ -1,0 +1,16 @@
+@import 'variables';
+
+mat-sidenav {
+  width: 14em;
+  padding: 1em;
+  font-size: smaller;
+  h2 {
+    font-weight: normal;
+    font-size: 0.7 * $font-size-h2;
+    padding-top: 0;  // fix
+  }
+}
+
+#toggle-container {
+  margin: .5em 0;
+}

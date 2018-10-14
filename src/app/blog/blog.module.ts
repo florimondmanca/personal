@@ -12,6 +12,7 @@ import {
   MatMenuModule,
   MatIconModule,
   MatChipsModule,
+  MatSidenavModule,
 } from '@angular/material';
 
 import { BlogRoutingModule } from './blog-routing.module';
@@ -42,6 +43,7 @@ import { SearchComponent } from './search/search.component';
     MatMenuModule,
     MatIconModule,
     MatChipsModule,
+    MatSidenavModule,
     // Project modules
     CoreModule,
     SocialModule,

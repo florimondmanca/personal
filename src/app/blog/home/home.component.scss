@@ -1,13 +1,13 @@
 @import 'mixins/media';
 @import 'variables';
 
-:host {
-  @include media-sm {
-    display: grid;
-    grid-template-columns: 10em 1fr;
-    grid-gap: 2em;
-  }
-}
+// :host {
+//   @include media-sm {
+//     display: grid;
+//     grid-template-columns: 10em 1fr;
+//     grid-gap: 2em;
+//   }
+// }
 
 #divide {
   margin: 1em 0;
