@@ -80,11 +80,12 @@ export class PostService {
     )
   }
 
-  slugExists(slug: string, postId?: string): Observable<boolean> {
+  slugExists(slug: string, postId: number): Observable<boolean> {
     return this.http.get(this.baseUrl, { params: { slug } }).pipe(
       map((data: any) => data['results']),
+      map((results: any[]) => results.filter((item) => item.id !== postId)),
       map((results: any[]) => results.map(item => item.slug)),
-      map((pks: string[]) => pks.length > 0 && !pks.includes(postId)),
+      map((slugs: string[]) => slugs.length > 0),
     );
   }
 

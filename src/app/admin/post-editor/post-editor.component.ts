@@ -134,8 +134,8 @@ export class PostEditorComponent implements OnInit, OnDestroy {
 
   validateSlugNotTaken(control: AbstractControl) {
     const slug: string = control.value;
-    const pk = this.post ? this.post.pk : null;
-    return this.postService.slugExists(slug, pk).pipe(
+    const id = this.post ? this.post.id : null;
+    return this.postService.slugExists(slug, id).pipe(
       map((exists: boolean) => exists ? { exists: true } : null),
     );
   }
