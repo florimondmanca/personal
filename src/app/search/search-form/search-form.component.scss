@@ -1,9 +1,6 @@
 @import 'mixins/media';
 @import 'variables';
 
-form {
-  font-size: 0.7 * $font-size;
-  @include media-xxs {
-    font-size: inherit;
-  }
+.mat-form-field {
+  font-size: 0.6 * $font-size;
 }
