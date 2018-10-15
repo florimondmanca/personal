@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentRef } from '@angular/core';
+import { Component, ComponentRef } from '@angular/core';
 import { CookieConsentService } from '../cookie-consent.service';
 
 @Component({
@@ -6,14 +6,11 @@ import { CookieConsentService } from '../cookie-consent.service';
   templateUrl: './cookie-consent-popup.component.html',
   styleUrls: ['./cookie-consent-popup.component.scss']
 })
-export class CookieConsentPopupComponent implements OnInit {
+export class CookieConsentPopupComponent {
 
   _ref: ComponentRef<CookieConsentPopupComponent>;
 
   constructor(private ccService: CookieConsentService) { }
-
-  ngOnInit() {
-  }
 
   onDeny() {
     this.ccService.statusChange.next({ status: 'deny' });

@@ -8,11 +8,6 @@ import { MatDialog, MatTextareaAutosize } from '@angular/material';
 import { ImageUploadDialogComponent } from '../image-upload-dialog/image-upload-dialog.component';
 
 
-interface EditorChange {
-  text: string;
-}
-
-
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -40,7 +35,7 @@ export class EditorComponent {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
+  onResize() {
     this.setMobile();
   }
 
@@ -60,7 +55,7 @@ export class EditorComponent {
     });
   }
 
-  onTextChange(event: any) {
+  onTextChange() {
     if (!this.isDirty) {
       this.isDirty = true;
       this.dirty.emit();

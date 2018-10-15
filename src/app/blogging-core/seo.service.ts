@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CardService, TwitterTag, OpenGraphTag } from 'app/social';
-import { TruncatorService, DescriptionService, UrlService } from 'app/core';
+import { CardService } from 'app/social';
+import { DescriptionService, UrlService } from 'app/core';
 import { Title } from '@angular/platform-browser';
 import { Post } from './post.model';
 
@@ -12,7 +12,6 @@ export class SeoService {
   constructor(
     private cards: CardService,
     private description: DescriptionService,
-    private truncator: TruncatorService,
     private title: Title,
     private urlService: UrlService,
   ) { }

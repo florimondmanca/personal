@@ -11,7 +11,7 @@ $theme-warn: mat-palette($warn);
 @function theme-foreground($t, $base, $text-color, $muted-color, $inline-code-color) {
   @return map-merge($t, (
     foreground: map-merge($base, (
-      text: $text-color,
+      base: $text-color,
       muted: $muted-color,  // custom
       inline-code: $inline-code-color,  // custom
     ))
@@ -22,7 +22,8 @@ $theme-warn: mat-palette($warn);
   @return map-merge($t, (
     background: map-merge($bg, (
       background: $bg-color,
-      card: $card-color
+      card: $card-color,
+      dialog: $card-color,
     ))
   ));
 }

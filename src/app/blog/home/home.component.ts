@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { StaticFiles, DescriptionService, UrlService } from 'app/core';
+import { DescriptionService, SidenavService } from 'app/core';
 import { Post, CursorPaginator } from 'app/blogging-core';
 import { CardService } from 'app/social';
-import { environment } from 'environments/environment';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { environment } from 'environments/environment';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   paginator: CursorPaginator<Post>;
 
@@ -20,14 +19,18 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private cards: CardService,
     private title: Title,
-    private staticFiles: StaticFiles,
-    private urlService: UrlService,
     private description: DescriptionService,
+    private sidenavService: SidenavService,
   ) { }
 
   ngOnInit() {
     this.paginator = this.route.snapshot.data.paginator;
     this.setUpCards();
+  }
+
+  ngAfterViewInit() {
+    this.sidenavService.openOnDesktop();
+    this.sidenavService.closeOnMobile();
   }
 
   private setUpCards() {

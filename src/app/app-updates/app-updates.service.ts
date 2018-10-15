@@ -1,7 +1,6 @@
 import { Injectable, ComponentFactoryResolver, ViewContainerRef, ComponentRef } from '@angular/core';
-import { Inject } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { Observable, from, of } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { mergeMap, filter, map, tap } from 'rxjs/operators';
 import { UpdatePromptComponent } from './update-prompt/update-prompt.component';
 

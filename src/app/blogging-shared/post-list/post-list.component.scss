@@ -9,7 +9,20 @@ ul {
 }
 
 .post {
-  // NOTE: defined in _material.scss
+  // NOTE: border defined in _material.scss
+  padding-bottom: 1em;
+  & + .post {
+    padding-top: 1em;
+  }
+}
+
+.post-header {
+  font-size: smaller;
+  margin-bottom: .25em;
+  @include media-xs {
+    margin-bottom: 0;
+    font-size: inherit;
+  }
 }
 
 .published-date {

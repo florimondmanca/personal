@@ -1,20 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from 'app/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'app/core';
+import { ThemeService } from 'app/theming';
 import { environment } from 'environments/environment';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-nav-menu',
+  templateUrl: './nav-menu.component.html',
+  styleUrls: ['./nav-menu.component.scss']
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavMenuComponent implements OnInit, OnDestroy {
 
   loggedIn: boolean;
   adminSiteUrl = environment.adminSiteUrl;
   private sub = new Subscription();
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private themeService: ThemeService) { }
 
   ngOnInit() {
     this.sub.add(this.auth.getUser().subscribe(
@@ -24,6 +25,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.auth.logout();
+  }
+
+  switchTheme() {
+    this.themeService.switch();
   }
 
   ngOnDestroy() {

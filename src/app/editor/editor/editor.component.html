@@ -13,7 +13,7 @@
   <mat-form-field id="edit" class="full-width" appearance="fill" [ngClass]="{'hidden': previewActive}">
     <mat-label>Markdown is supported.</mat-label>
     <textarea matInput
-      (input)="onTextChange($event)"
+      (input)="onTextChange()"
       [formControl]="control"
       cdkTextareaAutosize
       #autosize="cdkTextareaAutosize"

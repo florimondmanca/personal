@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 interface PromptResult {
   accept: boolean;
@@ -10,13 +10,9 @@ interface PromptResult {
   templateUrl: './update-prompt.component.html',
   styleUrls: ['./update-prompt.component.scss']
 })
-export class UpdatePromptComponent implements OnInit {
+export class UpdatePromptComponent {
 
   private close: Subject<PromptResult> = new Subject();
-
-  constructor() { }
-
-  ngOnInit() { }
 
   onClose(): Observable<PromptResult> {
     return this.close.asObservable();

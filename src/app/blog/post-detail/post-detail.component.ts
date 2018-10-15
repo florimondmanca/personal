@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'app/core';
+import { AuthService, SidenavService } from 'app/core';
 import { Subscription } from 'rxjs';
-import { map, filter, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Post, SeoService } from 'app/blogging-core';
 
 
@@ -12,7 +11,7 @@ import { Post, SeoService } from 'app/blogging-core';
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.scss']
 })
-export class PostDetailComponent implements OnInit, OnDestroy {
+export class PostDetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
   post: Post;
   canEdit: boolean;
@@ -22,11 +21,10 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private auth: AuthService,
     private seo: SeoService,
-    private title: Title,
+    private sidenavService: SidenavService,
   ) { }
 
   ngOnInit() {
-    const initialTitle = this.title.getTitle();
     this.route.data.pipe(
       map(data => data.post),
       tap((post) => this.post = post),
@@ -35,6 +33,11 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.sub.add(this.auth.getUser().pipe(
       tap((user) => this.canEdit = user.permissions.canEditPost),
     ).subscribe());
+  }
+
+  ngAfterViewInit() {
+    // Close sidenav on opening post detail
+    this.sidenavService.sidenav.close();
   }
 
   ngOnDestroy() {

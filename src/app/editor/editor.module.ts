@@ -16,7 +16,6 @@ import {
   MatIconModule,
   MatTableModule,
   MatSlideToggleModule,
-  MatSnackBarModule,
 } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
@@ -36,7 +35,6 @@ import { ImageUploadDialogComponent } from './image-upload-dialog/image-upload-d
     MatButtonModule,
     MatTableModule,
     MatSlideToggleModule,
-    MatSnackBarModule,
     WidgetsModule,
   ],
   declarations: [

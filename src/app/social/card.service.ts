@@ -1,5 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
-import { Meta, DOCUMENT } from '@angular/platform-browser';
+import { Injectable } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { OpenGraphTag, TwitterTag, OpenGraphCardType, TwitterCardType } from './card-tags';
 import { UrlService, StaticFiles } from 'app/core';
 
@@ -26,7 +26,6 @@ export class CardService {
 
   constructor(
     private meta: Meta,
-    @Inject(DOCUMENT) private document: any,
     private urlService: UrlService,
     private staticFiles: StaticFiles,
   ) {

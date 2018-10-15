@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Patch } from './patch.model';
 
 @Component({
@@ -6,13 +6,8 @@ import { Patch } from './patch.model';
   templateUrl: './patchwork.component.html',
   styleUrls: ['./patchwork.component.scss']
 })
-export class PatchworkComponent implements OnInit {
+export class PatchworkComponent {
 
   @Input() patches: Patch[] = [];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

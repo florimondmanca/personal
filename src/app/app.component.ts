@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy, Inject, ViewContainerRef } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
-import { SwUpdate } from '@angular/service-worker';
 import { DOCUMENT } from '@angular/common';
-import { Subscription, from } from 'rxjs';
-import { filter, tap, debounceTime, distinctUntilChanged, mergeMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { filter, tap, debounceTime } from 'rxjs/operators';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { PageTitleService, AnalyticsService } from './core';
@@ -45,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Update navigating on router events
     this.sub.add(this.router.events.pipe(
       filter(e => e instanceof NavigationStart || e instanceof NavigationEnd || e instanceof NavigationCancel),
-      debounceTime(100),  // don't mark fast navigation changes as navigating
+      debounceTime(10),  // don't mark fast navigation changes as navigating
       tap((e) => this.navigating = e instanceof NavigationStart),
     ).subscribe());
 

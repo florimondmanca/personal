@@ -1,29 +1,3 @@
-<header class="text-center">
-  <h1 id="title">
-    <a routerLink="/" id="banner">
-      CodeSail
-    </a>
-  </h1>
-  <h2>
-    A journey through web development & software engineering
-  </h2>
-  <p>
-    <a routerLink="/about">by Florimond Manca</a>
-  </p>
-</header>
+<h1>Latest posts</h1>
 
-<br>
-
-<section class="text-center">
-  <p class="text-muted">
-    New fresh blog posts (mostly) every week.
-  </p>
-  <p>
-    Updates: <app-follow-button></app-follow-button>
-  </p>
-</section>
-
-
-<section id="post-list">
-  <app-post-list [paginator]="paginator"></app-post-list>
-</section>
+<app-post-list [paginator]="paginator"></app-post-list>

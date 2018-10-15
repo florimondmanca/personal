@@ -16,12 +16,11 @@ import {
   MatInputModule,
   MatButtonModule,
   MatIconModule,
-  MatMenuModule,
   MatProgressBarModule,
+  MatSidenavModule,
 } from '@angular/material';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
-
 import { markedOptionsFactory } from './markdown/options';
 import { KeyInterceptor, TokenInterceptor, HttpsInterceptor } from './core';
 import { AppUpdatesModule } from './app-updates';
@@ -32,7 +31,7 @@ import { ThemingModule, ThemeService } from './theming';
 import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavModule } from './nav';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -45,7 +44,6 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     FooterComponent,
     NotFoundComponent,
     LoginComponent,
@@ -80,15 +78,16 @@ import { environment } from '../environments/environment';
     CookieConsentModule,
     AppUpdatesModule,
     WidgetsModule,
-    ThemingModule,
     SocialModule,
+    NavModule,
+    ThemingModule,
     // Angular Material
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule,
     MatProgressBarModule,
+    MatSidenavModule,
     // Service worker
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],

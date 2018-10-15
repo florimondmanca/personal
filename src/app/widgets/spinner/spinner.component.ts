@@ -10,8 +10,6 @@ export class SpinnerComponent {
   @Input() inline = true;
   @Input() diameter: number;
 
-  constructor() { }
-
   get actualDiameter(): number {
     return this.diameter || (this.inline ? 30 : null);
   }

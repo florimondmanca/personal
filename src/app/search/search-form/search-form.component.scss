@@ -1,0 +1,6 @@
+@import 'mixins/media';
+@import 'variables';
+
+.mat-form-field {
+  font-size: 0.6 * $font-size;
+}

@@ -12,6 +12,7 @@ import {
   MatMenuModule,
   MatIconModule,
   MatChipsModule,
+  MatSidenavModule,
 } from '@angular/material';
 
 import { BlogRoutingModule } from './blog-routing.module';
@@ -26,6 +27,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostNavComponent } from './post-nav/post-nav.component';
 import { PostFooterComponent } from './post-footer/post-footer.component';
 import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [
@@ -41,6 +43,7 @@ import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
     MatMenuModule,
     MatIconModule,
     MatChipsModule,
+    MatSidenavModule,
     // Project modules
     CoreModule,
     SocialModule,
@@ -55,6 +58,7 @@ import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
     PostNavComponent,
     PostFooterComponent,
     TagPostListComponent,
+    SearchComponent,
   ],
 })
 export class BlogModule { }

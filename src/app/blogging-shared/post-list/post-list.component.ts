@@ -1,5 +1,4 @@
-import { Component, Input, HostListener, Inject, ElementRef } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Input, HostListener, ElementRef } from '@angular/core';
 import { of } from 'rxjs';
 import { tap, catchError, filter } from 'rxjs/operators';
 import { ScrollService } from 'app/core';
@@ -24,7 +23,6 @@ export class PostListComponent {
   constructor(
     private scroll: ScrollService,
     private postService: PostService,
-    @Inject(DOCUMENT) private document: any,
     private elementRef: ElementRef,
   ) { }
 

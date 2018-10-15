@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Router, ActivatedRoute, NavigationEnd, ParamMap } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Observable } from 'rxjs';
 import { tap, filter, map, mergeMap } from 'rxjs/operators';
 
 @Injectable({

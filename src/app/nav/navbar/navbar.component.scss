@@ -1,0 +1,48 @@
+@import '~@angular/material/theming';
+@import 'variables';
+@import 'mixins/media';
+@import 'mixins/link';
+@import 'theme';
+
+$primary: map-get($light-theme, primary);
+
+#nav {
+  // NOTE: background defined in _material.scss
+  padding-top: .5em;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 1em;
+    align-items: center;
+  }
+}
+
+#title {
+  font-size: 0.65 * $font-size-h1;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: .1em;
+  @include media-xs {
+    font-size: .7 * $font-size-h1;
+    margin-right: .6em;
+  }
+  a {
+    @include link(mat-color($primary), $border-width: .18em);
+  }
+}
+
+#brand-long {
+  display: none;
+  @include media-xs {
+    display: inline-block;
+  }
+}
+
+#brand-short {
+  @include media-xs {
+    display: none;
+  }
+}

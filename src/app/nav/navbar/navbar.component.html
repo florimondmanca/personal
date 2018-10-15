@@ -1,0 +1,23 @@
+<nav id="nav" class="pad-h-responsive">
+  <ul>
+    <li>
+      <h1 id="title">
+        <a routerLink="/">
+          <span id="brand-long">CodeSail</span>
+          <span id="brand-short">CS</span>
+        </a>
+      </h1>
+    </li>
+    <li>
+      <app-search-form></app-search-form>
+    </li>
+    <li>
+      <button mat-icon-button type="button" [matMenuTriggerFor]="navMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #navMenu="matMenu">
+        <app-nav-menu></app-nav-menu>
+      </mat-menu>
+    </li>
+  </ul>
+</nav>

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       () => {
         this.router.navigate([this.auth.redirectUrl || '/']);
       },
-      (e) => {
+      () => {
         this.failed = true;
         this.loading = false;
       },

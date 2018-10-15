@@ -1,5 +1,12 @@
+@import 'variables';
+
 // Using the official twitter scripts sometimes does not work
 // Provide custom style as a fallback
 .twitter-follow-button {
-  // NOTE: defined in _material.scss
+  // NOTE: colors defined in _material.scss
+  padding: .5em;
+  color: white;
+  font-size: 0.6 * $font-size;
+  border-radius: 3px;
+  white-space: nowrap;
 }

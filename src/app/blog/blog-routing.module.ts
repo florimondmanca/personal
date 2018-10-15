@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from 'app/core';
-import { PostListResolver, TagPostListResolver, PostDetailResolver } from 'app/blogging-core';
+import { PostListResolver, TagPostListResolver, PostDetailResolver, PostSearchResolver } from 'app/blogging-core';
 import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -32,6 +32,12 @@ const routes: Routes = [
         resolve: { post: PostDetailResolver },
         data: { pageId: 'post-detail' },
       },
+      {
+        path: 'search/:term',
+        component: SearchComponent,
+        resolve: { paginator: PostSearchResolver },
+        data: { pageId: 'search' },
+      }
     ],
   },
 ];
