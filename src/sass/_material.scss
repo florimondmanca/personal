@@ -53,15 +53,6 @@
     }
   }
 
-  pre {
-    overflow: auto;
-    padding: 1em;
-    background: mat-color($background, hover);
-    border-radius: 4px;
-    @include card-shadow;
-    margin-bottom: 1em !important;
-  }
-
   // NOTE: may not work at all actually?
   hr {
     border: 0;
@@ -124,7 +115,16 @@
     background: mat-color($primary);
   }
 
-  code:not(pre > code), .code {
+  pre {
+    background: mat-color($background, hover);
+    overflow: auto;
+    padding: 1em;
+    border-radius: 4px;
+    @include card-shadow;
+    margin-bottom: 1em !important;
+  }
+
+  :not(pre) > code {
     $bg: mat-color($background, card);
     background: $bg;
     border-radius: 3px;
