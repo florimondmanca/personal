@@ -13,6 +13,7 @@ import { SearchService } from 'app/search';
 export class SearchComponent implements OnInit, OnDestroy {
 
   paginator: CursorPaginator<Post>;
+  searchTerm: string;
   sub = new Subscription();
 
   constructor(
@@ -22,10 +23,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.route.data.pipe(
+    this.sub.add(this.route.paramMap.pipe(
+      tap((paramMap) => this.searchTerm = paramMap.get('term')),
+    ).subscribe());
+    this.sub.add(this.route.data.pipe(
       tap((data) => this.paginator = data.paginator),
       tap(() => this.postService.reset(this.paginator.results)),
-    ).subscribe();
+    ).subscribe());
   }
 
   ngOnDestroy() {
