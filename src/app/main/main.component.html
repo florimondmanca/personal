@@ -2,38 +2,39 @@
   <app-navbar></app-navbar>
 </div>
 
-<main>
-  <mat-sidenav-container>
+<mat-sidenav-container>
 
-    <mat-sidenav #sidenav position="end" [autoFocus]="false" [mode]="onMobile ? 'over' : 'side'">
-      <h2>
-        A journey through web development & software engineering
-      </h2>
-      <p>
-        <a routerLink="/about" (click)="onClickAbout()">by Florimond Manca</a>
-      </p>
-      <p class="text-muted">
-        New fresh blog posts (mostly) every week.
-      </p>
-      <p>
-        Updates: <app-follow-button></app-follow-button>
-      </p>
-    </mat-sidenav>
+  <mat-sidenav #sidenav position="end" [autoFocus]="false" [mode]="onMobile ? 'over' : 'side'">
+    <h2>
+      A journey through web development & software engineering
+    </h2>
+    <p>
+      <a routerLink="/about" (click)="onClickAbout()">by Florimond Manca</a>
+    </p>
+    <p class="text-muted">
+      New fresh blog posts (mostly) every week.
+    </p>
+    <p>
+      Updates: <app-follow-button></app-follow-button>
+    </p>
+  </mat-sidenav>
 
-    <section id="sidenav-content">
+  <mat-sidenav-content>
 
-      <div id="swipe-handle" (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()"></div>
+    <div id="swipe-handle" (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()"></div>
 
-      <div id="toggle-container" class="pad-h-responsive">
-        <button mat-icon-button (click)="toggleSidenav()">
-          <mat-icon>info_outline</mat-icon>
-        </button>
-      </div>
+    <div id="toggle-container" class="pad-h-responsive">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>info_outline</mat-icon>
+      </button>
+    </div>
 
+    <!-- NOTE: routed components must be in their own block element -->
+    <section id="page-content">
       <router-outlet></router-outlet>
-
-      <app-footer></app-footer>
-
     </section>
-  </mat-sidenav-container>
-</main>
+
+    <app-footer></app-footer>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
