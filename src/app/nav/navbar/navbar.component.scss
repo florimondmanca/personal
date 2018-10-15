@@ -21,22 +21,17 @@ $primary: map-get($light-theme, primary);
 }
 
 #title {
-  font-size: 0.8 * $font-size-h1;
-  line-height: 0.8 * $font-line-height;
+  font-size: 0.65 * $font-size-h1;
   width: fit-content;
   margin: auto;
-  // Separate from search box
-  margin-right: .0em;
+  margin-bottom: .1em;
   @include media-xs {
+    font-size: .7 * $font-size-h1;
     margin-right: .6em;
   }
   a {
-    @include link(mat-color($primary), $border-width: 6px);
-    @include media-xs {
-      @include link(mat-color($primary), $border-width: 8px);
-    }
+    @include link(mat-color($primary), $border-width: .18em);
   }
-  margin-bottom: .1em;
 }
 
 #brand-long {
