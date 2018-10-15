@@ -4,6 +4,7 @@
 
 <main>
   <mat-sidenav-container>
+
     <mat-sidenav #sidenav position="end" [autoFocus]="false" [mode]="onMobile ? 'over' : 'side'">
       <h2>
         A journey through web development & software engineering
@@ -18,14 +19,19 @@
         Updates: <app-follow-button></app-follow-button>
       </p>
     </mat-sidenav>
-    <mat-sidenav-content (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()">
-      <section id="toggle-container" class="pad-h-responsive">
+
+    <section id="sidenav-content" (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()">
+
+      <div id="toggle-container" class="pad-h-responsive">
         <button mat-icon-button (click)="toggleSidenav()">
           <mat-icon>info_outline</mat-icon>
         </button>
-      </section>
+      </div>
+
       <router-outlet></router-outlet>
+
       <app-footer></app-footer>
-    </mat-sidenav-content>
+
+    </section>
   </mat-sidenav-container>
 </main>

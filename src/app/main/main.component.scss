@@ -8,10 +8,6 @@
   z-index: 20;  // float on top
 }
 
-main {
-  // padding-top: $navbar-height;
-}
-
 mat-sidenav {
   width: 14em;
   padding: 1em;
@@ -27,7 +23,9 @@ mat-sidenav {
 }
 
 #toggle-container {
-  margin: .5em 0;
-  display: flex;
-  justify-content: flex-end;
+  float: right;
+}
+
+#sidenav-content {
+  margin-top: 1em;
 }
