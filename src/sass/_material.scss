@@ -29,12 +29,15 @@
     &:visited {
       color: inherit;
     }
+    &.no-border {
+      border: none !important;
+    }
+    &.no-background:hover {
+      background-color: transparent !important;
+    }
     &:not(.mat-button):not(.mat-icon-button):not(.mat-raised-button):not(.mat-menu-item):not(.twitter-follow-button) {
       @include link(mat-color($primary));
       color: inherit;
-    }
-    &.no-border {
-      border: none !important;
     }
     &.twitter-follow-button {
       background: mat-color($primary, 700);
