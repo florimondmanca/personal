@@ -8,6 +8,13 @@
   z-index: 20;  // float on top
 }
 
+#swipe-handle {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 30px;
+}
+
 mat-sidenav {
   width: 14em;
   padding: 1em;

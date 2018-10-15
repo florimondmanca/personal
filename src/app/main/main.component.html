@@ -20,7 +20,9 @@
       </p>
     </mat-sidenav>
 
-    <section id="sidenav-content" (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()">
+    <section id="sidenav-content">
+
+      <div id="swipe-handle" (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()"></div>
 
       <div id="toggle-container" class="pad-h-responsive">
         <button mat-icon-button (click)="toggleSidenav()">
