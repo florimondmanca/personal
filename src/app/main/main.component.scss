@@ -1,6 +1,17 @@
 @import 'variables';
 @import 'mixins/media';
 
+#navbar-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 20;  // float on top
+}
+
+main {
+  // padding-top: $navbar-height;
+}
+
 mat-sidenav {
   width: 14em;
   padding: 1em;
@@ -17,4 +28,6 @@ mat-sidenav {
 
 #toggle-container {
   margin: .5em 0;
+  display: flex;
+  justify-content: flex-end;
 }
