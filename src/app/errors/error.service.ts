@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Error } from './error.model';
+import { Error, ErrorHint } from './error.model';
 
 
 @Injectable({
@@ -20,18 +20,25 @@ export class ErrorService {
     return this.error$.asObservable();
   }
 
-  private error(text: string) {
-    this.error$.next({ id: this.errorId, text });
+  private error(text: string, hint: ErrorHint) {
+    this.error$.next({ id: this.errorId, text, hint });
     this.errorId++;
   }
 
+  private ourFaultError(what: string, hint: ErrorHint) {
+    const text = `Aw, snap! ${what}. 😞`;
+    this.error(text, hint);
+  }
+
   serverError() {
-    const text = `Aw, snap! Something went horribly wrong. 😞 We need to fix this. Fancy reporting the issue?`;
-    this.error(text);
+    this.ourFaultError('Something went horribly wrong', 'report');
   }
 
   unknownError() {
-    const text = `Aw, snap! We encountered an unexpected error. 😞 Please try again in a few moments.`;
-    this.error(text);
+    this.ourFaultError('We encountered an unexpected error', 'retry_later');
+  }
+
+  badRequestError() {
+    this.ourFaultError(`That request didn't make it through`, 'report');
   }
 }

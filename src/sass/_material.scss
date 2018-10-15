@@ -115,6 +115,10 @@
     background: mat-color($primary);
   }
 
+  .bg-warn {
+    background: mat-color($warn);
+  }
+
   pre {
     background: mat-color($background, hover);
     overflow: auto;

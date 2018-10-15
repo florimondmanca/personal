@@ -28,6 +28,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.errorService.unknownError();
       } else if (error.status === 500) {
         this.errorService.serverError();
+      } else if (error.status === 400) {
+        this.errorService.badRequestError();
       }
     }
   }

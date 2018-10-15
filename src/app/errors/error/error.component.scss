@@ -1,6 +1,12 @@
-#error {
-  text-align: center;
-  padding: 1em 2em;
-  background: white;
+.error {
+  padding: .5em 1em;
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 1em;
+}
+
+p {
+  margin: 0.2em 0;
+  padding: 0;
 }

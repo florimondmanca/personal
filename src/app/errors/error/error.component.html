@@ -1,6 +1,20 @@
-<p id="error" class="mat-elevation-z1 text-warn">
-  {{ message }}
+<div class="error bg-warn">
+  <section class="messages">
+    <p>
+      <strong>
+        {{ error.text }}
+      </strong>
+    </p>
+    <p [ngSwitch]="error.hint">
+      <span *ngSwitchCase="'report'">
+        We need to fix this. Fancy <a href="https://github.com/florimondmanca/personal/issues/new" target="_blank" rel="noreferrer">reporting the issue</a>?
+      </span>
+      <span *ngSwitchCase="'retry_later'">
+        You may need to try again in a few moments. Have you tried <a (click)="reloadPage()">refreshing the page</a>?
+      </span>
+    </p>
+  </section>
   <button mat-icon-button (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
-</p>
+</div>

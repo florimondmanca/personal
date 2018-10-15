@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Error } from '../error.model';
 
 @Component({
   selector: 'app-error',
@@ -8,12 +9,16 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class ErrorComponent {
 
-  @Input() message: string;
+  @Input() error: Error;
   @Output() closed: EventEmitter<void> = new EventEmitter();
   faTimes = faTimes;
 
   close() {
     this.closed.emit();
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 
 }
