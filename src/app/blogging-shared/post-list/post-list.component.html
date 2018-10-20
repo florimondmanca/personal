@@ -4,7 +4,7 @@
       <label class="text-muted" *ngIf="post.published">
         {{ post.published | date:'longDate' }}
       </label>
-      <app-tag-list id="tag-list" [ngClass]="{'separated': post.published}" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
+      <app-tag-list class="tag-list" [ngClass]="{'separated': post.published}" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
     </div>
 
     <h3>

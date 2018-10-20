@@ -29,7 +29,7 @@ ul {
   margin: 0;
 }
 
-#tag-list {
+.tag-list {
   &.separated::before {
     content: '\2219';
   }
