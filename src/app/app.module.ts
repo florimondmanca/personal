@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
-import { MomentModule } from 'ngx-moment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
@@ -58,7 +57,6 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,  // required for Angular animations
-    MomentModule,
     FontAwesomeModule,
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], {
       // Deactivate page tracking initially/by default

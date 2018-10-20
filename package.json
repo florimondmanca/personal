@@ -53,7 +53,6 @@
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
     "ngx-markdown": "^6.1.0",
-    "ngx-moment": "^3.1.0",
     "reflect-metadata": "^0.1.12",
     "request": "^2.88.0",
     "rxjs": "^6.3.3",
