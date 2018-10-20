@@ -45,9 +45,9 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     const title = this.post ? this.post.title : '';
     const slug = this.post ? this.post.slug : slugify(title);
     const content = this.post ? this.post.content : '';
-    const description = this.post ? this.post.description : null;
-    const imageUrl = this.post ? (this.post.imageUrl || null) : null;
-    const imageCaption = this.post ? (this.post.imageCaption || null) : null;
+    const description = this.post ? this.post.description : undefined;
+    const imageUrl = this.post ? (this.post.imageUrl || undefined) : undefined;
+    const imageCaption = this.post ? (this.post.imageCaption || undefined) : undefined;
     const tags = this.post ? this.post.tags : [];
 
     this.content = content;
@@ -141,7 +141,15 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.submitted.emit(this.formGroup.value);
+    const value: PostPayload = this.formGroup.value;
+
+    // API may send an error for null fields
+    // Remove them and let the API handle the blank fields
+    Object.keys(value)
+      .filter(key => value[key] === null)
+      .forEach(key => delete value[key]);
+
+    this.submitted.emit(value);
   }
 
   /** Delete the post being edited. */
