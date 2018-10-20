@@ -7,11 +7,11 @@
       <app-tag-list id="tag-list" [ngClass]="{'separated': post.published}" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
     </div>
 
-    <h4>
+    <h3>
       <a [routerLink]="getLink(post)" (click)="scrollTop()">
         {{ post.title }}
       </a>
-    </h4>
+    </h3>
 
     <p>
       {{ post.description }}

@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { UploadEvent } from 'ngx-file-drop';
 import { ImageUploadService, ClipboardService } from 'app/core';
 import { of } from 'rxjs';
 import { mergeMap, filter, tap } from 'rxjs/operators';
@@ -22,15 +21,6 @@ export class ImageUploadDialogComponent {
     private imageUploadService: ImageUploadService,
     private clipboard: ClipboardService,
   ) { }
-
-  dropped(event: UploadEvent) {
-    this.file = null;
-    const file = event.files[0];
-    if (file && file.fileEntry.isFile) {
-      const fileEntry: any = file.fileEntry;
-      fileEntry.file((file: File) => this.file = file);
-    }
-  }
 
   get ready(): boolean {
     return !!this.file;
