@@ -1,4 +1,7 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, AfterViewInit,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService, SidenavService } from 'app/core';
 import { Subscription } from 'rxjs';
@@ -9,7 +12,8 @@ import { Post, SeoService } from 'app/blogging-core';
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.scss']
+  styleUrls: ['./post-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostDetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -22,12 +26,14 @@ export class PostDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     private auth: AuthService,
     private seo: SeoService,
     private sidenavService: SidenavService,
+    private cd: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
     this.route.data.pipe(
       map(data => data.post),
       tap((post) => this.post = post),
+      tap(() => this.cd.markForCheck()),
       tap(() => this.seo.setUp(this.post)),
     ).subscribe();
     this.sub.add(this.auth.getUser().pipe(

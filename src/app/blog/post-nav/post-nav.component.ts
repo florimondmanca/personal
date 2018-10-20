@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ScrollService } from 'app/core';
 import { Post } from 'app/blogging-core';
 
@@ -6,7 +6,8 @@ import { Post } from 'app/blogging-core';
 @Component({
   selector: 'app-post-nav',
   templateUrl: './post-nav.component.html',
-  styleUrls: ['./post-nav.component.scss']
+  styleUrls: ['./post-nav.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostNavComponent {
 

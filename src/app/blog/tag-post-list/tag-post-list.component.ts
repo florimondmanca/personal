@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -17,7 +17,8 @@ function capitalize(value: string): string {
 @Component({
   selector: 'app-tag-post-list',
   templateUrl: './tag-post-list.component.html',
-  styleUrls: ['./tag-post-list.component.scss']
+  styleUrls: ['./tag-post-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagPostListComponent implements OnInit, OnDestroy {
 
@@ -30,11 +31,13 @@ export class TagPostListComponent implements OnInit, OnDestroy {
     private cards: CardService,
     private urlService: UrlService,
     private postService: PostService,
+    private cd: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
     this.sub.add(this.route.data.pipe(
       tap((data) => this.paginator = data.paginator),
+      tap(() => this.cd.markForCheck()),
       tap(() => this.postService.reset(this.paginator.results)),
     ).subscribe());
     this.sub.add(this.route.paramMap.pipe(
@@ -47,6 +50,7 @@ export class TagPostListComponent implements OnInit, OnDestroy {
         url: this.urlService.fromRoot(['t', this.tag]),
       })),
       tap((config) => this.cards.configure(config)),
+      tap(() => this.cd.markForCheck()),
     ).subscribe());
   }
 
