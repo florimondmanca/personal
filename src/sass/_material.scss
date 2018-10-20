@@ -167,6 +167,11 @@
   .mat-menu-item, .mat-chip {
     font-size: 0.9em;
   }
+
+  #prompt {
+    background-color: mat-color($background, card);
+    color: mat-color($foreground, text);
+  }
 }
 
 .mat-light-theme {

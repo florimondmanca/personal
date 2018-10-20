@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DescriptionService, SidenavService } from 'app/core';
@@ -12,7 +12,7 @@ import { CardService } from 'app/social';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
   paginator: CursorPaginator<Post>;
 
@@ -27,9 +27,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.paginator = this.route.snapshot.data.paginator;
     this.setUpCards();
-  }
-
-  ngAfterViewInit() {
     this.sidenavService.openOnDesktop();
     this.sidenavService.closeOnMobile();
   }

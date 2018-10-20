@@ -1,9 +1,9 @@
 @import 'mixins/media';
 
 #prompt {
+  // NOTE: background and color defined in _material.scss
   z-index: 1;  // float on top of page content
   padding: .5em;
-  background: white;
   display: grid;
   align-items: center;
   grid-template-areas: "message" "buttons";

@@ -31,6 +31,8 @@ import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavModule } from './nav';
+import { CoreModule } from './core';
+import { BlogModule } from './blog/blog.module';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -71,6 +73,8 @@ import { environment } from '../environments/environment';
         useFactory: markedOptionsFactory,
       }
     }),
+    CoreModule,
+    BlogModule,
     AppRoutingModule,
     ErrorsModule,
     CookieConsentModule,

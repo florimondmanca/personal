@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MarkdownModule } from 'ngx-markdown';
@@ -13,8 +14,6 @@ import {
   MatChipsModule,
   MatSidenavModule,
 } from '@angular/material';
-
-import { BlogRoutingModule } from './blog-routing.module';
 
 import { BloggingSharedModule } from 'app/blogging-shared';
 import { CoreModule } from 'app/core';
@@ -34,6 +33,7 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
     ReactiveFormsModule,
     MarkdownModule.forChild(),
+    RouterModule,
     // Angular Material
     MatButtonModule,
     MatDialogModule,
@@ -46,7 +46,6 @@ import { SearchComponent } from './search/search.component';
     CoreModule,
     SocialModule,
     WidgetsModule,
-    BlogRoutingModule,
     BloggingSharedModule,
   ],
   declarations: [

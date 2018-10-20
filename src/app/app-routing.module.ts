@@ -4,7 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { BlogModule } from './blog/blog.module';
+import { PostListResolver, TagPostListResolver, PostDetailResolver, PostSearchResolver } from 'app/blogging-core';
+import { BlogComponent } from './blog/blog.component';
+import { HomeComponent } from './blog/home/home.component';
+import { PostDetailComponent } from './blog/post-detail/post-detail.component';
+import { TagPostListComponent } from './blog/tag-post-list/tag-post-list.component';
+import { SearchComponent } from './blog/search/search.component';
+
 
 const routes: Routes = [
   {
@@ -36,10 +42,33 @@ const routes: Routes = [
       // Should be at the bottom because '' matches everything
       {
         path: '',
-        // Eager loading of blog module routes.
-        // NOTE: goal is that the / route be NOT lazy-loaded
-        // which adds significant network/script evaluation work.
-        loadChildren: () => BlogModule,
+        component: BlogComponent,
+        children: [
+          {
+            path: '',
+            component: HomeComponent,
+            resolve: { paginator: PostListResolver },
+            data: { pageId: 'home' },
+          },
+          {
+            path: 't/:tag',
+            component: TagPostListComponent,
+            resolve: { paginator: TagPostListResolver },
+            data: { pageId: 'tag-posts' },
+          },
+          {
+            path: ':pk',
+            component: PostDetailComponent,
+            resolve: { post: PostDetailResolver },
+            data: { pageId: 'post-detail' },
+          },
+          {
+            path: 'search/:term',
+            component: SearchComponent,
+            resolve: { paginator: PostSearchResolver },
+            data: { pageId: 'search' },
+          }
+        ],
       },
     ],
   },
