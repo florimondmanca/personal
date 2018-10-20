@@ -24,6 +24,7 @@ $theme-warn: mat-palette($warn);
       background: $bg-color,
       card: $card-color,
       dialog: $card-color,
+      unselected-chip: $card-color,
     ))
   ));
 }

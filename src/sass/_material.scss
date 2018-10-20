@@ -159,6 +159,11 @@
   .mat-drawer-backdrop.mat-drawer-shown {
     background-color: mat-color($background, background, 0.8);
   }
+
+  // Fix font size too big
+  .mat-menu-item, .mat-chip {
+    font-size: 0.9em;
+  }
 }
 
 .mat-light-theme {
