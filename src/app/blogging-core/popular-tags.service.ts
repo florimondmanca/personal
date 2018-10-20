@@ -14,8 +14,8 @@ export class PopularTagsService {
 
   constructor(private http: HttpClient) { }
 
-  list(options = { limit: 5 }): Observable<string[]> {
-    const params: any = { limit: options.limit };
+  list(options: { limit?: number } = {}): Observable<string[]> {
+    const params: any = options;
     return this.http.get(this.baseUrl, { params }).pipe(
       map((data: any[]) => data.map(item => item.name)),
     );

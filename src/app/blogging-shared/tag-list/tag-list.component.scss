@@ -10,7 +10,7 @@ ul {
     flex-wrap: wrap;
   }
   &.stacked {
-    display: inline-flex;
+    display: flex;
     flex-flow: column;
   }
 }

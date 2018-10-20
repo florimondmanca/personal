@@ -19,3 +19,7 @@
 </p>
 
 <app-tag-list [tags]="popularTags" [inline]="false"></app-tag-list>
+
+<button mat-icon-button *ngIf="!allShown" (click)="loadAll()" [disabled]="loading">
+  <mat-icon>expand_more</mat-icon>
+</button>

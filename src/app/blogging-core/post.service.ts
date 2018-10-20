@@ -216,8 +216,6 @@ export class PostSearchResolver implements Resolve<CursorPaginator<Post>> {
 })
 export class PostDetailResolver implements Resolve<Post> {
 
-  private result: Post;
-
   constructor(
     private router: Router,
     private service: PostService,
@@ -229,7 +227,6 @@ export class PostDetailResolver implements Resolve<Post> {
   getPost(pk): Observable<Post | null> {
     return this.service.retrieve(pk).pipe(
       catchError(() => of(null)),
-      tap((post: Post) => this.result = post),
       map((post: Post) => {
         if (!post) {
           return null;
