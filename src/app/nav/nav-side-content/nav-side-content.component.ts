@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PopularTagsService } from 'app/blogging-core';
 
 @Component({
   selector: 'app-nav-side-content',
@@ -7,13 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavSideContentComponent implements OnInit {
 
-  constructor() { }
+  popularTags: string[] = [];
+
+  constructor(private popularTagsService: PopularTagsService) { }
 
   ngOnInit() {
-  }
-
-  onClickAbout() {
-    alert('about!');
+    this.popularTagsService.list({ limit: 5 }).subscribe((tags) => this.popularTags = tags);
   }
 
 }

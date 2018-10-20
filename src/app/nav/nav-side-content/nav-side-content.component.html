@@ -3,7 +3,7 @@
 </h2>
 
 <p>
-  <a routerLink="/about" (click)="onClickAbout()">by Florimond Manca</a>
+  <a routerLink="/about">by Florimond Manca</a>
 </p>
 <p class="text-muted">
   New fresh blog posts (mostly) every week.
@@ -11,3 +11,11 @@
 <p>
   Updates: <app-follow-button></app-follow-button>
 </p>
+
+<hr class="large">
+
+<p>
+  <strong>Popular tags:</strong>
+</p>
+
+<app-tag-list [tags]="popularTags"></app-tag-list>

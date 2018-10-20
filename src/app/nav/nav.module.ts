@@ -9,6 +9,7 @@ import {
 import { SearchModule } from 'app/search';
 import { ThemingModule } from 'app/theming';
 import { SocialModule } from 'app/social';
+import { BloggingSharedModule } from 'app/blogging-shared';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { NavSideContentComponent } from './nav-side-content/nav-side-content.component';
@@ -24,6 +25,7 @@ import { NavSideContentComponent } from './nav-side-content/nav-side-content.com
     SearchModule,
     ThemingModule,
     SocialModule,
+    BloggingSharedModule,
   ],
   declarations: [
     NavbarComponent,
