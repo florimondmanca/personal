@@ -5,18 +5,7 @@
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav position="end" [autoFocus]="false" [mode]="onMobile ? 'over' : 'side'">
-    <h2>
-      A journey through web development & software engineering
-    </h2>
-    <p>
-      <a routerLink="/about" (click)="onClickAbout()">by Florimond Manca</a>
-    </p>
-    <p class="text-muted">
-      New fresh blog posts (mostly) every week.
-    </p>
-    <p>
-      Updates: <app-follow-button></app-follow-button>
-    </p>
+    <app-nav-side-content></app-nav-side-content>
   </mat-sidenav>
 
   <mat-sidenav-content>

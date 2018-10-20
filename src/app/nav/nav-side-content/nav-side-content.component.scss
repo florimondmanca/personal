@@ -1,0 +1,11 @@
+@import 'variables';
+
+:host {
+  font-size: smaller;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 0.8 * $font-size-h2;
+  padding-top: 0;  // fix
+}

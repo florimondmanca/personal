@@ -8,8 +8,10 @@ import {
 } from '@angular/material';
 import { SearchModule } from 'app/search';
 import { ThemingModule } from 'app/theming';
+import { SocialModule } from 'app/social';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavSideContentComponent } from './nav-side-content/nav-side-content.component';
 
 
 @NgModule({
@@ -21,8 +23,16 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     MatMenuModule,
     SearchModule,
     ThemingModule,
+    SocialModule,
   ],
-  declarations: [NavbarComponent, NavMenuComponent],
-  exports: [NavbarComponent],
+  declarations: [
+    NavbarComponent,
+    NavMenuComponent,
+    NavSideContentComponent,
+  ],
+  exports: [
+    NavbarComponent,
+    NavSideContentComponent,
+  ],
 })
 export class NavModule { }
