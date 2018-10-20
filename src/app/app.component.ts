@@ -59,7 +59,6 @@ export class AppComponent implements OnInit, OnDestroy {
     ));
 
     // Update app immediately when an update is available and user agreed
-    this.appUpdates.init(this.viewContainerRef);
     this.sub.add(this.appUpdates.onUpdate().pipe(
       tap(() => this.document.location.reload()),
     ).subscribe());

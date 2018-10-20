@@ -1,5 +1,7 @@
-import { Injectable, ComponentFactoryResolver, ViewContainerRef, ComponentRef } from '@angular/core';
+import { Injectable, ComponentRef } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { Observable, from } from 'rxjs';
 import { mergeMap, filter, map, tap } from 'rxjs/operators';
 import { UpdatePromptComponent } from './update-prompt/update-prompt.component';
@@ -10,19 +12,12 @@ import { UpdatePromptComponent } from './update-prompt/update-prompt.component';
 })
 export class AppUpdatesService {
 
-  private view: ViewContainerRef;
-
   constructor(
     private updates: SwUpdate,
-    private factoryResolver: ComponentFactoryResolver,
+    private overlay: Overlay,
   ) { }
 
-  init(view: ViewContainerRef) {
-    this.view = view;
-  }
-
   onUpdate(): Observable<any> {
-    this.promptUserForUpdate();
     return this.updates.available.pipe(
       mergeMap(() => from(this.updates.activateUpdate())),
       mergeMap(() => this.promptUserForUpdate()),
@@ -31,9 +26,12 @@ export class AppUpdatesService {
   }
 
   private promptUserForUpdate(): Observable<boolean> {
-    const factory = this.factoryResolver.resolveComponentFactory(UpdatePromptComponent);
-    const prompt: ComponentRef<UpdatePromptComponent> = factory.create(this.view.parentInjector);
-    this.view.insert(prompt.hostView);
+    const positionStrategy = this.overlay.position().global().bottom().centerHorizontally();
+    const overlayRef = this.overlay.create({
+      positionStrategy,
+    });
+    const portal = new ComponentPortal(UpdatePromptComponent);
+    const prompt: ComponentRef<UpdatePromptComponent> = overlayRef.attach(portal);
     return prompt.instance.onClose().pipe(
       map(result => result.accept),
       tap(() => prompt.destroy()),

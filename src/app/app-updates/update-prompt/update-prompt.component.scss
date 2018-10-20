@@ -1,14 +1,7 @@
 @import 'mixins/media';
 
 #prompt {
-  position: fixed;
-  bottom: .5em;
-  right: .5em;
-  left: .5em;
   z-index: 1;  // float on top of page content
-  @include media-xs {
-    left: inherit;
-  }
   padding: .5em;
   background: white;
   display: grid;
