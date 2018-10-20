@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MomentModule } from 'ngx-moment';
 import { MarkdownModule } from 'ngx-markdown';
 
 import {
@@ -34,7 +33,6 @@ import { SearchComponent } from './search/search.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MomentModule,
     MarkdownModule.forChild(),
     // Angular Material
     MatButtonModule,

@@ -4,10 +4,10 @@
     <div id="meta">
       <div>
         <label class="text-muted" *ngIf="post.published">
-          {{ post.published | amDateFormat: 'LL' }}
+          {{ post.published | date:'longDate' }}
         </label>
         <label class="text-muted" *ngIf="!post.published">
-          Drafted {{ post.created | amDateFormat: 'LL' }}
+          Drafted {{ post.created | date:'longDate' }}
         </label>
         <app-tag-list id="tags" [tags]="post.tags" *ngIf="post.tags.length > 0"></app-tag-list>
       </div>
