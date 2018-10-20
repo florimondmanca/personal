@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { BlogModule } from './blog/blog.module';
 
 const routes: Routes = [
   {
@@ -35,7 +36,10 @@ const routes: Routes = [
       // Should be at the bottom because '' matches everything
       {
         path: '',
-        loadChildren: './blog/blog.module#BlogModule',
+        // Eager loading of blog module routes.
+        // NOTE: goal is that the / route be NOT lazy-loaded
+        // which adds significant network/script evaluation work.
+        loadChildren: () => BlogModule,
       },
     ],
   },

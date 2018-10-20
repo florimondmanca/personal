@@ -9,7 +9,7 @@ import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
 import { SearchComponent } from './search/search.component';
 
 
-const routes: Routes = [
+export const blogRoutes: Routes = [
   {
     path: '',
     component: BlogComponent,
@@ -43,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(blogRoutes)],
   exports: [RouterModule]
 })
 export class BlogRoutingModule { }
