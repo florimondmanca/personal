@@ -9,5 +9,6 @@ import { Component, Input } from '@angular/core';
 export class TagListComponent {
 
   @Input() tags: string[] = [];
+  @Input() inline = true;
 
 }

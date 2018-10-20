@@ -2,9 +2,15 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: inline-flex;
-  flex-wrap: wrap;
   li {
     margin: 0 .2em;
+  }
+  &.inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+  &.stacked {
+    display: inline-flex;
+    flex-flow: column;
   }
 }

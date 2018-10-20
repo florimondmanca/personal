@@ -1,4 +1,4 @@
-<ul>
+<ul [ngClass]="{ 'inline': inline, 'stacked': !inline }">
   <li *ngFor="let tag of tags">
     <a [routerLink]="['/t', tag]" class="no-border">
       #{{ tag }}
