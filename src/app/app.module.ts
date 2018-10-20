@@ -50,7 +50,7 @@ import { environment } from '../environments/environment';
     PrivacyPolicyComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'florimondmanca-blog' }),
+    BrowserModule.withServerTransition({ appId: 'personal' }),
     BrowserTransferStateModule,
     FormsModule,
     RouterModule,
@@ -87,7 +87,7 @@ import { environment } from '../environments/environment';
     MatProgressBarModule,
     MatSidenavModule,
     // Service worker
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },

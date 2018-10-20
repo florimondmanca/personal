@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "florimondmanca": {
+    "personal": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -106,21 +106,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "florimondmanca:build"
+            "browserTarget": "personal:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "florimondmanca:build:production"
+              "browserTarget": "personal:build:production"
             },
             "dev": {
-              "browserTarget": "florimondmanca:build:dev"
+              "browserTarget": "personal:build:dev"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "florimondmanca:build"
+            "browserTarget": "personal:build"
           }
         },
         "test": {
@@ -156,7 +156,7 @@
         }
       }
     },
-    "florimondmanca-e2e": {
+    "personal-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -164,7 +164,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "florimondmanca:serve"
+            "devServerTarget": "personal:serve"
           }
         },
         "lint": {
@@ -179,5 +179,5 @@
       }
     }
   },
-  "defaultProject": "florimondmanca"
+  "defaultProject": "personal"
 }
