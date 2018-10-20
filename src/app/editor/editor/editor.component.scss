@@ -18,14 +18,11 @@
 }
 
 #editor-tools {
+  // NOTE: background defined in _material.scss
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  // NOTE: background defined in _material.scss
   padding: .5em;
 }
 

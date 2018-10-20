@@ -22,6 +22,7 @@ export class AppUpdatesService {
   }
 
   onUpdate(): Observable<any> {
+    this.promptUserForUpdate();
     return this.updates.available.pipe(
       mergeMap(() => from(this.updates.activateUpdate())),
       mergeMap(() => this.promptUserForUpdate()),
