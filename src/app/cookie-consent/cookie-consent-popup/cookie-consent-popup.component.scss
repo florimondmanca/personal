@@ -7,11 +7,8 @@ $primary: map-get($light-theme, primary);
 $accent: map-get($light-theme, accent);
 
 #consent {
-  position: fixed;
+  width: 100vw;
   z-index: 2;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background: mat-color($primary, 50);
   display: grid;
   grid-template-areas: "message" "buttons";
@@ -22,7 +19,7 @@ $accent: map-get($light-theme, accent);
     grid-template-columns: 1fr auto;
     grid-template-areas: "message buttons";
   }
-  font-size: 0.8 * $font-size;
+  font-size: 0.65 * $font-size;
 }
 
 .message {

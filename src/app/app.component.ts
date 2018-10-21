@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -31,7 +31,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private analytics: AnalyticsService,
     private themeService: ThemeService,
     private appUpdates: AppUpdatesService,
-    private viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private document: any,
   ) {
     this.sub = new Subscription();
@@ -49,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Configure Cookie Consent
     if (!this.cookieConsent.hasAnswered()) {
-      this.cookieConsentPopup.createFor(this.viewContainerRef);
+      this.cookieConsentPopup.createLater().subscribe();
     }
     if (this.cookieConsent.hasConsented()) {
       this.analytics.activate();
