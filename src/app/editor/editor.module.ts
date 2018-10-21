@@ -5,7 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { CoreModule } from 'app/core';
-import { WidgetsModule } from 'app/widgets';
+import { ImageModule } from 'app/image';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 import {
   MatInputModule,
@@ -15,6 +16,7 @@ import {
   MatIconModule,
   MatTableModule,
   MatSlideToggleModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 
 import { EditorComponent } from './editor/editor.component';
@@ -33,11 +35,13 @@ import { ImageUploadDialogComponent } from './image-upload-dialog/image-upload-d
     MatButtonModule,
     MatTableModule,
     MatSlideToggleModule,
-    WidgetsModule,
+    MatProgressSpinnerModule,
+    ImageModule,
   ],
   declarations: [
     EditorComponent,
     ImageUploadDialogComponent,
+    SpinnerComponent,
   ],
   exports: [
     EditorComponent,

@@ -9,7 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, tap, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import slugify from 'slugify';
 import { Post, PostPayload, PostService } from 'app/blogging-core';
-import { ConfirmDialogComponent, ConfirmDialogConfig } from 'app/widgets';
+import { ConfirmDialogComponent, ConfirmDialogConfig } from '../confirm-dialog';
 
 
 @Component({

@@ -25,7 +25,6 @@ import { KeyInterceptor, TokenInterceptor, HttpsInterceptor } from './core';
 import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
-import { WidgetsModule } from './widgets';
 import { ThemingModule, ThemeService } from './theming';
 import { SocialModule } from './social';
 import { AppRoutingModule } from './app-routing.module';
@@ -79,7 +78,6 @@ import { environment } from '../environments/environment';
     ErrorsModule,
     CookieConsentModule,
     AppUpdatesModule,
-    WidgetsModule,
     SocialModule,
     NavModule,
     ThemingModule,

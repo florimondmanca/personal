@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Patch } from 'app/widgets/patchwork/patch.model';
 import { CardService } from 'app/social';
 import { StaticFiles } from 'app/core';
+import { Patch } from '../patchwork/patch.model';
 
 @Component({
   selector: 'app-tech',

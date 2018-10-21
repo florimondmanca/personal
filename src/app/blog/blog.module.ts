@@ -18,7 +18,7 @@ import {
 import { BloggingSharedModule } from 'app/blogging-shared';
 import { CoreModule } from 'app/core';
 import { SocialModule } from 'app/social';
-import { WidgetsModule } from 'app/widgets';
+import { ImageModule } from 'app/image';
 import { BlogComponent } from './blog.component';
 import { HomeComponent } from './home/home.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
@@ -45,7 +45,7 @@ import { SearchComponent } from './search/search.component';
     // Project modules
     CoreModule,
     SocialModule,
-    WidgetsModule,
+    ImageModule,
     BloggingSharedModule,
   ],
   declarations: [
