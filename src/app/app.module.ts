@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher,
@@ -21,7 +21,8 @@ import {
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { markedOptionsFactory } from './markdown/options';
-import { KeyInterceptor, TokenInterceptor, HttpsInterceptor } from './core';
+import { HttpsInterceptor } from './core';
+import { AuthModule } from './auth';
 import { AppUpdatesModule } from './app-updates';
 import { ErrorInterceptor, ErrorsModule } from './errors';
 import { CookieConsentModule } from './cookie-consent';
@@ -71,6 +72,7 @@ import { environment } from '../environments/environment';
       }
     }),
     CoreModule,
+    AuthModule,
     BlogModule,
     AppRoutingModule,
     ErrorsModule,
@@ -90,8 +92,6 @@ import { environment } from '../environments/environment';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }

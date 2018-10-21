@@ -3,7 +3,8 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService, SidenavService } from 'app/core';
+import { AuthService } from 'app/auth';
+import { SidenavService } from 'app/core';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Post, SeoService } from 'app/blogging-core';

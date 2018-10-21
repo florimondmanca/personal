@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'app/core';
+import { AuthService } from 'app/auth';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

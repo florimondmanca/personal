@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'app/core';
+import { AuthService } from 'app/auth';
 import { ThemeService } from 'app/theming';
 import { environment } from 'environments/environment';
 

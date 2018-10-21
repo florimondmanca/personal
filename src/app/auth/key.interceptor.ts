@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class KeyInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

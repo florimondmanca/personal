@@ -5,7 +5,7 @@ import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
-import { AuthService } from 'app/core';
+import { AuthService } from 'app/auth';
 import { Post, PostAdapter } from './post.model';
 import { PostPayload } from './post.payload';
 import { environment } from 'environments/environment';
