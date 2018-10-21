@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
@@ -15,7 +14,7 @@ import { SearchComponent } from './blog/search/search.component';
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent,
+    loadChildren: './login/login.module#LoginModule',
   },
   {
     path: 'not-found',
@@ -40,6 +39,8 @@ const routes: Routes = [
         loadChildren: './admin/admin.module#AdminModule',
       },
       // Should be at the bottom because '' matches everything
+      // NOTE: eager-loaded so that main route is not lazy-loaded,
+      // which adds significant extra network round trips and script evaluations.
       {
         path: '',
         component: BlogComponent,
