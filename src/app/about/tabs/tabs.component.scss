@@ -1,7 +1,10 @@
+@import 'variables';
 nav {
+  font-size: .7 * $font-size;  // fix to avoid wrapping on smallest screens
   display: grid;
   width: fit-content;
   margin: 0 auto;
+  margin-bottom: .5em;
   grid-auto-flow: column;
 }
 

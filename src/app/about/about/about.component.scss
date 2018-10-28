@@ -1,18 +1,10 @@
+@import 'mixins/media';
+
 #header {
   h1 {
-    margin: 0;
-  }
-}
-
-#banner {
-  img {
-    max-width: 100%;
-    height: auto;
-    pointer-events: none;
-  }
-  figcaption {
-    text-align: right;
-    font-size: x-small;
-    width: 100%;
+    margin: 0 1em;  // avoid collision with sidenav button on mobile
+    @include media-sm {
+      margin: 0;
+    }
   }
 }

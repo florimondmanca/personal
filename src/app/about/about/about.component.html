@@ -6,22 +6,16 @@
   <p>
     I write about web development and software engineering. 💻
   </p>
+  <app-tabs>
+    <a app-tab-link *ngFor="let link of links"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [routerLink]="link.path">
+      {{ link.label }}
+    </a>
+  </app-tabs>
 </div>
-
-<div id="banner" class="page text-center">
-  <img src="assets/img/profile-banner.jpg" alt="Florimond Manca">
-  <figcaption class="text-muted pad-h-sm">Lauren Mijatovic, 2018.</figcaption>
-</div>
-
-<app-tabs>
-  <a app-tab-link *ngFor="let link of links"
-    routerLinkActive
-    #rla="routerLinkActive"
-    [active]="rla.isActive"
-    [routerLink]="link.path">
-    {{ link.label }}
-  </a>
-</app-tabs>
 
 <router-outlet></router-outlet>
 

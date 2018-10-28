@@ -24,7 +24,9 @@ mat-sidenav {
 }
 
 #toggle-container {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 #page-content, #toggle-container {
