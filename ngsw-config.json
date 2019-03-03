@@ -6,12 +6,7 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
-        "files": [
-          "/favicon.ico",
-          "/index.html",
-          "/*.css",
-          "/*.js"
-        ]
+        "files": ["/favicon.ico", "/index.html", "/*.css", "/*.js"]
       }
     },
     {
@@ -19,19 +14,15 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": [
-          "/assets/**"
-        ],
-        "urls": [
-          "https://fonts.googleapis.com/**"
-        ]
+        "files": ["/assets/**"],
+        "urls": ["https://fonts.googleapis.com/**"]
       }
     }
   ],
   "dataGroups": [
     {
       "name": "api",
-      "urls": ["https://api.florimondmanca.com/**"],
+      "urls": ["https://api.florimond.dev/**"],
       "cacheConfig": {
         "maxSize": 3,
         "maxAge": "7d",

@@ -1,43 +1,61 @@
 <footer id="footer">
-  <hr>
+  <hr />
 
   <ul class="socials">
     <li>
-      <a href="https://github.com/florimondmanca" target="_blank" rel="noreferrer" title="GitHub (florimondmanca)">
+      <a
+        href="https://github.com/florimondmanca"
+        target="_blank"
+        rel="noreferrer"
+        title="GitHub (florimondmanca)"
+      >
         <fa-icon [icon]="faGitHub"></fa-icon>
       </a>
     </li>
     <li>
-      <a href="https://twitter.com/FlorimondManca" target="_blank" rel="noreferrer" title="Twitter (@FlorimondManca)">
+      <a
+        href="https://twitter.com/FlorimondManca"
+        target="_blank"
+        rel="noreferrer"
+        title="Twitter (@FlorimondManca)"
+      >
         <fa-icon [icon]="faTwitter"></fa-icon>
       </a>
     </li>
     <li>
-      <a href="https://www.linkedin.com/in/florimondmanca" target="_blank" rel="noreferrer" title="LinkedIn (florimondmanca)">
+      <a
+        href="https://www.linkedin.com/in/florimondmanca"
+        target="_blank"
+        rel="noreferrer"
+        title="LinkedIn (florimondmanca)"
+      >
         <fa-icon [icon]="faLinkedin"></fa-icon>
       </a>
     </li>
     <li>
-      <a href="https://dev.to/florimondmanca" target="_blank" rel="noreferrer" title="DEV (florimondmanca)">
+      <a
+        href="https://dev.to/florimondmanca"
+        target="_blank"
+        rel="noreferrer"
+        title="DEV (florimondmanca)"
+      >
         <fa-icon [icon]="faDev"></fa-icon>
       </a>
     </li>
     <li>
-      <a href="feed://api.florimondmanca.com/blog/feed" title="RSS Feed">
+      <a href="feed://api.florimond.dev/blog/feed" title="RSS Feed">
         <fa-icon [icon]="faRss"></fa-icon>
       </a>
     </li>
   </ul>
 
   <p class="pad-h-sm">
-    © {{ now | date:'y' }}
-    &middot;
-    Made with ✨ by Florimond Manca
+    © {{ now | date: "y" }}
+    &middot; Made with ✨ by Florimond Manca
   </p>
   <p class="pad-h-sm">
     <a routerLink="/about">About</a>
     &middot;
     <a routerLink="/privacy">Privacy Policy</a>
   </p>
-
 </footer>

@@ -34,4 +34,4 @@ deploy:
 
 env:
   global:
-    - BACKEND_URL: https://api.florimondmanca.com
+    - BACKEND_URL: "https://api.florimond.dev.com"
