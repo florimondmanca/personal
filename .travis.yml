@@ -13,7 +13,11 @@ cache:
   directories:
     - "$HOME/.npm"
 
+before_install:
+  - openssl aes-256-cbc -K $encrypted_e1e2a71240b7_key -iv $encrypted_e1e2a71240b7_iv -in deploy_rsa.enc -out .travis/deploy_rsa -d
+
 install:
+  - npm install -g caprover
   - npm install
 
 script:
@@ -21,9 +25,6 @@ script:
   - npm run build
   - npm run setup:http2
   - npm test
-
-before_deploy:
-  - source scripts/before_deploy.sh
 
 deploy:
   provider: script

@@ -40,6 +40,7 @@ Thumbs.db
 
 # Private
 .env
+.travis
 
 # Environment files
 src/environments/environment.*.ts
