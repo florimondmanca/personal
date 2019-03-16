@@ -1,13 +1,13 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "dockerfileLines": [
     "FROM node:10.8.0",
     "RUN mkdir -p /usr/app/",
     "WORKDIR /usr/app/",
-    "COPY ./src/package.json /usr/app/",
-    "COPY ./src/package-lock.json /usr/app/",
+    "COPY ./package.json /usr/app/",
+    "COPY ./package-lock.json /usr/app/",
     "RUN npm install --only=prod",
-    "COPY ./src /usr/app/",
+    "COPY ./ /usr/app/",
     "EXPOSE 4200",
     "CMD npm run serve:ssr"
   ]
