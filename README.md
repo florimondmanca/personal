@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/travis/florimondmanca/personal.svg?style=flat-square)](https://travis-ci.org/florimondmanca/personal)
 [![Angular](https://img.shields.io/badge/angular-6-blue.svg?style=flat-square)](https://angular.io)
 [![DigitalOcean](https://img.shields.io/badge/digitalocean-deployed-0069fe.svg?style=flat-square)](https://digitalocean.com)
-[![CaptainDuckDuck](https://img.shields.io/badge/captainduckduck-quack-fdc73d.svg?style=flat-square)](https://captainduckduck.com)
+[![CapRover](https://img.shields.io/badge/caprover-deployed-fdc73d.svg?style=flat-square)](https://caprover.com)
 
 [![](https://blog.florimondmanca.com/assets/img/codesail-full-repo.png)](https://blog.florimondmanca.com)
 
@@ -92,6 +92,6 @@ Angular's service worker extension is not directly compatible with the CLI's dev
 Deployment is configured in `.travis.yml`. After a successful CI build:
 
 - Static files are securely uploaded using `rsync` to a server running on DigitalOcean.
-- A deploy is triggered via [CaptainDuckDuck](https://captainduckduck.com).
+- A deploy is triggered via [CapRover](https://caprover.com).
 
 This deploy updates the Docker container that runs the NodeJS app, i.e. the Express server which serves server-rendered pages and static files.

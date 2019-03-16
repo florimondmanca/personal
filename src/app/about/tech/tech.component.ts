@@ -12,7 +12,7 @@ export class TechComponent implements OnInit {
 
   techs: Patch[] = [
     {
-      title: 'Python 3',
+      title: 'Python',
       image: 'python.png',
       url: 'https://python.org',
     },
@@ -32,7 +32,7 @@ export class TechComponent implements OnInit {
       url: 'https://nodejs.org',
     },
     {
-      title: 'Angular 6',
+      title: 'Angular',
       image: 'angular.png',
       url: 'https://angular.io',
     },
@@ -65,11 +65,6 @@ export class TechComponent implements OnInit {
       title: 'Nginx',
       image: 'nginx.png',
       url: 'https://nginx.com',
-    },
-    {
-      title: 'CaptainDuckDuck',
-      image: 'captainduckduck.png',
-      url: 'https://captainduckduck.com',
     },
     {
       title: 'GitHub',
