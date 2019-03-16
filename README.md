@@ -1,6 +1,6 @@
 # Personal
 
-[![Build Status](https://img.shields.io/travis-ci/florimondmanca/personal.svg?style=flat-square)](https://travis-ci.org/florimondmanca/personal)
+[![Build Status](https://img.shields.io/travis/florimondmanca/personal.svg?style=flat-square)](https://travis-ci.org/florimondmanca/personal)
 [![Angular](https://img.shields.io/badge/angular-6-blue.svg?style=flat-square)](https://angular.io)
 [![DigitalOcean](https://img.shields.io/badge/digitalocean-deployed-0069fe.svg?style=flat-square)](https://digitalocean.com)
 [![CaptainDuckDuck](https://img.shields.io/badge/captainduckduck-quack-fdc73d.svg?style=flat-square)](https://captainduckduck.com)
