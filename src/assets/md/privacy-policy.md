@@ -2,7 +2,7 @@
 
 Effective date: September 26, 2018
 
-CodeSail by Florimond Manca ("us", "we", or "our") operates the https://blog.florimondmanca.com website (the "Service").
+CodeSail by Florimond Manca ("us", "we", or "our") operates the https://blog.florimond.dev website (the "Service").
 
 This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy  for CodeSail by Florimond Manca is managed through [Free Privacy Policy](https://www.freeprivacypolicy.com/free-privacy-policy-generator.php).
 

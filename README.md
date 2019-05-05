@@ -5,9 +5,9 @@
 [![DigitalOcean](https://img.shields.io/badge/digitalocean-deployed-0069fe.svg?style=flat-square)](https://digitalocean.com)
 [![CapRover](https://img.shields.io/badge/caprover-deployed-fdc73d.svg?style=flat-square)](https://caprover.com)
 
-[![](https://blog.florimondmanca.com/assets/img/codesail-full-repo.png)](https://blog.florimondmanca.com)
+[![](https://blog.florimond.dev/assets/img/codesail-full-repo.png)](https://blog.florimond.dev)
 
-This is the repository for the **frontend application** powering [CodeSail](https://blog.florimondmanca.com), my personal website and blog.
+This is the repository for the **frontend application** powering my [personal blog](https://blog.florimond.dev).
 
 For the backend API, see [personal-api](https://github.com/florimondmanca/personal-api).
 
@@ -80,18 +80,3 @@ See `package.json` for the available NPM scripts.
 ## CI/CD
 
 [TravisCI](https://travis-ci.org) is configured on this repo and generates a production build on every push to a branch.
-
-## Progressive Web App capabilities
-
-In production, a service worker is registered to make the website available offline. This is achieved by caching assets and data.
-
-Angular's service worker extension is not directly compatible with the CLI's development server. To run the service worker locally, you must use the [server-rendered app](#using-server-side-rendering).
-
-## Deployment
-
-Deployment is configured in `.travis.yml`. After a successful CI build:
-
-- Static files are securely uploaded using `rsync` to a server running on DigitalOcean.
-- A deploy is triggered via [CapRover](https://caprover.com).
-
-This deploy updates the Docker container that runs the NodeJS app, i.e. the Express server which serves server-rendered pages and static files.
