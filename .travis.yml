@@ -8,6 +8,10 @@ cache:
     - "$HOME/.npm"
 
 install:
+  # Issue with node-gyp on 12.1
+  # See: https://github.com/atom/node-keytar/issues/174
+  - nvm install 11
+  - nvm use 11
   - npm install
 
 script:
