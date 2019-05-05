@@ -116,4 +116,4 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 
 ## Contact Us
 
-If you have any questions about this Privacy Policy, please contact us by email: me@florimondmanca.com.
+If you have any questions about this Privacy Policy, please contact us by email: me@florimond.dev.
