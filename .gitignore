@@ -41,6 +41,8 @@ Thumbs.db
 # Private
 .env
 .travis
+deploy_rsa
+deploy_rsa.pub
 
 # Environment files
 src/environments/environment.*.ts
