@@ -8,7 +8,7 @@ cache:
     - "$HOME/.npm"
 
 install:
-  - npm install --dev
+  - npm install
 
 script:
   - npm run config -- --env=prod
