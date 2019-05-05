@@ -1,6 +1,10 @@
 {
   "name": "personal",
   "version": "0.1.0",
+  "engines": {
+    "node": "11",
+    "npm": "6.9"
+  },
   "scripts": {
     "ng": "ng",
     "config": "node ./scripts/set-env.js",
