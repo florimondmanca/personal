@@ -73,7 +73,12 @@
           "https://www.google-analytics.com/analytics.js",
           "ga"
         );
-        ga("create", "UA-122676386-1", "auto");
+        if (host.endsWith("florimond.dev")) {
+          ga("create", "UA-122676386-2", "auto");
+        }
+        if (host.endsWith("florimondmanca.com")) {
+          ga("create", "UA-122676386-1", "auto");
+        }
       }
     </script>
   </head>
