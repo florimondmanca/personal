@@ -12,12 +12,12 @@
       <app-search-form></app-search-form>
     </li>
     <li>
-      <button mat-icon-button type="button" [matMenuTriggerFor]="navMenu">
-        <mat-icon>more_vert</mat-icon>
+      <button mat-icon-button (click)="switchTheme()">
+        <mat-icon aria-label="Toggle theme">brightness_medium</mat-icon>
       </button>
-      <mat-menu #navMenu="matMenu">
-        <app-nav-menu></app-nav-menu>
-      </mat-menu>
+    </li>
+    <li *ngIf="loggedIn">
+      <app-nav-admin-menu></app-nav-admin-menu>
     </li>
   </ul>
 </nav>
