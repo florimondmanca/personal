@@ -51,10 +51,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sidenavService.sidenav.close();
   }
 
-  onClickAbout() {
-    this.sidenavService.closeOnMobile();
-  }
-
   toggleSidenav() {
     if (this.sidenavService.sidenav.opened) {
       this.sidenavService.sidenav.close();

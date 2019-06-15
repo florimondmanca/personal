@@ -26,10 +26,6 @@ const routes: Routes = [
     data: { pageId: 'main' },
     children: [
       {
-        path: 'about',
-        loadChildren: './about/about.module#AboutModule',
-      },
-      {
         path: 'privacy',
         component: PrivacyPolicyComponent,
         data: { pageId: 'privacy' },
