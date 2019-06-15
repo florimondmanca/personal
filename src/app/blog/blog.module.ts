@@ -26,6 +26,7 @@ import { PostNavComponent } from './post-nav/post-nav.component';
 import { PostFooterComponent } from './post-footer/post-footer.component';
 import { TagPostListComponent } from './tag-post-list/tag-post-list.component';
 import { SearchComponent } from './search/search.component';
+import { HomeSidebarComponent } from './home-sidebar/home-sidebar.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { SearchComponent } from './search/search.component';
     PostFooterComponent,
     TagPostListComponent,
     SearchComponent,
+    HomeSidebarComponent,
   ],
 })
 export class BlogModule { }

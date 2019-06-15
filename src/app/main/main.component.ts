@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MatSidenav } from '@angular/material';
-import { SidenavService } from 'app/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BlogLayoutService } from 'app/blogging-core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -9,42 +9,20 @@ import { SidenavService } from 'app/core';
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  public isHome: boolean = false;
+  private sub: Subscription;
 
-  constructor(
-    private sidenavService: SidenavService,
-    private changeDetectorRef: ChangeDetectorRef,
-  ) { }
+  constructor(private blogLayoutService: BlogLayoutService) {
+    this.sub = new Subscription();
+  }
 
   ngOnInit() {
-    this.sidenavService.init(this.sidenav, this.changeDetectorRef);
-  }
-
-  onSwipeLeft() {
-    this.sidenavService.sidenav.open();
-  }
-
-  onSwipeRight() {
-    this.sidenavService.sidenav.close();
-  }
-
-  onClickAbout() {
-    this.sidenavService.closeOnMobile();
-  }
-
-  toggleSidenav() {
-    if (this.sidenavService.sidenav.opened) {
-      this.sidenavService.sidenav.close();
-    } else {
-      this.sidenavService.sidenav.open();
-    }
-  }
-
-  get onMobile(): boolean {
-    return this.sidenavService.onMobile();
+    this.sub = this.blogLayoutService.isHome$.subscribe(
+      (isHome: boolean) => this.isHome = isHome
+    );
   }
 
   ngOnDestroy() {
-    this.sidenavService.destroy();
+    this.sub.unsubscribe();
   }
 }

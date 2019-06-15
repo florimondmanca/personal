@@ -15,9 +15,7 @@
       <button mat-icon-button (click)="switchTheme()">
         <mat-icon aria-label="Toggle theme">brightness_medium</mat-icon>
       </button>
-    </li>
-    <li *ngIf="loggedIn">
-      <app-nav-admin-menu></app-nav-admin-menu>
+      <app-nav-admin-menu *ngIf="loggedIn"></app-nav-admin-menu>
     </li>
   </ul>
 </nav>

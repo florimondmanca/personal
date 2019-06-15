@@ -1,0 +1,27 @@
+@import "mixins/media";
+
+#swipe-handle {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 30px;
+}
+
+mat-sidenav {
+  width: 13em;
+  padding: 1em;
+  @include media-sm {
+    padding-left: 2em;
+  }
+}
+
+#toggle-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 1em;
+}
+
+.page-content {
+  padding: 1em;
+}

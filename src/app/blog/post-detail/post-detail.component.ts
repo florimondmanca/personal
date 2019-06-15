@@ -4,11 +4,9 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/auth';
-import { SidenavService } from 'app/core';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Post, SeoService } from 'app/blogging-core';
-
 
 @Component({
   selector: 'app-post-detail',
@@ -26,7 +24,6 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private auth: AuthService,
     private seo: SeoService,
-    private sidenavService: SidenavService,
     private cd: ChangeDetectorRef,
   ) { }
 
@@ -41,8 +38,6 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       tap((user) => this.canEdit = user.permissions.canEditPost),
       tap(() => this.cd.markForCheck()),
     ).subscribe());
-    // Close sidenav on opening post detail
-    this.sidenavService.sidenav.close();
   }
 
   ngOnDestroy() {

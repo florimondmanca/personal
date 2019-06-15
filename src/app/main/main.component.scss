@@ -8,27 +8,6 @@
   z-index: 2;  // float on top of page content
 }
 
-#swipe-handle {
-  position: absolute;
-  right: 0;
-  height: 100%;
-  width: 30px;
-}
-
-mat-sidenav {
-  width: 13em;
-  padding: 1em;
-  @include media-sm {
-    padding-left: 2em;
-  }
-}
-
-#toggle-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-#page-content, #toggle-container {
+.page-content {
   padding-top: 1em;
 }

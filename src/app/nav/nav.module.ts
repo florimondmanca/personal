@@ -12,7 +12,6 @@ import { SocialModule } from 'app/social';
 import { BloggingSharedModule } from 'app/blogging-shared';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavAdminMenuComponent } from './nav-admin-menu/nav-admin-menu.component';
-import { NavSideContentComponent } from './nav-side-content/nav-side-content.component';
 
 
 @NgModule({
@@ -30,11 +29,9 @@ import { NavSideContentComponent } from './nav-side-content/nav-side-content.com
   declarations: [
     NavbarComponent,
     NavAdminMenuComponent,
-    NavSideContentComponent,
   ],
   exports: [
     NavbarComponent,
-    NavSideContentComponent,
   ],
 })
 export class NavModule { }

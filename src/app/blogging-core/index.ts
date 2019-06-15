@@ -6,3 +6,4 @@ export * from './dirty-component.interface';
 export * from './dirty-post.guard';
 export * from './paginator';
 export * from './popular-tags.service';
+export * from './blog-layout.service';

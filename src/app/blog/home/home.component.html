@@ -1,3 +1,30 @@
-<h1>Latest posts</h1>
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    position="end"
+    [autoFocus]="false"
+    [mode]="onMobile ? 'over' : 'side'"
+  >
+    <app-home-sidebar></app-home-sidebar>
+  </mat-sidenav>
 
-<app-post-list [paginator]="paginator"></app-post-list>
+  <mat-sidenav-content>
+    <div
+      id="swipe-handle"
+      (swipeLeft)="onSwipeLeft()"
+      (swipeRight)="onSwipeRight()"
+    ></div>
+
+    <div id="toggle-container" class="pad-h-responsive">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>info_outline</mat-icon>
+      </button>
+    </div>
+
+    <!-- NOTE: routed components must be in their own block element -->
+    <section class="page-content pad-h-responsive">
+      <h1>Latest posts</h1>
+      <app-post-list [paginator]="paginator"></app-post-list>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>

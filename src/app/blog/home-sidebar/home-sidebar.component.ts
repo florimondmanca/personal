@@ -4,11 +4,11 @@ import { tap } from 'rxjs/operators';
 import { PopularTagsService } from 'app/blogging-core';
 
 @Component({
-  selector: 'app-nav-side-content',
-  templateUrl: './nav-side-content.component.html',
-  styleUrls: ['./nav-side-content.component.scss']
+  selector: 'app-home-sidebar',
+  templateUrl: './home-sidebar.component.html',
+  styleUrls: ['./home-sidebar.component.scss']
 })
-export class NavSideContentComponent implements OnInit {
+export class HomeSidebarComponent implements OnInit {
 
   popularTags: string[] = [];
   allShown = false;

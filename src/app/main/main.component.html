@@ -2,28 +2,8 @@
   <app-navbar></app-navbar>
 </div>
 
-<mat-sidenav-container>
+<section [ngClass]="{'page-content': !isHome}">
+  <router-outlet></router-outlet>
+</section>
 
-  <mat-sidenav #sidenav position="end" [autoFocus]="false" [mode]="onMobile ? 'over' : 'side'">
-    <app-nav-side-content></app-nav-side-content>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-
-    <div id="swipe-handle" (swipeLeft)="onSwipeLeft()" (swipeRight)="onSwipeRight()"></div>
-
-    <div id="toggle-container" class="pad-h-responsive">
-      <button mat-icon-button (click)="toggleSidenav()">
-        <mat-icon>info_outline</mat-icon>
-      </button>
-    </div>
-
-    <!-- NOTE: routed components must be in their own block element -->
-    <section id="page-content">
-      <router-outlet></router-outlet>
-    </section>
-
-    <app-footer></app-footer>
-
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<app-footer></app-footer>
