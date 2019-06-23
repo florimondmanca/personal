@@ -14,8 +14,7 @@ export const environment = {
   adminSiteUrl: "${process.env.BACKEND_URL}/admin",
   backendUrl: "${process.env.BACKEND_URL}",
   apiUrl: "${process.env.BACKEND_URL}/api",
-  apiToken: "${process.env.API_TOKEN}",
-  apiSecretKey: "${process.env.API_SECRET_KEY}",
+  apiKey: "${process.env.API_KEY}",
 };
 `
 

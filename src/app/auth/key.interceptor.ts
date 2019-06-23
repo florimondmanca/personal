@@ -15,9 +15,8 @@ export class KeyInterceptor implements HttpInterceptor {
   }
 
   private attachApiKey(request: HttpRequest<any>): HttpRequest<any> {
-    const token: string = environment.apiToken;
-    const secretKey: string = environment.apiSecretKey;
-    const headers = request.headers.set('Api-Token', token).set('Api-Secret-Key', secretKey);
+    const key: string = environment.apiKey;
+    const headers = request.headers.set('X-Api-Key', key);
     return request.clone({ headers });
   }
 
