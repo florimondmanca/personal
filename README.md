@@ -1,11 +1,8 @@
 # Personal
 
 [![Build Status](https://img.shields.io/travis/florimondmanca/personal.svg?style=flat-square)](https://travis-ci.org/florimondmanca/personal)
-[![Angular](https://img.shields.io/badge/angular-6-blue.svg?style=flat-square)](https://angular.io)
+[![Angular](https://img.shields.io/badge/angular-7-blue.svg?style=flat-square)](https://angular.io)
 [![DigitalOcean](https://img.shields.io/badge/digitalocean-deployed-0069fe.svg?style=flat-square)](https://digitalocean.com)
-[![CapRover](https://img.shields.io/badge/caprover-deployed-fdc73d.svg?style=flat-square)](https://caprover.com)
-
-[![](https://blog.florimond.dev/assets/img/codesail-full-repo.png)](https://blog.florimond.dev)
 
 This is the repository for the **frontend application** powering my [personal blog](https://blog.florimond.dev).
 
@@ -29,15 +26,14 @@ $ npm install
 
 Create an environment file called `.env` (it will be excluded from version control) at the project root, containing the following variables:
 
-- `API_TOKEN`, `API_SECRET_KEY`: valid API token and secret key created via the API administration.
+- `API_KEY`: a valid API key created via the backend admin site.
 - `BACKEND_URL`: the URL to the backend root (**without trailing slash**).
 
 For example:
 
 ```bash
 # .env
-API_TOKEN=mytoken
-API_SECRET_KEY=mysecretkey
+API_KEY=myapikey
 BACKEND_URL=http://localhost:8000
 ```
 
@@ -47,7 +43,7 @@ Generate your development environment file:
 $ npm run config -- --env=dev
 ```
 
-You can now start the development server, which will run on `http://localhost:4200/`:
+Start the development server, which will run on `http://localhost:4200/`:
 
 ```bash
 $ ng serve -c dev
